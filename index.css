@@ -1,0 +1,397 @@
+body{
+    margin:0 auto;
+    padding:0 auto;
+    
+
+}
+
+input {
+  width: 40vw;
+  height: 48px;              /* Altura definida diretamente */
+  box-sizing: border-box;    /* Garante que o padding não estufe a altura */
+  background: #8F8F8F;
+  font-weight: bold;
+  font-size: 18px;           /* 30px estava muito desproporcional para a barra */
+  color: black;
+  padding: 0 16px;
+  border: 1px solid #777;
+  border-right: none;        /* Tira a borda direita para fundir com o botão */
+  outline: none;
+  margin: 0;                 /* Remove margin-left: 200px que desregulava o alinhamento */
+}
+#pesquisa {
+  display: flex;             /* Junta input e lupa lado a lado sem vão */
+  align-items: center;
+  margin-right: 40px;        /* Espaço controlado antes do bloco de usuário */
+  margin-left: 20px;         /* Espaço após a logo */
+}
+#elements{
+   display: flex;
+   align-items: center;
+  justify-content: center; /* Centraliza o bloco na tela */
+  position: relative;
+  width: 100%;
+  margin-top:100px ;
+  margin-bottom: 20px;
+ 
+  margin-right: 100px;
+}
+
+
+
+#user{
+height: 30px;
+cursor: pointer;
+}
+#frase{
+  font-size: 10px;
+  
+  
+}
+#topi,#pedido{
+margin-right: 30px;
+cursor:pointer;
+}
+#pedido{
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+#carrinho{
+height: 30px;
+margin-left:40px ;
+cursor: pointer;
+ 
+}
+
+#lupa {
+  cursor: pointer;
+  height: 48px;              /* Mesma altura exata do input */
+  width: 48px;
+  box-sizing: border-box;
+  background-color: green;
+  border: 1px solid green;
+  display: block;
+  padding: 10px;             /* Ajusta o ícone dentro do quadrado verde */
+}
+
+
+#info{
+    display:inline-block;
+
+}
+
+
+.escolha {
+  background-color: #006C63;
+  padding: 50px;
+  height: 40px;
+  font-weight: bold;
+  
+}
+
+
+.escolha ul {
+  display: flex;
+  align-items: center;            /* Centraliza todos os itens na vertical */
+  justify-content: space-between; /* Distribui as categorias pela barra */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.escolha li {
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.categoria-principal {
+  display: flex;
+  align-items: center;            /* Trava o ícone no meio da linha do texto */
+  gap: 50px;                     /* Espaço entre ícone e 'Todas as Categorias' */
+}
+
+#list {
+  width: 44px;         /* Aumente aqui (ex: 40px, 44px ou 48px) */
+  height: 44px;        /* Mantenha o mesmo valor para não deformar */
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  display: block;
+}
+
+
+ul,li{
+ list-style: none;
+ display: inline-flex;
+ gap:250px;
+ justify-content: space-between;
+ 
+}
+
+#img {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza o bloco na tela */
+  position: relative;
+  width: 100%;
+}
+
+#img1, 
+#img2 {
+  width: 50%;
+  height: auto;             /* Deixa a altura se ajustar naturalmente */
+  aspect-ratio: 16 / 9;     /* Mantém proporção perfeita de tela cheia sem achatar */
+  object-fit: cover;
+  position: relative;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.25);
+  display: block;
+}
+
+#img1 {
+  object-position: center;  /* Garante o foco no centro */
+  clip-path: inset(0 6% 0 3% round 12px); /* Tira a faixa preta da direita */
+  z-index: 1;
+}
+
+#img2 {
+  margin-left: -5%;         /* Sobreposição suave */
+  z-index: 2;
+  border-radius: 12px;
+}
+
+
+.barra-menu{
+     display: flex; /* Ativa o modo flexível para a div/nav */
+  gap: 200px;
+  margin-top:30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.element{
+
+    border:1px solid black;
+    padding:8px 16px;
+    cursor: pointer;
+    height: 200px;
+    gap:50px;
+    color: greenyellow;
+   
+    
+      
+}
+.element img{
+   transition: transform 0.25s ease;
+}
+.element:hover img{
+  transform: scale(1.2);
+
+}
+
+.opcoes{
+    display: flex; /* Ativa o modo flexível para a div/nav */
+  gap: 100px;
+  margin-top:30px;
+  align-items: center;
+  justify-content: center;
+  
+}
+.o{
+  background-color: #006C63; /* Tom verde padrão */
+  display: flex;
+  align-items: center;       /* Centraliza o ícone e o texto verticalmente */
+  justify-content: center;  /* Centraliza o bloco todo no meio do card */
+  gap: 16px;                 /* Espaço exato entre a motoquinha e o texto */
+  padding: 16px 28px;        /* Respiro interno */
+  border-radius: 6px;
+  cursor: pointer;
+  height: 150px;
+}
+
+.o img{
+height: 50px;
+transition: transform 0.25s ease;
+margin-top:20px;
+
+
+}
+.o:hover img{
+    transform: scale(1.2);
+}
+.o h1{
+margin-right: 150px;
+margin-top:50px;
+color:white;
+font-weight: bold;
+}
+
+footer {
+  background-color: #004d46;
+  color: #ffffff;
+  padding-top: 50px;
+  font-family: Arial, sans-serif;
+  margin-top:40px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1.3fr;
+  gap: 32px;
+}
+
+/* Logo e Redes Sociais */
+.logotipo {
+  height: 44px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-socialmidia {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-socialmidia .footer-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.footer-socialmidia .footer-link:hover {
+  background-color: #006C63;
+  transform: translateY(-3px);
+}
+
+/* Listas Institucional / Atendimento */
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-list h3,
+.footer-feedback h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #ffffff;
+}
+
+.footer-list .footer-link {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.footer-list .footer-link:hover {
+  color: #ffffff;
+  padding-left: 4px;
+}
+
+/* Feedback / Newsletter */
+.footer-feedback p {
+  color: #d1d5db;
+  font-size: 14px;
+  margin: 0 0 16px;
+  line-height: 1.4;
+}
+
+.footer-feedback .input-group {
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+.footer-feedback .input-group input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0 14px;
+  border-radius: 6px 0 0 6px;
+  font-size: 14px;
+  color: #333333;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.footer-feedback .input-group button {
+  height: 100%;
+  width: 50px;
+  border: none;
+  outline: none;
+  background-color: #006C63;
+  color: #ffffff;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.footer-feedback .input-group button:hover {
+  background-color: #00877c;
+}
+
+/* Rodapé inferior / Copyright */
+.footer-copyright {
+  text-align: center;
+  font-size: 13px;
+  color: #9ca3af;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 16px;
+  line-height: 1.6;
+}
+
+/* Responsividade para tablets e celulares */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+#logo{
+    height: 180px;
+    margin-bottom: 60px;
+    
+}
+
+.img_element,h1{
+  height: 80px;
+  padding: 15px;
+  margin-left: 10px;
+  margin-top:20px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.align{
+  margin-left: 35px;
+}

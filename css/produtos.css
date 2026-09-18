@@ -1,0 +1,28 @@
+input {
+  width: 40vw;
+  height: 48px;              /* Altura definida diretamente */
+  box-sizing: border-box;    /* Garante que o padding não estufe a altura */
+  background: #8F8F8F;
+  font-weight: bold;
+  font-size: 18px;           /* 30px estava muito desproporcional para a barra */
+  color: black;
+  padding: 0 16px;
+  border: 1px solid #777;
+  border-right: none;        /* Tira a borda direita para fundir com o botão */
+  margin: 0;                 /* Remove margin-left: 200px que desregulava o alinhamento */
+}
+#lupa {
+  cursor: pointer;
+  height: 48px;              /* Mesma altura exata do input */
+  width: 48px;
+  box-sizing: border-box;
+  background-color: green;
+  border: 1px solid green;
+  display: flex;
+  padding: 10px;             /* Ajusta o ícone dentro do quadrado verde */
+}
+#user{
+height: 50px;
+margin-left: 200px;
+
+}

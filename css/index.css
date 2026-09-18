@@ -1,15 +1,14 @@
 body{
     margin:0 auto;
     padding:0 auto;
-    
-
+    font-family: 'Poppins', sans-serif;
 }
 
 input {
   width: 40vw;
   height: 48px;              /* Altura definida diretamente */
   box-sizing: border-box;    /* Garante que o padding não estufe a altura */
-  background: #8F8F8F;
+  background: #ECECEC;
   font-weight: bold;
   font-size: 18px;           /* 30px estava muito desproporcional para a barra */
   color: black;
@@ -20,10 +19,25 @@ input {
   margin: 0;                 /* Remove margin-left: 200px que desregulava o alinhamento */
 }
 #pesquisa {
-  display: flex;             /* Junta input e lupa lado a lado sem vão */
+  display: flex;
   align-items: center;
-  margin-right: 40px;        /* Espaço controlado antes do bloco de usuário */
-  margin-left: 20px;         /* Espaço após a logo */
+  width: 40vw;          
+  height: 48px;
+  border: 1px solid #777;
+  border-radius: 20px;
+  overflow: hidden;     
+  margin-right: 40px;
+  margin-left: 20px;
+}
+#config {
+  height: 30px;
+  margin-left: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#config:hover {
+  transform: rotate(45deg); /* Um pequeno toque visual ao passar o rato */
 }
 #elements{
    display: flex;
@@ -44,7 +58,7 @@ height: 30px;
 cursor: pointer;
 }
 #frase{
-  font-size: 10px;
+  font-size: 12px;
   
   
 }
@@ -53,7 +67,7 @@ margin-right: 30px;
 cursor:pointer;
 }
 #pedido{
-  font-size: 13px;
+  font-size: 15px;
   margin-bottom: 10px;
 }
 
@@ -66,15 +80,15 @@ cursor: pointer;
 
 #lupa {
   cursor: pointer;
-  height: 48px;              /* Mesma altura exata do input */
+  height: 100%;
   width: 48px;
   box-sizing: border-box;
   background-color: green;
-  border: 1px solid green;
+  border: none;        
   display: block;
-  padding: 10px;             /* Ajusta o ícone dentro do quadrado verde */
+  padding: 12px;
+  object-fit: contain;  
 }
-
 
 #info{
     display:inline-block;
@@ -103,9 +117,28 @@ cursor: pointer;
 .escolha li {
   color: #ffffff;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
+  position: relative;
+  padding-bottom: 4px;
 }
 
+.escolha li {
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.escolha li:hover {
+  color: #a3e635; /* Cor verde-claro/lima em destaque */
+  transform: translateY(-3px); /* Eleva o texto levemente */
+}
+
+/* Mantém o ícone do menu sincronizado com a animação */
+.escolha li:hover #list {
+  transform: scale(1.1);
+  transition: transform 0.25s ease;
+}
 .categoria-principal {
   display: flex;
   align-items: center;            /* Trava o ícone no meio da linha do texto */
@@ -171,67 +204,86 @@ ul,li{
 }
 
 .element{
-
+    display: flex;              /* Alinha ícone e texto em coluna, centralizados */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    width: 220px;                /* Largura fixa: evita cards com tamanhos diferentes */
     border:1px solid black;
     padding:8px 16px;
     cursor: pointer;
     height: 200px;
-    gap:50px;
+    gap:20px;
     color: greenyellow;
-   
-    
-      
 }
 .element img{
+   height: 60px;                /* Todos os ícones no mesmo tamanho visual */
+   width: 60px;
+   object-fit: contain;         /* Mantém proporção sem distorcer */
+   margin-top: 20px;
    transition: transform 0.25s ease;
+}
+.element h1{
+  height: auto;                 /* Sobrescreve o height:90px do h1 global */
+  margin: 0;
+  padding: 0;
 }
 .element:hover img{
   transform: scale(1.2);
 
 }
 
-.opcoes{
-    display: flex; /* Ativa o modo flexível para a div/nav */
-  gap: 100px;
-  margin-top:30px;
+/* NOVO CÓDIGO CORRIGIDO: */
+.opcoes {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
   align-items: center;
   justify-content: center;
-  
 }
-.o{
-  background-color: #006C63; /* Tom verde padrão */
+
+.o {
+  background-color: #006C63;
   display: flex;
-  align-items: center;       /* Centraliza o ícone e o texto verticalmente */
-  justify-content: center;  /* Centraliza o bloco todo no meio do card */
-  gap: 16px;                 /* Espaço exato entre a motoquinha e o texto */
-  padding: 16px 28px;        /* Respiro interno */
-  border-radius: 6px;
+  align-items: center;        /* Alinha ícone e texto perfeitamente na vertical */
+  justify-content: center;   /* Centraliza o conteúdo dentro do card */
+  gap: 16px;                  /* Espaço entre ícone e texto */
+  padding: 20px 30px;
+  border-radius: 8px;
   cursor: pointer;
-  height: 150px;
+  width: 260px;               /* Deixa os 3 botões com o mesmo tamanho */
+  height: 100px;              /* Altura bem proporcional */
 }
 
-.o img{
-height: 50px;
-transition: transform 0.25s ease;
-margin-top:20px;
-
-
+.o img {
+  height: 45px;
+  width: 45px;
+  object-fit: contain;
+  margin: 0;
+  padding: 0;
+  transition: transform 0.25s ease;
 }
-.o:hover img{
-    transform: scale(1.2);
+
+.o h1 {
+  margin: 0;                  /* Tira a margem herdada que desalinhava */
+  padding: 0;                 /* Tira o padding herdado */
+  height: auto;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.2;
 }
-.o h1{
-margin-right: 150px;
-margin-top:50px;
-color:white;
-font-weight: bold;
+
+.o:hover img {
+  transform: scale(1.1);
 }
 
 footer {
   background-color: #004d46;
   color: #ffffff;
   padding-top: 50px;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin-top:40px;
 }
 
@@ -276,6 +328,13 @@ footer {
   transform: translateY(-3px);
 }
 
+.footer-socialmidia .footer-link img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);  /* Deixa o ícone branco, igual ao antigo estilo do Font Awesome */
+}
+
 /* Listas Institucional / Atendimento */
 .footer-list {
   list-style: none;
@@ -288,7 +347,7 @@ footer {
 
 .footer-list h3,
 .footer-feedback h3 {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
   margin: 0 0 8px;
   color: #ffffff;
@@ -297,7 +356,7 @@ footer {
 .footer-list .footer-link {
   color: #d1d5db;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 16px;
   transition: color 0.2s ease, padding-left 0.2s ease;
 }
 
@@ -309,7 +368,7 @@ footer {
 /* Feedback / Newsletter */
 .footer-feedback p {
   color: #d1d5db;
-  font-size: 14px;
+  font-size: 15px;
   margin: 0 0 16px;
   line-height: 1.4;
 }
@@ -327,7 +386,7 @@ footer {
   outline: none;
   padding: 0 14px;
   border-radius: 6px 0 0 6px;
-  font-size: 14px;
+  font-size: 15px;
   color: #333333;
   background-color: #ffffff;
   box-sizing: border-box;
@@ -352,6 +411,13 @@ footer {
 
 .footer-feedback .input-group button:hover {
   background-color: #00877c;
+}
+
+.footer-feedback .input-group button img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);  /* Deixa o ícone branco */
 }
 
 /* Rodapé inferior / Copyright */
@@ -385,11 +451,11 @@ footer {
 }
 
 .img_element,h1{
-  height: 80px;
+  height: 90px;
   padding: 15px;
   margin-left: 10px;
   margin-top:20px;
-  font-size: 16px;
+  font-size: 20px;
   margin-right: 10px;
 }
 .align{

@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+img {
+    max-width: 181px;
+    height: auto;
+}
+
+.boas-vindas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px;
+}
+
+.login, .senha, .cadastrar {
+  display: grid;
+    grid-template-columns: auto auto auto; 
+    align-items: center;                   
+    gap: 15px 10px;                        
+    
+    width: fit-content;                  
+    margin-left: 45%;                      
+    padding: 5px;
+}
+
+.cadastrar a {
+    display: flex;
+    align-items: center;                   
+    gap: 5px;                         
+    
+    width: fit-content;                    
+    margin-left: 20%;
+    padding: 55px;
+}
+
+.cadastrar h3 {
+    margin: 0;
+}
+.faleconosco {
+    display: flex;
+    justify-content: center; 
+    gap: 350px;               
+    margin-top: 60px;     
+}
+
+
+.faleconosco a {
+    display: flex;
+    flex-direction: row;  
+    align-items: center; 
+    justify-content: center;
+    
+    padding: 20px 100px;      
+    gap: 30px;               
+    
+    text-decoration: none;   
+    border-radius: 150px;    
+    border: 2px solid #000;  
+}
+
+.boas-vindas h3 {
+      display: flex;
+    flex-direction: row;  
+    align-items: center; 
+    justify-content: center;
+    
+    padding: 20px 100px;      
+    gap: 30px;               
+    
+    text-decoration: none;
+    border-radius: 150px;    
+    border: 2px solid #000;  
+}

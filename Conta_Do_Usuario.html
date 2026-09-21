@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conta do Usuário</title>
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #edf2fd;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2691;
+}
+
+/* Barra superior */
+.navbar {
+    background-color: #c4ee94;
+    width: 100%;
+    min-height: 150px;
+    border-bottom: 5px solid #1f2691;
+    display: flex;
+    align-items: center;
+    padding: 20px 5%;
+    gap: 40px;
+}
+
+.logo {
+    width: 15%;
+    height: auto;
+}
+
+h1 {
+    color: #1f2691;
+    font-size: 40px;
+}
+
+/* Título da seção */
+.conta {
+    background-color: #1f2691;
+    border-radius: 15px;
+    width: 90%;
+    margin: 30px auto 20px;
+    padding: 18px;
+    text-align: center;
+}
+
+.info {
+    color: #ffffff;
+    font-size: 32px;
+}
+
+/* Área principal do formulário */
+.dados {
+    background-color: #ffffff;
+    border: 3px solid #1f2691;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    box-shadow: 0 5px 15px rgba(31, 38, 145, 0.15);
+}
+
+/* Colunas */
+.Informações,
+.dados2 {
+    flex: 1;
+    min-width: 280px;
+    height: auto;
+    margin: 0;
+    text-align: left;
+}
+
+.Informações h2,
+.dados2 h2 {
+    color: #1f2691;
+    font-size: 24px;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #abff4b;
+    padding-bottom: 10px;
+}
+
+/* Rótulos dos campos */
+label {
+    display: block;
+    color: #1f2691;
+    font-weight: bold;
+    margin: 15px 0 7px;
+}
+
+/* Campos de entrada */
+input {
+    width: 100%;
+    padding: 13px;
+    border: 2px solid #d5dcf5;
+    border-radius: 10px;
+    background-color: #f4f7ff;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #1f2691;
+    box-shadow: 0 0 0 3px rgba(171, 255, 75, 0.6);
+    background-color: #ffffff;
+}
+
+/* Botão de salvar */
+.botao-salvar {
+    width: 100%;
+    background-color: #1f2691;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-salvar:hover {
+    background-color: #abff4b;
+    color: #1f2691;
+    transform: translateY(-2px);
+}
+
+/* Área dos botões da conta */
+.acoes-conta {
+    width: 90%;
+    max-width: 1100px;
+    margin: 25px auto 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Botões de ação */
+.botao-senha,
+.botao-excluir {
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Trocar senha */
+.botao-senha {
+    background-color: #1f2691;
+    color: #ffffff;
+    border: 2px solid #1f2691;
+}
+
+.botao-senha:hover {
+    background-color: #3038c7;
+    transform: translateY(-2px);
+}
+
+/* Excluir conta */
+.botao-excluir {
+    background-color: #ffffff;
+    color: #c62828;
+    border: 2px solid #c62828;
+}
+
+.botao-excluir:hover {
+    background-color: #c62828;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .area-titulo {
+        width: 100%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .dados {
+        padding: 20px;
+    }
+
+    .acoes-conta {
+        flex-direction: column;
+    }
+
+    .botao-senha,
+    .botao-excluir {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <img class="logo" src="Logo.png" alt="Logo FarmaSync">
+
+    </div>
+
+    <div class="conta">
+        <h1 class="info">Informações</h1>
+    </div>
+
+    <form class="dados" method="POST" action="">
+
+        <div class="Informações">
+
+            <h2>Informações pessoais</h2>
+
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
+
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário">
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
+
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="Digite seu telefone">
+
+        </div>
+
+        <div class="dados2">
+
+            <h2>Endereço</h2>
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" placeholder="Digite seu endereço">
+
+            <label for="cep">CEP:</label>
+            <input type="text" id="cep" name="cep" placeholder="Digite seu CEP">
+
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" name="estado" placeholder="Digite seu estado">
+
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade">
+
+            <label for="bairro">Bairro:</label>
+            <input type="text" id="bairro" name="bairro" placeholder="Digite seu bairro">
+
+        </div>
+
+        <button type="submit" class="botao-salvar">
+            Salvar informações
+        </button>
+
+    </form>
+
+    <div class="acoes-conta">
+
+        <a href="trocar_senha.html" class="botao-senha">
+            Trocar senha
+        </a>
+
+        <a href="Exclusão_Da_Conta.html" class="botao-excluir">
+            Excluir conta
+        </a>
+
+    </div>
+
+</body>
+</html>

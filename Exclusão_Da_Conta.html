@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Excluir conta | FarmaSync</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #edf2fd, #dce7ff);
+            min-height: 100vh;
+            color: #20234f;
+        }
+
+        /* Cabeçalho */
+        .cabecalho {
+            background-color: #c4ee94;
+            border-bottom: 4px solid #1f2691;
+            padding: 18px 6%;
+        }
+
+        .logo {
+            width: 18%;
+        }
+
+        /* Área principal */
+        .principal {
+            width: 90%;
+            max-width: 850px;
+            margin: 45px auto;
+        }
+
+        /* Cartão */
+        .cartao {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 12px 35px rgba(31, 38, 145, 0.15);
+        }
+
+        /* Ícone de alerta */
+        .icone-alerta {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background-color: #fff4cc;
+            color: #d99b00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        /* Títulos */
+        .cartao h1 {
+            color: #1f2691;
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .subtitulo {
+            color: #666666;
+            text-align: center;
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        /* Aviso */
+        .aviso {
+            background-color: #fff8e1;
+            border-left: 5px solid #e2ae00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .aviso h2 {
+            color: #8a6500;
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        .aviso p {
+            color: #5f5100;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Lista de consequências */
+        .consequencias {
+            margin-bottom: 30px;
+        }
+
+        .consequencias h2 {
+            color: #1f2691;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .consequencias ul {
+            list-style: none;
+        }
+
+        .consequencias li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eeeeee;
+            color: #444444;
+        }
+
+        .consequencias li::before {
+            content: "•";
+            color: #1f2691;
+            font-size: 22px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Confirmação */
+        .confirmacao {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background-color: #f4f7ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .confirmacao input {
+            margin-top: 4px;
+            accent-color: #1f2691;
+        }
+
+        .confirmacao label {
+            color: #444444;
+            font-size: 14px;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        /* Botões */
+        .acoes {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .botao {
+            padding: 14px 28px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .botao-cancelar {
+            background-color: #ffffff;
+            border-color: #1f2691;
+            color: #1f2691;
+        }
+
+        .botao-cancelar:hover {
+            background-color: #edf2fd;
+        }
+
+        .botao-excluir {
+            background-color: #d93636;
+            color: #ffffff;
+        }
+
+        .botao-excluir:hover {
+            background-color: #ad2020;
+            transform: translateY(-2px);
+        }
+
+        /* Rodapé */
+        .rodape {
+            text-align: center;
+            color: #777777;
+            font-size: 13px;
+            margin-top: 25px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+
+            .principal {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .cartao {
+                padding: 25px 20px;
+            }
+
+            .cartao h1 {
+                font-size: 25px;
+            }
+
+            .acoes {
+                flex-direction: column-reverse;
+            }
+
+            .botao {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <img class="logo" src="Logo.png" alt="Logo FarmaSync">
+    </header>
+
+    <main class="principal">
+
+        <section class="cartao">
+
+            <div class="icone-alerta">!</div>
+
+            <h1>Excluir sua conta?</h1>
+
+            <p class="subtitulo">
+                Sentimos muito que você esteja pensando em sair.
+                Antes de continuar, confira o que acontecerá com sua conta.
+            </p>
+
+            <div class="aviso">
+                <h2>Esta ação é permanente</h2>
+
+                <p>
+                    A exclusão da conta poderá remover permanentemente
+                    seus dados pessoais e informações associadas ao seu cadastro.
+                    Essa ação não poderá ser desfeita.
+                </p>
+            </div>
+
+            <div class="consequencias">
+
+                <h2>O que poderá ser removido?</h2>
+
+                <ul>
+                    <li>Seus dados pessoais e informações de cadastro.</li>
+                    <li>Seu histórico de pedidos.</li>
+                    <li>Seus endereços salvos.</li>
+                    <li>Outras informações vinculadas à sua conta.</li>
+                </ul>
+
+            </div>
+
+            <div class="confirmacao">
+
+                <input type="checkbox" id="confirmar">
+
+                <label for="confirmar">
+                    Li as informações acima e entendo que a exclusão
+                    da minha conta poderá ser permanente.
+                </label>
+
+            </div>
+
+            <div class="acoes">
+
+                <a href="Conta_Do_Usuario.html" class="botao botao-cancelar">
+                    Voltar para minha conta
+                </a>
+
+                <a href="#" class="botao botao-excluir">
+                    Excluir conta
+                </a>
+
+            </div>
+
+            <p class="rodape">
+                FarmaSync • Gerencie seus dados com segurança
+            </p>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

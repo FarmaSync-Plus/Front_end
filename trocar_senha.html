@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trocar senha | FarmaSync</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #edf2fd, #dce7ff);
+            min-height: 100vh;
+            color: #20234f;
+        }
+
+        /* Cabeçalho */
+        .cabecalho {
+            background-color: #c4ee94;
+            border-bottom: 4px solid #1f2691;
+            padding: 18px 6%;
+        }
+
+        .logo {
+            width: 18%;
+            display: block;
+        }
+
+        /* Área principal */
+        .principal {
+            width: 90%;
+            max-width: 850px;
+            margin: 45px auto;
+        }
+
+        /* Cartão principal */
+        .cartao {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 12px 35px rgba(31, 38, 145, 0.15);
+        }
+
+        /* Ícone */
+        .icone-chave {
+            width: 70px;
+            height: 70px;
+            background-color: #edf2fd;
+            border: 3px solid #1f2691;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 36px;
+        }
+
+        /* Títulos */
+        h1 {
+            color: #1f2691;
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .subtitulo {
+            color: #666666;
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 35px;
+        }
+
+        /* Formulário */
+        .formulario {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .campo {
+            margin-bottom: 22px;
+        }
+
+        .campo label {
+            display: block;
+            color: #1f2691;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #d5dcf5;
+            border-radius: 12px;
+            background-color: #f7f9ff;
+            color: #222222;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .campo input:focus {
+            background-color: #ffffff;
+            border-color: #1f2691;
+            box-shadow: 0 0 0 4px rgba(171, 255, 75, 0.45);
+        }
+
+        .ajuda {
+            color: #777777;
+            font-size: 13px;
+            margin-top: 7px;
+            line-height: 1.4;
+        }
+
+        /* Regras da senha */
+        .regras {
+            background-color: #f4f7ff;
+            border-radius: 12px;
+            padding: 18px;
+            margin: 25px 0;
+        }
+
+        .regras h2 {
+            color: #1f2691;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .regras ul {
+            list-style: none;
+        }
+
+        .regras li {
+            color: #555555;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .regras li::before {
+            content: "✓";
+            color: #36a852;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* Botões */
+        .acoes {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .botao {
+            flex: 1;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .botao-cancelar {
+            background-color: #ffffff;
+            color: #1f2691;
+            border: 2px solid #1f2691;
+        }
+
+        .botao-cancelar:hover {
+            background-color: #edf2fd;
+        }
+
+        .botao-confirmar {
+            background-color: #1f2691;
+            color: #ffffff;
+            border: 2px solid #1f2691;
+        }
+
+        .botao-confirmar:hover {
+            background-color: #abff4b;
+            color: #1f2691;
+            transform: translateY(-2px);
+        }
+
+        /* Rodapé */
+        .rodape {
+            color: #888888;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+
+            .principal {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .cartao {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .acoes {
+                flex-direction: column-reverse;
+            }
+
+            .botao {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <img class="logo" src="Logo.png" alt="Logo FarmaSync">
+    </header>
+
+    <main class="principal">
+
+        <section class="cartao">
+
+            <div class="icone-chave">🔑</div>
+
+            <h1>Troque sua senha</h1>
+
+            <p class="subtitulo">
+                Crie uma nova senha para manter sua conta
+                FarmaSync protegida e segura.
+            </p>
+
+            <form class="formulario" method="POST" action="">
+
+                <div class="campo">
+                    <label for="senha-atual">Senha atual</label>
+
+                    <input
+                        type="password"
+                        id="senha-atual"
+                        name="senha-atual"
+                        placeholder="Digite sua senha atual"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="senha-nova">Nova senha</label>
+
+                    <input
+                        type="password"
+                        id="senha-nova"
+                        name="senha-nova"
+                        placeholder="Digite sua nova senha"
+                        required
+                    >
+
+                    <p class="ajuda">
+                        Escolha uma senha que você ainda não tenha utilizado.
+                    </p>
+                </div>
+
+                <div class="campo">
+                    <label for="confirmar-senha">
+                        Confirme sua nova senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmar-senha"
+                        name="confirmar-senha"
+                        placeholder="Digite novamente sua nova senha"
+                        required
+                    >
+                </div>
+
+                <div class="regras">
+
+                    <h2>Sua nova senha deve conter:</h2>
+
+                    <ul>
+                        <li>Pelo menos 8 caracteres.</li>
+                        <li>Uma letra maiúscula.</li>
+                        <li>Uma letra minúscula.</li>
+                        <li>Um número.</li>
+                    </ul>
+
+                </div>
+
+                <div class="acoes">
+
+                    <a
+                        href="Conta_Do_Usuario.html"
+                        class="botao botao-cancelar"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="botao botao-confirmar"
+                    >
+                        Confirmar alteração
+                    </button>
+
+                </div>
+
+            </form>
+
+            <p class="rodape">
+                FarmaSync • Sua saúde sempre com você
+            </p>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+img {
+    max-width: 181px;
+    height: auto;
+}
+
+.endereco {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.dados-end {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.grupo {
+    display: flex;
+    flex-direction: column; 
+    gap: 12px;             
+
+     max-width: 450px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.btn-continuar {
+    border: none;
+    color: black;
+    border-radius: 50px;
+    background-color: #66DF84;
+}

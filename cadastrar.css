@@ -24,18 +24,21 @@ img {
     gap: 15px 10px;                        
     
     width: fit-content;                  
-    margin-left: 45%;                      
-    padding: 5px;
+    margin-left: 800px;                      
+    padding: 10px;
 }
 
 .cadastrar a {
     display: flex;
     align-items: center;                   
-    gap: 5px;                         
+    gap: 10px;                         
     
     width: fit-content;                    
     margin-left: 20%;
-    padding: 55px;
+    padding: 2px;
+    background-color: #66DF84;
+    color: #000;
+    border-radius: 150px;
 }
 
 .cadastrar h3 {
@@ -46,6 +49,8 @@ img {
     justify-content: center; 
     gap: 350px;               
     margin-top: 60px;     
+
+    padding: 220px 100px;
 }
 
 
@@ -61,6 +66,8 @@ img {
     text-decoration: none;   
     border-radius: 150px;    
     border: 2px solid #000;  
+    background-color: #66DF84;
+    color: #000;
 }
 
 .boas-vindas h3 {
@@ -74,5 +81,8 @@ img {
     
     text-decoration: none;
     border-radius: 150px;    
-    border: 2px solid #000;  
+    border: 2px solid #000;
+    background-color: #66DF84;
+    color: #000;
+
 }

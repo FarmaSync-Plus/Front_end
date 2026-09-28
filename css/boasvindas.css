@@ -1,0 +1,48 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+a { text-decoration: none; }
+
+#logo2 { width: 180px; height: auto;}
+
+#iconeajuda { width: 40px; height: auto;}
+
+.topo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  width: 100%;
+}
+
+.ajuda {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.login { max-width: 450px; margin: 40px auto; display: flex; flex-direction: column; gap: 15px; font-family: Arial, sans-serif; }
+.campo {display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 15px;}
+.botoes-inferiores { display: flex; gap: 15px; margin-top: 20px; }
+
+.login img { width: 45px; height: 45px; border-radius: 50%; }
+.login input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; }
+
+a[href*="cadastro"] { margin: 15px auto 0; 
+  padding: 10px 20px; border: none; border-radius: 12px; flex-direction: column; align-self: center; display: flex; align-items: center; color: black;}
+.botoes-inferiores { display: flex; justify-content: space-between; width: 70vw; position: relative; left: 50px; right: 50px;
+   margin-left: -20vw; margin-top: 80px; padding: 0 40px; box-sizing: border-box; }
+
+.botoes-inferiores .Cadastrar { padding: 12px 25px; border-radius: 25px;}
+.botoes-inferiores a[href*="faleconosco"] { background: #5cdb80; color:black; }
+.botoes-inferiores a[href*="ajuda"] { background: #5cdb80; border: 1px solid #84d858; color: black; }
+
+.btn-entrar {  width: 100%; padding: 12px; background-color: #5cdb80; color: #fff; font-size: 16px;
+font-weight: bold; border: none; border-radius: 8px; cursor: pointer; margin-top: 15px; transition: background-color 0.2s ease;}
+
+.btn-entrar:hover {
+  background-color: #5cdb80;
+}
+

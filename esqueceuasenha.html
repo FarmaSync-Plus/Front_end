@@ -32,18 +32,18 @@
 
     <p>Vamos enviar um código para o contato cadastrado. Escolha como quer receber:</p>
 
-    <label class="option active">
-      <input type="radio" name="method" checked hidden>
-      <span class="dot"></span> <b>Por SMS</b>
-    </label>
-
     <label class="option">
-      <input type="radio" name="method" hidden>
-      <span class="dot"></span> <b>Por e-mail</b>
-    </label>
+  <input type="radio" name="method" value="sms" checked>
+  <b>Por SMS</b>
+</label>
 
-    <button class="btn primary" disabled>Continuar</button>
-    <button class="btn secondary">Voltar</button>
+<label class="option">
+  <input type="radio" name="method" value="email">
+  <b>Por e-mail</b>
+</label>
+
+    <button class="btn">Enviar código</button>
+   
   </main>
 </body>
 </html>

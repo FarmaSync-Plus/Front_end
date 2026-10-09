@@ -1,28 +1,439 @@
-input {
-  width: 40vw;
-  height: 48px;              /* Altura definida diretamente */
-  box-sizing: border-box;    /* Garante que o padding não estufe a altura */
-  background: #8F8F8F;
-  font-weight: bold;
-  font-size: 18px;           /* 30px estava muito desproporcional para a barra */
-  color: black;
-  padding: 0 16px;
-  border: 1px solid #777;
-  border-right: none;        /* Tira a borda direita para fundir com o botão */
-  margin: 0;                 /* Remove margin-left: 200px que desregulava o alinhamento */
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+   ============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-#lupa {
-  cursor: pointer;
-  height: 48px;              /* Mesma altura exata do input */
-  width: 48px;
-  box-sizing: border-box;
-  background-color: green;
-  border: 1px solid green;
-  display: flex;
-  padding: 10px;             /* Ajusta o ícone dentro do quadrado verde */
-}
-#user{
-height: 50px;
-margin-left: 200px;
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+/* ==============================
+   BARRA SUPERIOR
+   ============================== */
+#elements {
+    width: 100%;
+    min-height: 80px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 15px 30px;
+    gap: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+/* FAIXA VERDE DO FIGMA */
+#faixa-verde {
+    width: 100%;
+    height: 8px;
+    background-color: #00e676;
+}
+
+/* ==============================
+   BARRA DE PESQUISA & LUPA
+   ============================== */
+#pesquisa {
+    display: flex;
+    flex: 1;
+    max-width: 450px;
+    min-width: 250px;
+    height: 40px;
+}
+
+#pesquisa input {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    padding: 0 15px;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+}
+
+#pesquisa button {
+    width: 55px;
+    border: none;
+    background-color: #1f8f5f;
+    color: white;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+#pesquisa button:hover {
+    background-color: #176d48;
+}
+
+.icone-lupa {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+/* ==============================
+   ATALHOS & ÍCONES DO TOPO
+   ============================== */
+#atalhos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#atalhos a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+#atalhos a:hover {
+    color: #1f8f5f;
+}
+
+.icone-atalho {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+#contador-carrinho {
+    background-color: #1f8f5f;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* ==============================
+   CONTEÚDO
+   ============================== */
+main {
+    padding: 30px 5%;
+}
+
+main h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* ==============================
+   CATEGORIAS & FILTRO CSS
+   ============================== */
+#categorias {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+input[name="filtro"] {
+    display: none;
+}
+
+#categorias .btn-filtro {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+    color: #333;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+#categorias .btn-filtro:hover {
+    background-color: #d0d0d0;
+}
+
+/* Estilo do botão ativo */
+#todos:checked ~ main #categorias label[for="todos"],
+#medicamentos:checked ~ main #categorias label[for="medicamentos"],
+#higiene:checked ~ main #categorias label[for="higiene"],
+#beleza:checked ~ main #categorias label[for="beleza"],
+#vitaminas:checked ~ main #categorias label[for="vitaminas"] {
+    background-color: #1f8f5f;
+    color: white;
+    border-color: #1f8f5f;
+}
+
+/* ==============================
+   LÓGICA DE FILTRAGEM DOS PRODUTOS
+   ============================== */
+#medicamentos:checked ~ main #produtos .produto:not([data-cat="medicamentos"]),
+#higiene:checked ~ main #produtos .produto:not([data-cat="higiene"]),
+#beleza:checked ~ main #produtos .produto:not([data-cat="beleza"]),
+#vitaminas:checked ~ main #produtos .produto:not([data-cat="vitaminas"]) {
+    display: none;
+}
+
+/* ==============================
+   PRODUTOS (GRID RESPONSIVO)
+   ============================== */
+#produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.produto {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: 0.2s;
+}
+
+.produto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.produto img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.produto h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.descricao {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.preco {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f8f5f;
+    margin-bottom: 15px;
+}
+
+.comprar {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1f8f5f;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.comprar:hover {
+    background-color: #176d48;
+}
+
+/* ==============================
+   MODAL DO CARRINHO
+   ============================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-conteudo {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+#fechar-carrinho {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #888;
+}
+
+#fechar-carrinho:hover {
+    color: #000;
+}
+
+.modal-conteudo h2 {
+    margin-bottom: 20px;
+}
+
+#lista-itens-carrinho {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.carrinho-vazio {
+    color: #777;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.item-carrinho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Correção do tamanho da foto do produto no carrinho */
+.img-item-carrinho {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    padding: 2px;
+}
+
+.item-detalhes {
+    flex: 1;
+}
+
+.item-detalhes h4 {
+    font-size: 14px;
+}
+
+.item-detalhes p {
+    font-size: 13px;
+    color: #1f8f5f;
+    font-weight: bold;
+}
+
+.btn-remover {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.btn-remover:hover {
+    background-color: #cc0000;
+}
+
+.carrinho-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.carrinho-footer p {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+}
+
+#finalizar-compra {
+    background-color: #1f8f5f;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#finalizar-compra:hover {
+    background-color: #176d48;
+}
+
+/* ==============================
+   RODAPÉ
+   ============================== */
+footer {
+    padding: 30px 5%;
+    background-color: #fff;
+    margin-top: 50px;
+    border-top: 1px solid #ddd;
+}
+
+.rodape-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rodape-conteudo p {
+    font-size: 14px;
+    color: #555;
+    font-weight: bold;
+}
+
+.pagamento-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.icone-pagamento {
+    height: 30px;
+    object-fit: contain;
+}
+
+/* ==============================
+   RESPONSIVIDADE (MOBILE E TABLETS)
+   ============================== */
+@media (max-width: 768px) {
+    #elements {
+        padding: 15px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #pesquisa {
+        max-width: 100%;
+    }
+
+    #atalhos {
+        justify-content: center;
+    }
 }

@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+a { text-decoration: none; }
+
+#logo2 {
+  max-width: 180px;
+  height: auto;
+}
+
+#id\.ajuda {
+  max-width: 40px;
+  height: auto;
+}
+
+.topo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  width: 100%;
+}
+.fale-conosco { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; font-family: Arial, sans-serif; }
+.fale-conosco h1 { font-size: 24px; color: #333; margin-bottom: 12px; }
+.fale-conosco .subtitulo, .fale-conosco .horario { font-size: 14px; color: #555; margin-bottom: 15px; }
+.fale-conosco .horario { margin-bottom: 45px; }
+
+.canais-atendimento { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; }
+.card-canal { display: flex; flex-direction: column; align-items: center; width: 210px; padding: 30px 20px; background: #f8f9fa; border-radius: 12px; text-decoration: none; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; }
+.card-canal:hover { transform: translateY(-4px); background: #fff; }
+.card-canal img { width: 45px; height: 45px; object-fit: contain; margin-bottom: 18px; }
+.card-canal h3 { font-size: 16px; margin: 0 0 8px; }
+.card-canal span { font-size: 12px; color: #777; }

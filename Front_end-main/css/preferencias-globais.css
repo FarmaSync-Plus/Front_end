@@ -1,0 +1,116 @@
+/* Camada compartilhada de aparência e acessibilidade do FarmaSync.
+   É carregada depois do CSS específico de cada página. */
+
+:root { --farmasync-font-scale: 1; }
+
+/* Tema escuro: mantém a identidade verde, mas escurece superfícies e formulários. */
+body.tema-escuro {
+  background-color: #111a17 !important;
+  color: #f2f7f4 !important;
+}
+body.tema-escuro :is(h1,h2,h3,h4,h5,h6,p,a,li,label,span,strong,b,em,small,summary,legend,dt,dd,figcaption,blockquote,output) {
+  color: #f2f7f4 !important;
+}
+body.tema-escuro :is(header, main, section, article, .topo, .cadastre-se, .login, .formulario-de-cadastro, .central-de-ajuda details, .card-canal, .card, .cartao, .mensagem-boas-vindas, .dica-aparencia, .link-conta, .element, .conteudo-duplo, .option, .input, .central-de-ajuda details) {
+  background-color: #1b2a25 !important;
+  color: #f2f7f4 !important;
+  border-color: #4b6258 !important;
+}
+body.tema-escuro :is(input, textarea, select, option, .grupo input, .login input, #pesquisa input, .input, .input-group input) {
+  background-color: #263730 !important;
+  color: #f7fff9 !important;
+  border-color: #71877d !important;
+}
+body.tema-escuro :is(.escolha, .o, .cabecalho-cartao) {
+  background-color: #064d43 !important;
+  color: #fff !important;
+}
+body.tema-escuro :is(footer, .rodape-site) { background-color: #0b211c !important; color: #fff !important; }
+body.tema-escuro :is(.btn-entrar, .btn-cadastrar, .botao-secundario, .farmasync-leitura-global) {
+  background-color: #087d68 !important;
+  color: #fff !important;
+  border-color: #6ee7c4 !important;
+}
+body.tema-escuro .central-de-ajuda p,
+body.tema-escuro .card-canal span { color: #d4e1dc !important; }
+body.tema-escuro .logotipo { filter: brightness(0) invert(1); }
+
+/* Alto contraste tem prioridade sobre o tema escuro. */
+body.alto-contraste {
+  background: #000 !important;
+  color: #fff !important;
+}
+body.alto-contraste :is(h1,h2,h3,h4,h5,h6,p,li,label,span,strong,b,em,small,summary,legend,dt,dd,figcaption,blockquote,output) {
+  color: #fff !important;
+}
+body.alto-contraste :is(header, main, section, article, .topo, .cadastre-se, .login, .formulario-de-cadastro, .central-de-ajuda details, .card-canal, .card, .cartao, .mensagem-boas-vindas, .dica-aparencia, .link-conta, .element, .option, footer, .rodape-site, .conteudo-duplo) {
+  background: #000 !important;
+  color: #fff !important;
+  border: 1px solid #ffeb3b !important;
+  box-shadow: none !important;
+}
+body.alto-contraste :is(.escolha, .o, .cabecalho-cartao) {
+  background: #000 !important;
+  color: #ffeb3b !important;
+  border: 2px solid #ffeb3b !important;
+}
+body.alto-contraste a,
+body.alto-contraste a :is(h1,h2,h3,h4,h5,h6,p,span),
+body.alto-contraste .footer-link {
+  color: #ffeb3b !important;
+  text-decoration: underline !important;
+}
+body.alto-contraste :is(input, textarea, select, option, .grupo input, .login input, #pesquisa input, .input, .input-group input) {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #ffeb3b !important;
+}
+body.alto-contraste :is(button, .btn-entrar, .btn-cadastrar, .botao-secundario, .farmasync-leitura-global, #lupa) {
+  background: #ffeb3b !important;
+  color: #000 !important;
+  border: 2px solid #ffeb3b !important;
+}
+body.alto-contraste img { outline-color: #ffeb3b; }
+
+/* Destaca os alvos clicáveis sem depender do CSS específico de cada tela. */
+body.destacar-interativos :is(a, button, input, textarea, select, summary, [role="button"], .card-canal, .link-conta) {
+  outline: 3px solid #f59e0b !important;
+  outline-offset: 3px !important;
+}
+body.destacar-interativos :is(a, button, input, textarea, select, summary, [role="button"]):focus-visible {
+  outline: 4px solid #e11d48 !important;
+  outline-offset: 4px !important;
+}
+
+/* Respeita a preferência de movimento reduzido em todas as páginas. */
+html.reduzir-animacoes { scroll-behavior: auto !important; }
+body.reduzir-animacoes *,
+body.reduzir-animacoes *::before,
+body.reduzir-animacoes *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Botão de leitura compartilhado em páginas fora da tela de configurações. */
+.farmasync-leitura-global {
+  position: fixed;
+  z-index: 9999;
+  right: 18px;
+  bottom: 18px;
+  max-width: calc(100vw - 36px);
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: #006c63;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  font: 700 16px/1.25 Arial, sans-serif;
+  cursor: pointer;
+}
+.farmasync-leitura-global:focus-visible { outline: 4px solid #f59e0b; outline-offset: 4px; }
+@media (max-width: 600px) {
+  .farmasync-leitura-global { right: 12px; bottom: 12px; max-width: calc(100vw - 24px); }
+}

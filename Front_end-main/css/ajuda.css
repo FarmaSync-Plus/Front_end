@@ -1,0 +1,16 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 15px 40px; }
+#logo2 { max-width: 180px; }
+.ajuda { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #000; }
+.ajuda h3 { font-size: 14px; font-weight: normal; }
+#id-ajuda { width: 25px; height: 25px; object-fit: contain; }
+
+
+.central-de-ajuda { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 800px; margin: 80px auto 40px; }
+.central-de-ajuda details { width: 220px; background: #f2f2f2; border-radius: 12px; }
+.central-de-ajuda summary { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; font-weight: bold; color: #000; cursor: pointer; list-style: none; }
+.central-de-ajuda summary::-webkit-details-marker { display: none; }
+.central-de-ajuda img { width: 28px; height: 28px; object-fit: contain; }
+.central-de-ajuda p { padding: 10px 18px 15px; font-size: 13px; color: #444; border-top: 1px solid #e0e0e0; margin: 0; }

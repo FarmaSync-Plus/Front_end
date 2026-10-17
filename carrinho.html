@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>carrinho</title>
+    <link rel="stylesheet" href="css/carrinho.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="bloco">
+    <header>
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo da loja">
+        </div>
+    </header>
+
+        <nav class="menu">
+            <div class="menu-todos" onclick="toggleDropdown(event)">
+                
+            <i class="fa-solid fa-list-ul"></i> 
+                <span>todas as categorias</span>
+            <i class="fa-solid fa-chevron-down icone-seta"></i>
+
+            <ul class="dropdown-menu" id="dropdownMenu">
+                <li><a href="#"><i class="fa-solid fa-pills"></i> Medicamentos</a></li>
+                <li><a href="#"><i class="fa-solid fa-soap"></i> Higiene</a></li>
+                <li><a href="#"><i class="fa-solid fa-heart"></i> Cuidados Pessoais</a></li>
+                <li><a href="#"><i class="fa-solid fa-baby"></i> Infantil</a></li>
+                <li><a href="#"><i class="fa-solid fa-tags"></i> Ofertas</a></li>
+                <li><a href="#"><i class="fa-solid fa-phone"></i> Contato</a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-info"></i> Sobre nós</a></li>
+            </ul>
+
+</div>
+
+    <a href="index.html">Página Inicial</a>
+    <a href="produtos.html">Produtos</a>
+    <a href="sobrenos.html">Sobre Nós</a>
+    <a href="contato.html">Contato</a>
+
+        </nav>
+
+</div>
+
+    <p>Carrinho de compras</p>
+
+    <div class="carrinho-container">
+  <h2>Carrinho de compras</h2>
+
+  <div class="carrinho-layout">
+    
+    <div class="bloco-produtos">
+      <div class="cartao-produto">
+        
+    <div class="produto-detalhes">
+          <img src="img/pomada.jpg" alt="Imagem do produto" class="produto-img">
+        <p class="produto-titulo">
+            Proctan Pomada Para Hemorroidas 25g com 10 Protetores Higiênicos para os Dedos
+        </p>
+        <span class="produto-preco">R$ 150,00</span>
+    </div>
+
+    <div class="produto-acoes">
+          <label>Quantidades</label>
+          <select class="select-qtd">
+            <option value="1">1 unidade</option>
+            <option value="2">2 unidades</option>
+            <option value="3">3 unidades</option>
+        <option value="4">4 unidades</option>
+          </select>
+
+    <button class="btn-remover" title="Remover item">
+        <img src="img/lixoicon.png" alt="Remover item">
+    </button>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bloco-resumo-wrapper">
+      <div class="bloco-resumo">
+        <h3>Resumo da compra</h3>
+        
+        <div class="linha-resumo">
+          <span>subtotal (1)</span>
+          <span>R$ 150,00</span>
+        </div>
+        
+        <div class="linha-resumo total">
+          <span>total</span>
+          <span>R$ 150,00</span>
+        </div>
+
+        <button class="btn-finalizar">Finalizar</button>
+        <a href="#" class="link-continuar">continuar comprando</a>
+      </div>
+
+      <button class="btn-endereco">
+        <img src="img/enderecoicon.png" alt="Ajustar endereço"> Ajustar endereço <span>&gt;</span>
+      </button>
+    </div>
+
+  </div>
+
+  <h2>Produtos semelhantes</h2>
+  
+</div>
+
+    <script src="carrinho.js"></script>
+</body>
+</html>

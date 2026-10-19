@@ -8,6 +8,17 @@
 <link rel="icon" href="img/logo.png">
 
     <title>  Home  </title>
+<div id="sobreposicao-tela">
+
+<div id="cartao-informativo">
+
+<div id="result"></div>
+</div>
+</div>
+
+
+
+
 </head>
 
 <header>
@@ -24,11 +35,13 @@
 
     <img src="img/usuário.png" id="user">
     <div id = "frase">
-    <a href="boasvindas.html">
-        <H3 id="topi"   >Entrar ou Cadastrar</H3>
+    <a id="Link-perfil" href="cadastro.html">
+        <H3 id="topi">Entrar ou Cadastrar</H3>
     </a>
-    <p id="pedido">Pedidos</p>
+    
     </div>
+
+    <img src = "img/pedidos.png" alt="pedidos" id="pedidos">
     <img src="img/carrinho.png" alt="" id="carrinho">
 
 
@@ -112,14 +125,11 @@
 
 <div class="element">
 <img src="img/sobre_nos.png" class="img_element">
-<<<<<<< HEAD
-<h1 class="align" href = "sobrenos.html">Sobre Nós</h1>
-=======
-<h1 class="align">Sobre Nós</h1>
->>>>>>> 7f86bd4 (Atualização boas vindas)
 
-    
-</div>
+<h1 class="align" href = "sobrenos.html">Sobre Nós</h1>
+
+<h1 class="align">Sobre Nós</h1>
+
 </nav>
 
 
@@ -145,8 +155,202 @@
 
     
 </div>
+
 </div>
 
+<div id="catalogo-produtos"></div>
+
+<script>
+
+const sobreposicaotela = document.getElementById("sobreposicao-tela");
+const cartaoinformativo=document.getElementById("cartao-informativo"); 
+const resposta = document.getElementById("result");
+
+// Seus grupos de IDs
+const grupos_produtos = [
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16],
+    [17, 18, 19, 20]
+];
+
+const produtosDoBanco = [
+    { id_produto: 1, nome: "Shampoo Infantil", preco: 18.90, imagem: "Shampoo Infantil.png" },
+    { id_produto: 2, nome: "Fraldas Pampers Pants G", preco: 129.99, imagem: "frauda.png" },
+    { id_produto: 3, nome: "Dorflex", preco: 12.49, imagem: "dorflex.png" },
+    { id_produto: 4, nome: "Protetor Solar PS-01", preco: 42.00, imagem: "protetor-principia.png" },
+    { id_produto: 5, nome: "Cálcio Vitamina D", preco: 119.30, imagem: "calcio.png" },
+    { id_produto: 6, nome: "Cimegripe", preco: 9.69, imagem: "cinegripe.png" },
+    { id_produto: 7, nome: "Listerine Cool Mint", preco: 25.50, imagem: "listerine.png" },
+    { id_produto: 8, nome: "Expec Xarope", preco: 26.58, imagem: "expec.png" },
+    { id_produto: 9, nome: "Sabonete Granado Bebê", preco: 29.99, imagem: "sabonte-liquido.png" },
+    { id_produto: 10, nome: "Ibuprofeno", preco: 15.90, imagem: "ibuprofeno.png" },
+    { id_produto: 11, nome: "Amoxicilina", preco: 32.50, imagem: "amoxicilina.png" },
+    { id_produto: 12, nome: "Losartana", preco: 18.75, imagem: "Losartana.png" },
+    { id_produto: 13, nome: "Omeprazol", preco: 22.30, imagem: "omeprazol.png" },
+    { id_produto: 14, nome: "Aspirina", preco: 10.50, imagem: "Aspirina.png" },
+    { id_produto: 15, nome: "Nimesulida", preco: 14.20, imagem: "nimesulida.png" },
+    { id_produto: 16, nome: "Buscopan", preco: 13.99, imagem: "Buscopan.png" },
+    { id_produto: 17, nome: "Azitromicina", preco: 45.00, imagem: "Azitromicina.png" },
+    { id_produto: 18, nome: "Acetato de Dexametasona", preco: 20.00, imagem: "Acetato de Dexaametasona.png" },
+    { id_produto: 19, nome: "Albendazol", preco: 12.30, imagem: "Albendazol.png" },
+    { id_produto: 20, nome: "Bromoprida", preco: 15.60, imagem: "Bromoprida.png" },
+    { id_produto: 21, nome: "Meloxicam", preco: 23.60, imagem: "Meloxicam.png" },
+    { id_produto: 22, nome: "Diclofenaco", preco: 17.80, imagem: "Bromoprida.png" },
+    { id_produto: 23, nome: "Ranitidina", preco: 13.90, imagem: "ranitidina.png" },
+    { id_produto: 24, nome: "Simeticona", preco: 9.90, imagem: "Simeticona.png" },
+    { id_produto: 25, nome: "Clonazepam", preco: 25.00, imagem: "Clonazepam.png" },
+    { id_produto: 26, nome: "Atenolol", preco: 19.80, imagem: "Atenolol.png" },
+    { id_produto: 27, nome: "Prednisolona", preco: 22.00, imagem: "Atenolol.png" },
+    { id_produto: 28, nome: "Loratadina", preco: 16.50, imagem: "Loratadina.png" },
+    { id_produto: 29, nome: "Ciretizina", preco: 18.90, imagem: "Ciretizina.png" },
+    { id_produto: 30, nome: "Cloridrato de Metformina", preco: 14.90, imagem: "cloridrato de metformina.png" },
+    { id_produto: 31, nome: "Cloridrato de Fluoxetina", preco: 21.50, imagem: "Cloridrato de Fluoxetina.png" },
+    { id_produto: 32, nome: "Dicloridrato de Hidroxizina", preco: 18.00, imagem: "Dicloridrato de Hidroxizina.png" },
+    { id_produto: 33, nome: "Gel de Limpeza Facial", preco: 35.00, imagem: "Gel de Limpeza Facial.png" },
+    { id_produto: 34, nome: "Água Micelar", preco: 28.00, imagem: "agua micelar.png" },
+    { id_produto: 35, nome: "Hidratante Facial", preco: 32.00, imagem: "Hidratante Facial.png" },
+    { id_produto: 36, nome: "Protetor Solar FPS 30", preco: 40.00, imagem: "Protetor Solar FPS 30.png" },
+    { id_produto: 37, nome: "Protetor Solar FPS 70", preco: 55.00, imagem: "Protetor Solar FPS 70.png" },
+    { id_produto: 38, nome: "Esfoliante Facial Nivea Acne Control", preco: 25.00, imagem: "Esfoliante Facial Nivea Acne Control.png" },
+    { id_produto: 39, nome: "Tônico Facial", preco: 27.00, imagem: "Tônico Facial.png" },
+    { id_produto: 40, nome: "Óleo Facial", preco: 50.00, imagem: "Óleo Facial.png" },
+    { id_produto: 41, nome: "Máscara Facial de Algodão Pepino", preco: 30.00, imagem: "Máscara Facial de Algodão Pepino.png" },
+    { id_produto: 42, nome: "Gel Secativo Secatriz Acne Spot", preco: 30.00, imagem: "Gel Secativo Secatriz  Acne Spot.png" },
+    { id_produto: 43, nome: "Nivea Protetor Labial Original Care", preco: 12.00, imagem: "Nivea Protetor Labial Original Care.png" },
+    { id_produto: 44, nome: "Cetaphil Loção Hidratante", preco: 22.00, imagem: "Cetaphil Loção Hidratante.png" },
+    { id_produto: 45, nome: "Talco Bebê Granado", preco: 15.90, imagem: "Talco Bebê Granado.png" },
+    { id_produto: 46, nome: "Lenço Umedecido Huggies Recém Nascido", preco: 12.90, imagem: "Lenco Umedecido Huggies Recém Nascido.png" },
+    { id_produto: 47, nome: "Nistatina Óxido de Zinco", preco: 18.00, imagem: "Nistatina Óxido de Zinco.png" },
+    { id_produto: 48, nome: "Mamadeira Baby", preco: 22.00, imagem: "Mamadeira Baby.png" },
+    { id_produto: 49, nome: "Sabonete Líquido Johnson", preco: 8.50, imagem: "Sabonete Líquido Johnson.png" },
+    { id_produto: 50, nome: "Johnsons Baby Óleo", preco: 20.00, imagem: "Johnsons Baby Óleo.png" },
+    { id_produto: 51, nome: "Dental Clean Gel Infantil Stitch Morango", preco: 9.90, imagem: "dental clean gel infantil stitch morango.png" },
+    { id_produto: 52, nome: "Escova Dental Infantil", preco: 7.90, imagem: "escova dental infantil.png" },
+    { id_produto: 53, nome: "Termômetro Clínico Digital", preco: 35.00, imagem: "Termômetro Clínico Digital.png" },
+    { id_produto: 54, nome: "Aspirador Nasal Lolly", preco: 18.90, imagem: "Aspirador Nasal Lolly.png" },
+    { id_produto: 55, nome: "Johnsons Shampoo Glicerina", preco: 16.00, imagem: "Johnsons Shampoo Glicerina.png" },
+    { id_produto: 56, nome: "Huggies Colônia Extra Suave", preco: 17.00, imagem: "Huggies Colônia Extra Suave.png" },
+    { id_produto: 57, nome: "Vitamina B12 Ácido Fólico Ferro", preco: 29.90, imagem: "Vitamina b12 Acido Folico Ferro 60cps.png" },
+    { id_produto: 58, nome: "Complexo B Concentrado", preco: 32.50, imagem: "Complexo B Concentrado 20 Comprimidos.png" },
+    { id_produto: 59, nome: "Multivitamínico A a Z", preco: 32.50, imagem: "Multivitamínico A a Z 500mg 60 Capsulas.png" },
+    { id_produto: 60, nome: "Omegafor PLUS Ômega 3", preco: 55.00, imagem: "Omegafor PLUS 120 Cápsulas Ômega3.png" },
+    { id_produto: 61, nome: "Zinco Quelato", preco: 22.00, imagem: "Zinco Quelato.png" },
+    { id_produto: 62, nome: "Magnésio Bisglicinato", preco: 28.00, imagem: "Magnésio Bisglicinato 60 Cápsulas.png" },
+    { id_produto: 63, nome: "Ferro Quelato Vitamina C", preco: 28.00, imagem: "Ferro Quelato Vitamina C 60cps.png" },
+    { id_produto: 64, nome: "Colágeno Hidrolisado", preco: 18.50, imagem: "Colageno Hidrolisado.png" },
+    { id_produto: 65, nome: "Vitamina E 400ui", preco: 26.00, imagem: "Vitamina e 400ui.png" },
+    { id_produto: 66, nome: "Biotina 60 Cápsulas", preco: 24.00, imagem: "Biotina 60 Cápsulas.png" },
+    { id_produto: 67, nome: "Ácido Fólico 5 Mg", preco: 17.90, imagem: "Ácido Fólico 5 Mg 120 Cápsulas.png" },
+    { id_produto: 68, nome: "Coenzima Q10", preco: 65.00, imagem: "Coenzima Q10.png" }
+];
+
+const catalogoContainer = document.getElementById('catalogo-produtos'); 
+
+grupos_produtos.forEach(idsGrupo => {
+    const containerProdutos = document.createElement('div');
+    containerProdutos.className = 'container-produtos';
+
+    const produtosFiltrados = produtosDoBanco.filter(p => idsGrupo.includes(p.id_produto));
+
+    produtosFiltrados.forEach(linha => {
+        const precoFormatado = Number(linha.preco).toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
+
+        const nomeImagem = linha.imagem ? linha.imagem : 'default.png';
+
+        const produtoDiv = document.createElement('div');
+        produtoDiv.className = 'produto';
+
+        // Correção feita aqui: apenas uma atribuição limpa de innerHTML
+        produtoDiv.innerHTML = `
+            <a href="#"><img src="produtos/${nomeImagem}" alt="Foto"></a>
+            <h3 class="produto-title">${linha.nome}</h3>
+            <p><strong>${precoFormatado}</strong></p>
+            
+                <button class="btn" onclick = "adicionarAoCarrinho(${linha.id_produto})">Adicionar ao carrinho</button>
+            </a>
+        `;
+
+        containerProdutos.appendChild(produtoDiv);
+    });
+
+    catalogoContainer.appendChild(containerProdutos);
+});
+
+
+
+
+
+function adicionarAoCarrinho(idProduto) {
+    const produto = produtosDoBanco.find(p=>p.id_produto === idProduto);
+
+
+
+// if(!produto) return;
+
+
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+const itemExistente =carrinho.find(item => item.id_produto === idProduto);
+
+if(itemExistente){
+    itemExistente.Quantidade +=1;
+}else{
+    carrinho.push({
+        id_produto:produto.id_produto,
+        nome:produto.nome,
+        preco:produto.preco,
+        imagem:produto.imagem,
+        Quantidade:1
+    });
+}
+localStorage.setItem('carrinho',JSON.stringify(carrinho));
+
+
+
+    resposta.innerHTML=`<h3><p>${produto.nome}</h3> foi adicionado ao Carrinho!</p> <br> <button id="tentativa" onclick="fecharMensagem()">Ok</button>`;
+
+
+cartaoinformativo.style.background = "#fff";
+    cartaoinformativo.style.padding = "40px";
+    cartaoinformativo.style.borderRadius = "20px";
+    cartaoinformativo.style.textAlign = "center";
+    cartaoinformativo.style.maxWidth = "380px";
+    cartaoinformativo.style.width = "90%";
+    cartaoinformativo.style.boxShadow = "0 15px 30px rgba(0,0,0,0.3)";
+    cartaoinformativo.style.animation = "entradaSuave 0.4s cubic-bezier(0.68,-0.55,0.265,1.55) forwards";
+
+    sobreposicaotela.style.position = "fixed";
+    sobreposicaotela.style.top = "0";
+    sobreposicaotela.style.left = "0";
+    sobreposicaotela.style.width = "100%";
+    sobreposicaotela.style.height = "100%";
+    sobreposicaotela.style.background = "rgba(0,0,0,0.7)";
+    sobreposicaotela.style.display = "flex";
+    sobreposicaotela.style.justifyContent = "center";
+    sobreposicaotela.style.alignItems = "center";
+    sobreposicaotela.style.zIndex = "9999";
+    sobreposicaotela.style.backdropFilter = "blur(5px)";
+
+// alert(`"${produto.nome}" foi adicionado ao carrinho!`);
+
+}
+function fecharMensagem() {
+    // Esconde o container de aviso
+    document.getElementById('sobreposicao-tela').style.display = 'none';
+}
+
+
+
+
+
+
+
+
+</script>
 
 
 <footer>
@@ -190,5 +394,8 @@
         </div>
     </footer>
 
+
+
+    <script src="index.js" ></script>
 </body>
 </html>

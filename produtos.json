@@ -1,0 +1,5 @@
+const produtosDoBanco = [
+    { id_produto: 5, nome: "Dorflex", preco: 12.49, imagem: "dorflex.png" },
+    { id_produto: 6, nome: "Protetor Solar", preco: 42.00, imagem: "protetor-principia.png" },
+    {id_produto:7,nome:"Cálcio Vitamina D ",preco:119.30,imagem:"calcio.png"}
+];

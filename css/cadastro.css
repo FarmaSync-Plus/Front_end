@@ -16,6 +16,7 @@ img {
     align-items: center;
     justify-content: space-between;
     padding: 20px 40px;
+    margin-right: 100px;
 }
 
 #logo2 {
@@ -69,3 +70,80 @@ img {
         flex-direction: column;
         gap: 20px;
     }
+}
+.boas-vindas{
+    font-weight: bold;
+    margin-left:320px
+}
+.link-ajuda,a {
+color: #000000; 
+  text-decoration: none;
+}
+
+.btn-cadastrar {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #2563eb; 
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-top:50px;
+}
+
+
+.btn-cadastrar:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+
+.btn-cadastrar:active {
+  transform: translateY(1px);
+}
+
+.conteudo-conta {
+    position: absolute;
+    top: 200px;        
+    right: 80px;     
+    width: 260px;
+    padding: 30px 20px;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;        
+    background-color: #ffffff; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;       
+}
+
+.conteudo-conta h2 {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 12px;
+}
+
+.conteudo-conta h3 {
+    font-size: 14px;
+    margin: 0;
+}
+
+
+.conteudo-conta .ok {
+    display: inline-block;
+    margin-top: 8px;
+    color: #1a73e8;          
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.conteudo-conta .ok:hover {
+    color: #1557b0;         
+    text-decoration: underline;
+}
+  

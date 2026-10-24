@@ -1,0 +1,559 @@
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Compra</title>
+    
+
+<style>
+
+header {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* resetar o comportamento do body e do html */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* pra nn vazar pela direita */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f7f6;
+}
+
+.produto {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.resumo-compra {
+    max-width: 550px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #007bff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.resumo-compra h2 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+
+.TITULO{
+  text-align: center;
+    color: #062166;
+    background-color: #fff;
+    margin: 30px auto; 
+    padding: 15px 30px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+    width: fit-content;
+}
+
+
+#carrinho {
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+#carrinho h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1a1a1a;
+    font-size: 22px;
+}
+
+
+#carrinho h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    border-left: 4px solid #007bff;
+    padding-left: 8px;
+}
+
+
+#carrinho label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #444;
+}
+
+
+
+#carrinho input,
+#carrinho select,
+#carrinho textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    transition: all 0.25s ease;
+}
+
+#carrinho input:focus,
+#carrinho select:focus,
+#carrinho textarea:focus {
+    background: #fff;
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0,123,255,0.25);
+    outline: none;
+}
+
+
+#carrinho input::placeholder,
+#carrinho textarea::placeholder {
+    color: #aaa;
+}
+
+
+#carrinho input[type="radio"] {
+    width: auto;
+    margin-right: 6px;
+}
+
+
+#carrinho label input[type="radio"] {
+    margin-right: 5px;
+}
+
+
+#carrinho > * {
+    margin-bottom: 12px;
+}
+
+
+#carrinho hr {
+    border: none;
+    height: 1px;
+    background: #eee;
+    margin: 20px 0;
+}
+
+
+#carrinho button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+#carrinho button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+
+#carrinho button:active {
+    transform: scale(0.98);
+}
+
+
+#carrinho input:valid {
+    border-color: #28a745;
+}
+
+#carrinho input:invalid {
+    border-color: #1E2842;
+}
+
+
+#carrinho input:hover,
+#carrinho select:hover,
+#carrinho textarea:hover {
+    border-color: #999;
+}
+.entrega{
+margin-top: 30px;
+   
+}
+
+
+.bloco-pix {
+background-color: #f0fdf4;
+border: 2px dashed #25d366; 
+border-radius: 10px;
+padding: 20px;
+margin: 20px 0;
+text-align: center;
+}
+
+.qr-container {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+margin-bottom: 12px;
+}
+
+.bloco-pix .QRCODE {
+max-width: 160px;
+width: 100%;
+height: auto;
+padding: 8px;
+background: #ffffff;
+border: 1px solid #bbf7d0;
+border-radius: 6px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+display: block;
+}
+
+.pix-texto {
+font-size: 0.85rem;
+color: #166534;
+margin: 0 !important;
+line-height: 1.4;
+}
+.header-topo{ width: 100%; background: #f8f8ff; padding-bottom: 10px; }
+.logo-area{ padding: 10px 30px; }
+.Logotipo{
+    width: 75px; height: 75px; border-radius: 50%;
+    background: white; padding: 6px; object-fit: contain;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.barra-roxa{
+    background: #0f2f76;  width: 98%; margin: 0 auto; height: 65px;
+    border-radius: 15px; display: flex; align-items: center;
+    justify-content: space-between; padding: 0 25px;
+    box-shadow: 0 8px 20px rgba(123,108,255,0.4);
+}
+.Pesquisa{
+    background: white; width: 380px; height: 42px; border-radius: 50px;
+    display: flex; align-items: center; padding: 0 6px 0 20px;
+    justify-content: space-between;
+}
+.Pesquisa input{ border: none; outline: none; width: 100%; font-size: 14px; }
+.btn-pesquisa{
+    background: #7B6CFF; border: none; min-width: 32px; height: 32px;
+    border-radius: 50%; color: white; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+}
+.carrinho-area{ 
+    color: #1a1a1a; 
+    font-size: 28px; 
+    text-decoration: none;
+    transition: 0.2s;
+}
+.carrinho-area:hover{
+    transform: scale(1.1);
+}
+
+</style>
+
+</head>
+<body>
+<header class="header-topo">
+    <div class="logo-area">
+        <a href="index.html">
+            <img src="img/logo.png" alt="Logo FarmaSync" class="Logotipo">
+        </a>
+    </div>
+
+    <div class="barra-roxa">
+        <form action="" method="get" class="Pesquisa">
+            <input type="text" name="busca" placeholder="Buscar Produtos">
+            <button type="submit" class="btn-pesquisa">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+
+        <a href="carrinho.html" class="carrinho-area">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+    </div>
+</header>
+
+
+<h1 class="TITULO">Formulário de Compra</h1>
+<section class="produto">
+
+<div id="carrinho">
+
+<form action="" method="POST">
+<label for="nome">Nome Completo:</label>
+<input type="text" id="nome" name="nomeUsuario" required>
+
+
+<label for="peso">Peso:</label>
+<input type="text" id="peso" name="peso" required>
+
+<label for="cep">CEP:</label>
+<input type="text" id="cep" name="cep" value="" required> 
+
+<label for="uf">UF:</label>
+<input  list="lista-estado" name="estado" id="uf" value="{{old('estado',$usuario->estado ??") }}" >
+    <datalist id="lista-estado" >
+  
+  <option value="">Selecione o estado</option>
+  <option value="AC">Acre</option>
+  <option value="AL">Alagoas</option>
+  <option value="AP">Amapá</option>
+  <option value="AM">Amazonas</option>
+  <option value="BA">Bahia</option>
+  <option value="CE">Ceará</option>
+  <option value="DF">Distrito Federal</option>
+  <option value="ES">Espírito Santo</option>
+  <option value="GO">Goiás</option>
+  <option value="MA">Maranhão</option>
+  <option value="MT">Mato Grosso</option>
+  <option value="MS">Mato Grosso do Sul</option>
+  <option value="MG">Minas Gerais</option>
+  <option value="PA">Pará</option>
+  <option value="PB">Paraíba</option>
+  <option value="PR">Paraná</option>
+  <option value="PE">Pernambuco</option>
+  <option value="PI">Piauí</option>
+  <option value="RJ">Rio de Janeiro</option>
+  <option value="RN">Rio Grande do Norte</option>
+  <option value="RS">Rio Grande do Sul</option>
+  <option value="RO">Rondônia</option>
+  <option value="RR">Roraima</option>
+  <option value="SC">Santa Catarina</option>
+  <option value="SP">São Paulo</option>
+  <option value="SE">Sergipe</option>
+  <option value="TO">Tocantins</option>
+
+</datalist>
+
+<label for="cidade">Cidade:</label>
+<input type="text" id="cidade" name="cidade" required >
+<br>
+<hr>
+<hr>
+<h1>Informações de Pagamento</h1>
+<div class="entrega" id="itensPedidos">
+    <h3 style="font-size: 16px; color: #333; padding-left: 8px; margin-bottom: 10px;">
+        Itens do Pedido:
+    </h3>
+
+
+        
+</div>
+
+
+
+
+<label for="pagamento">Método de Pagamento:</label>
+<select id="pagamento" name="pagamento" required onchange="mostrarCampos()">
+    <option value="">Selecione</option>
+    <option value="Cartão de Crédito">Cartão de Crédito</option>
+    <option value="Boleto Bancário">Boleto Bancário</option>
+    <option value="PIX">PIX</option>
+</select>
+
+ 
+<div id="detalhes-cartao" class="metodo-pagamento" style="display: none; margin-top: 20px;">
+    <label for="numero-cartao">Número do Cartão:</label>
+    <input type="text" id="numero-cartao" name="numero_cartao">
+
+    <label for="validade-cartao">Validade:</label>
+    <input type="text" id="validade-cartao" name="validade_cartao" placeholder="MM/AA">
+
+    <label for="cvv-cartao">CVV:</label>
+    <input type="text" id="cvv-cartao" name="cvv_cartao">
+
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" placeholder="Digite sua senha">
+</div>
+
+<div id="detalhes-do-boleto" class="metodo-pagamento" style="display:none;">
+    <p><strong>Após finalizar a compra, um boleto será gerado e enviado para o seu e-mail cadastrado.</strong></p>
+</div>
+
+            <div id="detalhes-pix" class="bloco-pix" style="display:none;">
+                <div class="qr-container">
+                    <img class="QRCODE" src="img/codigo_qr.png" alt="Código QR PIX">
+                </div>
+                <p class="pix-texto"><strong>Escaneie o QR Code acima para realizar o pagamento via PIX.</strong></p>
+            </div>
+<span>Clique no botão abaixo para confirmar a compra</span>
+<button type="submit">concluir compra</button>
+
+</form>
+</div>
+<script>
+function mostrarCampos() {
+    let metodo = document.getElementById("pagamento").value;
+    let cartao = document.getElementById("detalhes-cartao");
+    let boleto = document.getElementById("detalhes-do-boleto");
+    let pix = document.getElementById("detalhes-pix");
+
+    cartao.style.display = "none";
+    boleto.style.display = "none";
+    pix.style.display = "none";
+
+    if (metodo === "Cartão de Crédito") {
+        cartao.style.display = "block";
+    } else if (metodo === "Boleto Bancário") {
+        boleto.style.display = "block";
+    } else if (metodo === "PIX") {
+        pix.style.display = "block";
+    }
+}
+
+
+
+document.addEventListener('DOMContentLoaded',function(){
+ const dados = localStorage.getItem('emailUsuario') || localStorage.getItem('cpf');
+
+fetch('http://localhost:8082/usuarios/')
+ .then(response => response.json())
+ .then(data=>{
+    const usuarioLogado = data.find(usuario => usuario.emailUsuario === dados || usuario.cpf === dados);
+
+ if(usuarioLogado){
+     let usuarioIdLogado = usuarioLogado.usuarioId;
+    let nomeUsuario = usuarioLogado.nomeUsuario;
+
+     // Se precisar add mais algum dado da api para ver se o usuario esta logado pode vir aqui
+
+document.getElementById("nome").value=usuarioLogado.nomeUsuario;
+
+document.getElementById("cep").value=usuarioLogado.cep;
+document.getElementById("uf").value=usuarioLogado.estado;
+document.getElementById("cidade").value=usuarioLogado.cidade;
+
+
+}else{
+const  result = document.getElementById("result");
+const modal = document.getElementById("cartao-informativo");
+   const caixa = document.getElementById("sobreposicao-tela");
+result.innerHTML=`<h3>Erro </h3><br><p>Usuário não encontrado.Por favor,crie uma conta ou faça login</p> <br> <button id="tentativa" onclick="window.location.href='cadastro.html'">Cadastre</button>`;
+    
+
+const con = document.getElementById("tentativa");
+ document.querySelector("h3").style.color="red";
+ document.querySelector('p').style.color="black";
+
+modal.style.background="#fff";
+        modal.style.padding="40px";
+        modal.style.borderRadius= "20px";
+        modal.style.textAlign= "center";
+        modal.style.maxWidth= "380px";
+        modal.style.width= "90%";
+        modal.style.boxShadow= "0 15px 30px rgba(0,0,0,0.3)";
+        modal.style.animation= "entradaSuave 0.4s cubic-bezier(0.68,-0.55,0.265,1.55) forwards";
+     
+caixa.style.position="fixed";
+caixa.style.top="0";
+caixa.style.left="0";
+caixa.style.width="100%";
+caixa.style.height="100%";
+caixa.style.background="rgba(0,0,0,0.7)";
+caixa.style.display="flex";
+caixa.style.justifyContent="center";
+caixa.style.alignItems="center";
+caixa.style.zIndex="9999";
+caixa.style.backdropFilter="blur(5px)";        
+
+con.style.background="blue";
+con.style.color="white";
+con.style.fontWeight="BOLD";
+con.style.fontSize="18px";
+con.style.borderRadius="10px";
+con.style.cursor="pointer";
+con.style.transition="background 0.3s ease, transform 0.3s ease";
+con.style.padding="10px 20px";
+
+
+
+
+}
+
+})
+.catch(error =>{
+    console.error('Erro ao buscar os dados da api(provavelmente desligada) ',error);
+});
+
+});
+
+
+const carrinho=JSON.parse(localStorage.getItem("carrinho")) || [];
+const divItens = document.getElementById("itensPedidos");
+ 
+let total= 0;
+divItens.innerHTML=carrinho.map(item=>{
+    total+=item.preco*item.Quantidade;
+    return `<div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px 16px; margin-bottom:8px; font-family: sans-serif;">
+  <div style="display:flex; flex-direction:column;">
+    <span style="font-weight:600; color:#1e293b; font-size:15px;">${item.nome}</span>
+    <span style="font-size:12px; color:#64748b;">Qtd: ${item.Quantidade}</span>
+  </div>
+  <span style="font-weight:700; color:#0f766e; background:#ccfbf1; padding:4px 10px; border-radius:20px; font-size:14px;">
+    R$ ${Number(item.preco).toFixed(2)}
+  </span>
+</div>
+`.trim()
+}).join('');
+
+
+</script>
+
+
+
+
+<!-- 
+<script>
+
+function atualizarPreco(){
+    let quantidade = document.getElementById("quantidade").value;
+    let precoUnitario = 7.90;
+
+    let total = quantidade * precoUnitario;
+
+    document.getElementById("preco").innerHTML = "R$ " + total.toFixed(2);
+}
+
+// 📦 Calcular frete simples
+function calcularFrete(){
+    let cep = document.getElementById("cep").value;
+    let resultado = document.getElementById("resultado-frete");
+
+    if(cep.length < 8){
+        resultado.innerHTML = "CEP inválido!";
+        resultado.style.color = "red";
+        return;
+    }
+
+    let frete = 15.00;
+
+    resultado.innerHTML = "Frete: R$ " + frete.toFixed(2) + " (3 a 5 dias)";
+    resultado.style.color = "green";
+} -->
+
+<!-- </script> -->
+    
+</body>
+</html>

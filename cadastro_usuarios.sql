@@ -11,7 +11,7 @@ bairro varchar(100) not null,
 Cidade varchar(100) not null,
 estado char(2) not null,
 cep char(8) not null,
-
+telefone char(9) unique,
 -- peso decimal(4,2) not null  esse aqui vai para o matheus e alexander fazerem
 email_usuario varchar(30) not null unique ,
 senha_usuario varchar(128) not null,
@@ -140,17 +140,14 @@ SELECT * FROM produtos;
 
 create table pedidos (
     pedidos_id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT,
-    id_produto INT, 
-    nome VARCHAR (100) NOT NULL,
-    peso DECIMAL (4,2) NOT NULL,
+    usuario_id INT not null,
+    produto_json Text not null, 
     pagamento ENUM ('Cartão de Crédito', 'Boleto Bancário', 'PIX') NOT NULL,
     valor_total DECIMAL(10,2) NOT NULL CHECK(valor_total > 0),
-    quantidade_pedido INT NOT NULL,
+    quantidade_total INT NOT NULL,
     data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
     pedido_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id),
-    FOREIGN KEY (id_produto) REFERENCES Produtos(id_produto)
+    FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id)
 );
 
 
@@ -176,4 +173,3 @@ select * from pedidos;
 
 select nome_produto, estoque_atual from Produtos;
 drop table pedidos
-

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Confirmado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+<style>
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: #f4f7f6;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+margin: 0;
+}
+
+.confirmacao-container {
+background: #fff;
+padding: 40px;
+border-radius: 20px;
+box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+text-align: center;
+max-width: 600px;
+width: 90%;
+}
+
+.check-icon {
+font-size: 60px;
+color: #28a745;
+margin-bottom: 20px;
+}
+
+h1 { 
+color: #062166; 
+margin-bottom: 10px; 
+}
+p { 
+color: #666; 
+margin-bottom: 40px; 
+}
+
+
+.stepper {
+display: flex;
+justify-content: space-between;
+position: relative;
+margin-bottom: 50px;
+}
+
+.stepper::before {
+content: "";
+position: absolute;
+top: 25px;
+left: 10%;
+right: 10%;
+height: 4px;
+background: #ddd;
+z-index: 1;
+}
+
+.step {
+position: relative;
+z-index: 2;
+flex: 1;
+}
+
+.step-icon {
+width: 50px;
+height: 50px;
+background: #fff;
+border: 4px solid #ddd;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 auto 10px;
+color: #aaa;
+transition: 0.3s;
+}
+
+.step.active .step-icon {
+border-color: #007bff;
+color: #007bff;
+transform: scale(1.1);
+}
+
+.step.completed .step-icon {
+background: #007bff;
+border-color: #007bff;
+color: #fff;
+}
+
+.step-label {
+font-size: 13px;
+font-weight: 600;
+color: #888;
+}
+
+.step.active .step-label { 
+color: #007bff; 
+}
+
+/* --- o botão --- */
+.btn-voltar {
+display: inline-block;
+background: linear-gradient(135deg, #007bff, #0056b3);
+color: white;
+padding: 15px 35px;
+border-radius: 12px;
+text-decoration: none;
+font-weight: bold;
+transition: 0.3s;
+box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+}
+
+.btn-voltar:hover {
+transform: translateY(-3px);
+box-shadow: 0 8px 20px rgba(0,123,255,0.4);
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<div class="confirmacao-container">
+    <div class="check-icon">
+        <i class="fas fa-circle-check"></i>
+    </div>
+    
+    <h1>Pedido Recebido!</h1>
+    <p>Obrigado pela sua compra. Acompanhe o processo por email, obrigado! </p>
+
+    <div class="stepper">
+        
+        <div class="step completed">
+            <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+            <div class="step-label">Confirmado</div>
+        </div>
+
+        <div class="step active">
+            <div class="step-icon"><i class="fas fa-box-open"></i></div>
+            <div class="step-label">Preparando</div>
+        </div>
+
+        <div class="step">
+            <div class="step-icon"><i class="fas fa-truck-fast"></i></div>
+            <div class="step-label">A caminho</div>
+        </div>
+
+        <div class="step">
+            <div class="step-icon"><i class="fas fa-house-chimney"></i></div>
+            <div class="step-label">Entregue</div>
+        </div>
+    </div>
+
+    
+    <a href="index.html" class="btn-voltar">
+        <i class="fas fa-arrow-left"></i> Voltar para o Início
+    </a>
+</div>
+
+
+
+
+</body>
+</html>

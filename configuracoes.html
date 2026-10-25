@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#006C63">
+    <meta name="description" content="Personalize as configurações e os recursos de acessibilidade do FarmaSync.">
+    <title>Configurações e Acessibilidade - FarmaSync</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/configuracoes.css">
+    <link rel="stylesheet" href="css/preferencias-globais.css">
+    <script src="js/preferencias-globais.js" defer></script>
+    <script src="js/configuracoes.js" defer></script>
+</head>
+<body>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="topo-configuracoes">
+        <a class="marca" href="index.html" aria-label="FarmaSync — voltar para a página inicial">
+            <img src="img/logo.png" alt="Logo FarmaSync">
+        </a>
+
+        <div class="titulo-topo">
+            <p class="sobre-titulo">ÁREA DO USUÁRIO</p>
+            <h1>Configurações e Acessibilidade</h1>
+            <p>Personalize o site para navegar com mais conforto e facilidade.</p>
+        </div>
+
+        <a class="voltar-inicio" href="index.html">
+            <span aria-hidden="true">←</span>
+            <span>Voltar ao início</span>
+        </a>
+    </header>
+
+    <main id="conteudo" class="conteudo-configuracoes">
+        <section class="mensagem-boas-vindas" aria-labelledby="titulo-boas-vindas">
+            <div class="icone-destaque" aria-hidden="true">⚙</div>
+            <div>
+                <h2 id="titulo-boas-vindas">Deixe o FarmaSync do seu jeito</h2>
+                <p>As alterações de aparência e acessibilidade são aplicadas na hora e ficam salvas neste navegador.</p>
+            </div>
+        </section>
+
+        <div class="grade-configuracoes">
+            <section class="cartao" aria-labelledby="titulo-acessibilidade">
+                <div class="cabecalho-cartao">
+                    <span class="icone-cabecalho" aria-hidden="true">♿</span>
+                    <div>
+                        <h2 id="titulo-acessibilidade">Acessibilidade</h2>
+                        <p>Escolha os recursos que facilitam sua navegação.</p>
+                    </div>
+                </div>
+
+                <div class="conteudo-cartao">
+                    <div class="configuracao fonte-config">
+                        <div class="icone-config" aria-hidden="true">Aa</div>
+                        <div class="descricao-config">
+                            <h3>Tamanho da fonte</h3>
+                            <p>Aumente os textos para facilitar a leitura.</p>
+                        </div>
+                        <div class="opcoes-fonte" role="group" aria-label="Escolher tamanho da fonte">
+                            <button type="button" class="botao-fonte" data-font-scale="0.9" aria-label="Fonte pequena" aria-pressed="false">A−</button>
+                            <button type="button" class="botao-fonte" data-font-scale="1" aria-label="Fonte normal" aria-pressed="true">A</button>
+                            <button type="button" class="botao-fonte" data-font-scale="1.15" aria-label="Fonte grande" aria-pressed="false">A+</button>
+                            <button type="button" class="botao-fonte" data-font-scale="1.3" aria-label="Fonte muito grande" aria-pressed="false">A++</button>
+                        </div>
+                    </div>
+
+                    <div class="configuracao">
+                        <div class="icone-config" aria-hidden="true">◐</div>
+                        <div class="descricao-config">
+                            <h3>Alto contraste</h3>
+                            <p>Deixa textos e elementos mais fáceis de distinguir.</p>
+                        </div>
+                        <label class="controle-switch">
+                            <input type="checkbox" data-setting="altoContraste" aria-label="Ativar alto contraste">
+                            <span class="trilho-switch" aria-hidden="true"></span>
+                            <span class="texto-switch">Ativar</span>
+                        </label>
+                    </div>
+
+                    <div class="configuracao">
+                        <div class="icone-config" aria-hidden="true">↔</div>
+                        <div class="descricao-config">
+                            <h3>Destacar botões e links</h3>
+                            <p>Mostra uma borda bem visível nos elementos clicáveis.</p>
+                        </div>
+                        <label class="controle-switch">
+                            <input type="checkbox" data-setting="destacarInterativos" aria-label="Destacar botões e links">
+                            <span class="trilho-switch" aria-hidden="true"></span>
+                            <span class="texto-switch">Ativar</span>
+                        </label>
+                    </div>
+
+                    <div class="configuracao">
+                        <div class="icone-config" aria-hidden="true">〰</div>
+                        <div class="descricao-config">
+                            <h3>Reduzir animações</h3>
+                            <p>Reduz efeitos de movimento e transições.</p>
+                        </div>
+                        <label class="controle-switch">
+                            <input type="checkbox" data-setting="reduzirAnimacoes" aria-label="Reduzir animações">
+                            <span class="trilho-switch" aria-hidden="true"></span>
+                            <span class="texto-switch">Ativar</span>
+                        </label>
+                    </div>
+
+                    <div class="configuracao leitura-config">
+                        <div class="icone-config" aria-hidden="true">🔊</div>
+                        <div class="descricao-config">
+                            <h3>Leitura em voz alta</h3>
+                            <p>Ative o recurso e use o botão para ouvir as orientações.</p>
+                        </div>
+                        <label class="controle-switch">
+                            <input type="checkbox" data-setting="leituraVoz" aria-label="Ativar recurso de leitura em voz alta">
+                            <span class="trilho-switch" aria-hidden="true"></span>
+                            <span class="texto-switch">Ativar</span>
+                        </label>
+                    </div>
+
+                    <div class="acoes-leitura">
+                        <button type="button" id="ouvir-pagina" class="botao-secundario" disabled>▶ Ouvir orientações</button>
+                        <button type="button" id="parar-leitura" class="botao-texto" disabled>Parar leitura</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cartao" aria-labelledby="titulo-aparencia">
+                <div class="cabecalho-cartao">
+                    <span class="icone-cabecalho" aria-hidden="true">◑</span>
+                    <div>
+                        <h2 id="titulo-aparencia">Aparência</h2>
+                        <p>Ajuste as cores para seu conforto visual.</p>
+                    </div>
+                </div>
+
+                <div class="conteudo-cartao">
+                    <div class="configuracao tema-config">
+                        <div class="icone-config" aria-hidden="true">☼</div>
+                        <div class="descricao-config">
+                            <h3>Tema do site</h3>
+                            <p>Escolha entre o tema claro ou escuro.</p>
+                        </div>
+                        <div class="opcoes-tema" role="group" aria-label="Escolher tema">
+                            <button type="button" class="botao-tema selecionado" data-theme="claro" aria-pressed="true">☀ Claro</button>
+                            <button type="button" class="botao-tema" data-theme="escuro" aria-pressed="false">☾ Escuro</button>
+                        </div>
+                    </div>
+
+                    <div class="dica-aparencia">
+                        <span aria-hidden="true">✓</span>
+                        <p>Suas escolhas são aplicadas imediatamente. Você pode voltar a esta página para alterar as preferências quando quiser.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cartao" aria-labelledby="titulo-conta">
+                <div class="cabecalho-cartao">
+                    <span class="icone-cabecalho" aria-hidden="true">♙</span>
+                    <div>
+                        <h2 id="titulo-conta">Minha conta</h2>
+                        <p>Acesse as páginas de cadastro e login do FarmaSync.</p>
+                    </div>
+                </div>
+
+                <div class="conteudo-cartao links-conta">
+                    <a class="link-conta" href="boasvindas.html">
+                        <span class="icone-link" aria-hidden="true">↪</span>
+                        <span><strong>Entrar na minha conta</strong><small>Acesse a área de login.</small></span>
+                        <span class="seta-link" aria-hidden="true">›</span>
+                    </a>
+                    <a class="link-conta" href="cadastro.html">
+                        <span class="icone-link" aria-hidden="true">＋</span>
+                        <span><strong>Criar cadastro e informar endereço</strong><small>Preencha os dados pessoais e de endereço.</small></span>
+                        <span class="seta-link" aria-hidden="true">›</span>
+                    </a>
+                    <a class="link-conta" href="esqueceuasenha.html">
+                        <span class="icone-link" aria-hidden="true">▣</span>
+                        <span><strong>Recuperar senha</strong><small>Precisa criar uma nova senha?</small></span>
+                        <span class="seta-link" aria-hidden="true">›</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="cartao" aria-labelledby="titulo-notificacoes">
+                <div class="cabecalho-cartao">
+                    <span class="icone-cabecalho" aria-hidden="true">♧</span>
+                    <div>
+                        <h2 id="titulo-notificacoes">Preferências de notificação</h2>
+                        <p>Escolha quais avisos gostaria de receber.</p>
+                    </div>
+                </div>
+
+                <div class="conteudo-cartao">
+                    <div class="configuracao">
+                        <div class="icone-config" aria-hidden="true">▣</div>
+                        <div class="descricao-config">
+                            <h3>Atualizações de pedidos</h3>
+                            <p>Avisos sobre o andamento das compras.</p>
+                        </div>
+                        <label class="controle-switch">
+                            <input type="checkbox" data-setting="notificacoesPedidos" aria-label="Receber avisos de pedidos" checked>
+                            <span class="trilho-switch" aria-hidden="true"></span>
+                            <span class="texto-switch">Ativar</span>
+                        </label>
+                    </div>
+                    <div class="configuracao">
+                        <div class="icone-config" aria-hidden="true">％</div>
+                        <div class="descricao-config">
+                            <h3>Ofertas e promoções</h3>
+                            <p>Informações sobre ofertas da loja.</p>
+                        </div>
+                        <label class="controle-switch">
+                            <input type="checkbox" data-setting="notificacoesPromocoes" aria-label="Receber ofertas e promoções">
+                            <span class="trilho-switch" aria-hidden="true"></span>
+                            <span class="texto-switch">Ativar</span>
+                        </label>
+                    </div>
+                    <div class="configuracao">
+                        <div class="icone-config" aria-hidden="true">＋</div>
+                        <div class="descricao-config">
+                            <h3>Lembretes de medicamentos</h3>
+                            <p>Opção ilustrativa para futuras notificações.</p>
+                        </div>
+                        <label class="controle-switch">
+                            <input type="checkbox" data-setting="lembretesMedicamentos" aria-label="Ativar lembretes de medicamentos">
+                            <span class="trilho-switch" aria-hidden="true"></span>
+                            <span class="texto-switch">Ativar</span>
+                        </label>
+                    </div>
+                    <p class="aviso-notificacoes">Observação: estas opções demonstram as preferências da interface. O envio real de notificações depende de uma integração futura do sistema.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="rodape-preferencias">
+            <p id="mensagem-status" class="mensagem-status" role="status" aria-live="polite">Suas preferências ficam salvas neste navegador.</p>
+            <button type="button" id="restaurar-padrao" class="botao-restaurar">Restaurar configurações padrão</button>
+        </div>
+    </main>
+
+    <footer class="rodape-site">
+        <p>FarmaSync — sua saúde sempre com você.</p>
+        <p>Consulte um profissional de saúde antes de usar medicamentos.</p>
+    </footer>
+</body>
+</html>

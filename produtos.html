@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FarmaSync - Produtos</title>
+<link rel="icon" href="img/logo.png">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f7f9;font-family:'Segoe UI', Inter, sans-serif;display:flex;flex-direction:column;align-items:center}
+
+
+.btn-voltar-home{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:#fff;
+ 
+  padding:8px 14px;
+ 
+  text-decoration:none;
+  color:#1f8f5f;
+  font-weight:700;
+  font-size:13px;
+  transition:.2s;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+.btn-voltar-home:hover{
+  background:#1f8f5f;
+  color:#fff;
+  border-color:#1f8f5f;
+  transform:translateY(-1px);
+  box-shadow:0 6px 16px rgba(31,143,95,0.25);
+}
+
+
+/* HEADER PREMIUM */
+#elements{
+  position:sticky; top:0; z-index:1000;
+  width:100%; background:#fff;
+  display:flex; justify-content:center;
+  box-shadow:0 4px 24px rgba(0,0,0,0.06);
+  border-bottom:3px solid #1f8f5f;
+}
+.header-inner{
+  width:100%; max-width:1120px;
+  padding:12px 24px;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+#logo{width:125px;height:auto;object-fit:contain}
+#pesquisa{
+  flex:1; max-width:480px; height:44px;
+  background:#f2f4f7; border-radius:12px;
+  display:flex; align-items:center; padding:0 6px 0 16px;
+  border:1px solid transparent; transition:.2s;
+}
+#pesquisa:focus-within{background:#fff;border-color:#1f8f5f;box-shadow:0 0 0 4px rgba(31,143,95,0.12)}
+#input-busca{border:none;background:transparent;flex:1;outline:none;padding:8px;font-size:14px}
+.btn-lupa{width:36px;height:36px;border:none;background:#1f8f5f;color:#fff;border-radius:9px;cursor:pointer;display:grid;place-items:center;font-size:18px}
+#atalhos{display:flex;align-items:center;gap:14px}
+#link-carrinho{
+  position:relative; display:flex;align-items:center;gap:8px;
+  background:#f2f4f7;padding:10px 14px;border-radius:11px;
+  text-decoration:none;color:#222;font-weight:700;font-size:13px;transition:.2s
+}
+#link-carrinho:hover{background:#e9ecef;transform:translateY(-1px)}
+#contador-carrinho{
+  background:#ff3b30;color:#fff;min-width:20px;height:20px;
+  border-radius:20px;display:grid;place-items:center;
+  font-size:11px;font-weight:800;padding:0 6px;
+}
+#Link-perfil{
+  display:flex !important;align-items:center;gap:10px;
+  background:#fff;border:1px solid #e5e7eb;padding:5px 12px 5px 5px;
+  border-radius:999px;text-decoration:none;transition:.2s
+}
+#Link-perfil:hover{border-color:#1f8f5f;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+.avatar{
+  width:32px;height:32px;background:linear-gradient(135deg,#1f8f5f,#2ecc71);
+  color:#fff;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;text-transform:uppercase
+}
+#topi{display:block !important;font-size:13px !important;font-weight:700 !important;color:#111 !important;margin:0;max-width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* CONTEUDO */
+main{width:100%;max-width:1050px;padding:32px 20px}
+main h1{margin:0 0 16px 4px;font-size:26px;font-weight:800;letter-spacing:-0.5px}
+#categorias{display:flex;gap:10px;margin:0 0 24px 4px;flex-wrap:wrap}
+.btn-filtro{background:#fff;border:1px solid #ddd;padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:600;font-size:13px;transition:.2s}
+input[name="filtro"]{display:none}
+input#todos:checked ~ main label[for="todos"], input#medicamentos:checked ~ main label[for="medicamentos"], input#higiene:checked ~ main label[for="higiene"], input#vitaminas:checked ~ main label[for="vitaminas"]{background:#1f8f5f;color:#fff;border-color:#1f8f5f;box-shadow:0 4px 10px rgba(31,143,95,0.25)}
+
+#catalogo-produtos{width:100%;display:flex;flex-direction:column;gap:22px;align-items:center}
+.container-produtos{width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.produto{background:#fff;border-radius:16px;padding:16px;border:1px solid #eee;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(0,0,0,0.03);transition:.2s;min-height:270px}
+.produto:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,0.07)}
+.produto img{width:100% !important;height:120px !important;object-fit:contain !important;background:#fff;margin-bottom:8px}
+.produto-title{font-size:12.8px;font-weight:600;min-height:32px;color:#222;line-height:1.3}
+.produto p{margin:10px 0 0 0}
+.produto p strong{color:#1f8f5f;font-size:15px}
+.btn{background:#007bff;color:#fff !important;border:none;padding:10px;border-radius:9px;cursor:pointer;font-weight:700;font-size:12px;margin-top:auto;width:100%;transition:.2s}
+.btn:hover{filter:brightness(1.05)}
+.btn.adicionado{background:#1f8f5f !important}
+#sobreposicao-tela{display:none}
+@media(max-width:1000px){.container-produtos{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.container-produtos{grid-template-columns:repeat(2,1fr)} .header-inner{padding:10px 14px} #pesquisa{max-width:200px} #topi{display:none !important}}
+</style>
+</head>
+<body>
+
+
+
+<div id="sobreposicao-tela"><div id="cartao-informativo"><div id="result"></div></div></div>
+
+<nav id="elements">
+    
+<a href="index.html" class="btn-voltar-home">← Voltar para Home</a>
+  <div class="header-inner">
+    <img src="img/logo.png" id="logo" alt="FarmaSync">
+    <div id="pesquisa">
+      <input type="text" id="input-busca" placeholder="O que você procura hoje?">
+      <button class="btn-lupa">⌕</button>
+    </div>
+    <div id="atalhos">
+      <a href="carrinho.html" id="link-carrinho">🛒 Carrinho <span id="contador-carrinho">0</span></a>
+      <a id="Link-perfil" href="cadastro.html">
+        <div class="avatar" id="avatar-letra">E</div>
+        <h3 id="topi">Entrar</h3>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<input type="radio" name="filtro" id="todos" checked>
+<input type="radio" name="filtro" id="medicamentos">
+<input type="radio" name="filtro" id="higiene">
+<input type="radio" name="filtro" id="vitaminas">
+
+<main>
+<h1>Produtos</h1>
+<div id="categorias">
+<label for="todos" class="btn-filtro">Todos</label>
+<label for="medicamentos" class="btn-filtro">Medicamentos</label>
+<label for="higiene" class="btn-filtro">Higiene</label>
+<label for="vitaminas" class="btn-filtro">Vitaminas</label>
+</div>
+<section id="catalogo-produtos"></section>
+</main>
+
+<script>
+const produtosDoBanco = [
+{ id_produto:5, nome:"Cálcio Vitamina D", preco:119.30, imagem:"calcio.png", cat:"vitaminas" },
+{ id_produto:6, nome:"Cimegripe", preco:9.69, imagem:"cinegripe.png", cat:"medicamentos" },
+{ id_produto:7, nome:"Listerine Cool Mint", preco:25.50, imagem:"listerine.png", cat:"higiene" },
+{ id_produto:8, nome:"Expec Xarope", preco:26.58, imagem:"expec.png", cat:"medicamentos" },
+{ id_produto:9, nome:"Sabonete Granado Bebê", preco:29.99, imagem:"sabonte-liquido.png", cat:"higiene" },
+{ id_produto:10, nome:"Ibuprofeno", preco:15.90, imagem:"ibuprofeno.png", cat:"medicamentos" },
+{ id_produto:11, nome:"Amoxicilina", preco:32.50, imagem:"amoxicilina.png", cat:"medicamentos" },
+{ id_produto:12, nome:"Losartana", preco:18.75, imagem:"Losartana.png", cat:"medicamentos" },
+{ id_produto:13, nome:"Omeprazol", preco:22.30, imagem:"omeprazol.png", cat:"medicamentos" },
+{ id_produto:14, nome:"Aspirina", preco:10.50, imagem:"Aspirina.png", cat:"medicamentos" },
+{ id_produto:15, nome:"Nimesulida", preco:14.20, imagem:"nimesulida.png", cat:"medicamentos" },
+{ id_produto:16, nome:"Buscopan", preco:13.99, imagem:"Buscopan.png", cat:"medicamentos" },
+{ id_produto:17, nome:"Azitromicina", preco:45.00, imagem:"Azitromicina.png", cat:"medicamentos" },
+{ id_produto:18, nome:"Acetato de Dexametasona", preco:20.00, imagem:"Acetato de Dexaametasona.png", cat:"medicamentos" },
+{ id_produto:19, nome:"Albendazol", preco:12.30, imagem:"Albendazol.png", cat:"medicamentos" },
+{ id_produto:20, nome:"Bromoprida", preco:15.60, imagem:"Bromoprida.png", cat:"medicamentos" },
+{ id_produto:21, nome:"Meloxicam", preco:23.60, imagem:"Meloxicam.png", cat:"medicamentos" },
+{ id_produto:22, nome:"Diclofenaco", preco:17.80, imagem:"Bromoprida.png", cat:"medicamentos" },
+{ id_produto:23, nome:"Ranitidina", preco:13.90, imagem:"ranitidina.png", cat:"medicamentos" },
+{ id_produto:24, nome:"Simeticona", preco:9.90, imagem:"Simeticona.png", cat:"medicamentos" },
+{ id_produto:25, nome:"Clonazepam", preco:25.00, imagem:"Clonazepam.png", cat:"medicamentos" },
+{ id_produto:26, nome:"Atenolol", preco:19.80, imagem:"Atenolol.png", cat:"medicamentos" },
+{ id_produto:27, nome:"Prednisolona", preco:22.00, imagem:"Atenolol.png", cat:"medicamentos" },
+{ id_produto:28, nome:"Loratadina", preco:16.50, imagem:"Loratadina.png", cat:"medicamentos" },
+{ id_produto:29, nome:"Ciretizina", preco:18.90, imagem:"Ciretizina.png", cat:"medicamentos" },
+{ id_produto:30, nome:"Cloridrato de Metformina", preco:14.90, imagem:"cloridrato de metformina.png", cat:"medicamentos" },
+{ id_produto:31, nome:"Cloridrato de Fluoxetina", preco:21.50, imagem:"Cloridrato de Fluoxetina.png", cat:"medicamentos" },
+{ id_produto:32, nome:"Dicloridrato de Hidroxizina", preco:18.00, imagem:"Dicloridrato de Hidroxizina.png", cat:"medicamentos" },
+{ id_produto:33, nome:"Gel de Limpeza Facial", preco:35.00, imagem:"Gel de Limpeza Facial.png", cat:"higiene" },
+{ id_produto:34, nome:"Água Micelar", preco:28.00, imagem:"agua micelar.png", cat:"higiene" },
+{ id_produto:35, nome:"Hidratante Facial", preco:32.00, imagem:"Hidratante Facial.png", cat:"higiene" },
+{ id_produto:36, nome:"Protetor Solar FPS 30", preco:40.00, imagem:"Protetor Solar FPS 30.png", cat:"higiene" },
+{ id_produto:37, nome:"Protetor Solar FPS 70", preco:55.00, imagem:"Protetor Solar FPS 70.png", cat:"higiene" },
+{ id_produto:38, nome:"Esfoliante Facial Nivea Acne Control", preco:25.00, imagem:"Esfoliante Facial Nivea Acne Control.png", cat:"higiene" },
+{ id_produto:39, nome:"Tônico Facial", preco:27.00, imagem:"Tônico Facial.png", cat:"higiene" },
+{ id_produto:40, nome:"Óleo Facial", preco:50.00, imagem:"Óleo Facial.png", cat:"higiene" },
+{ id_produto:41, nome:"Máscara Facial de Algodão Pepino", preco:30.00, imagem:"Máscara Facial de Algodão Pepino.png", cat:"higiene" },
+{ id_produto:42, nome:"Gel Secativo Secatriz Acne Spot", preco:30.00, imagem:"Gel Secativo Secatriz  Acne Spot.png", cat:"higiene" },
+{ id_produto:43, nome:"Nivea Protetor Labial Original Care", preco:12.00, imagem:"Nivea Protetor Labial Original Care.png", cat:"higiene" },
+{ id_produto:44, nome:"Cetaphil Loção Hidratante", preco:22.00, imagem:"Cetaphil Loção Hidratante.png", cat:"higiene" },
+{ id_produto:45, nome:"Talco Bebê Granado", preco:15.90, imagem:"Talco Bebê Granado.png", cat:"higiene" },
+{ id_produto:46, nome:"Lenço Umedecido Huggies Recém Nascido", preco:12.90, imagem:"Lenco Umedecido Huggies Recém Nascido.png", cat:"higiene" },
+{ id_produto:47, nome:"Nistatina Óxido de Zinco", preco:18.00, imagem:"Nistatina Óxido de Zinco.png", cat:"higiene" },
+{ id_produto:48, nome:"Mamadeira Baby", preco:22.00, imagem:"Mamadeira Baby.png", cat:"higiene" },
+{ id_produto:49, nome:"Sabonete Líquido Johnson", preco:8.50, imagem:"Sabonete Líquido Johnson.png", cat:"higiene" },
+{ id_produto:50, nome:"Johnsons Baby Óleo", preco:20.00, imagem:"Johnsons Baby Óleo.png", cat:"higiene" },
+{ id_produto:51, nome:"Dental Clean Gel Infantil Stitch Morango", preco:9.90, imagem:"dental clean gel infantil stitch morango.png", cat:"higiene" },
+{ id_produto:52, nome:"Escova Dental Infantil", preco:7.90, imagem:"escova dental infantil.png", cat:"higiene" },
+{ id_produto:53, nome:"Termômetro Clínico Digital", preco:35.00, imagem:"Termômetro Clínico Digital.png", cat:"higiene" },
+{ id_produto:54, nome:"Aspirador Nasal Lolly", preco:18.90, imagem:"Aspirador Nasal Lolly.png", cat:"higiene" },
+{ id_produto:55, nome:"Johnsons Shampoo Glicerina", preco:16.00, imagem:"Johnsons Shampoo Glicerina.png", cat:"higiene" },
+{ id_produto:56, nome:"Huggies Colônia Extra Suave", preco:17.00, imagem:"Huggies Colônia Extra Suave.png", cat:"higiene" },
+{ id_produto:57, nome:"Vitamina B12 Ácido Fólico Ferro", preco:29.90, imagem:"Vitamina b12 Acido Folico Ferro 60cps.png", cat:"vitaminas" },
+{ id_produto:58, nome:"Complexo B Concentrado", preco:32.50, imagem:"Complexo B Concentrado 20 Comprimidos.png", cat:"vitaminas" },
+{ id_produto:59, nome:"Multivitamínico A a Z", preco:32.50, imagem:"Multivitamínico A a Z 500mg 60 Capsulas.png", cat:"vitaminas" },
+{ id_produto:60, nome:"Omegafor PLUS Ômega 3", preco:55.00, imagem:"Omegafor PLUS 120 Cápsulas Ômega3.png", cat:"vitaminas" },
+{ id_produto:61, nome:"Zinco Quelato", preco:22.00, imagem:"Zinco Quelato.png", cat:"vitaminas" },
+{ id_produto:62, nome:"Magnésio Bisglicinato", preco:28.00, imagem:"Magnésio Bisglicinato 60 Cápsulas.png", cat:"vitaminas" },
+{ id_produto:63, nome:"Ferro Quelato Vitamina C", preco:28.00, imagem:"Ferro Quelato Vitamina C 60cps.png", cat:"vitaminas" },
+{ id_produto:64, nome:"Colágeno Hidrolisado", preco:18.50, imagem:"Colageno Hidrolisado.png", cat:"vitaminas" },
+{ id_produto:65, nome:"Vitamina E 400ui", preco:26.00, imagem:"Vitamina e 400ui.png", cat:"vitaminas" },
+{ id_produto:66, nome:"Biotina 60 Cápsulas", preco:24.00, imagem:"Biotina 60 Cápsulas.png", cat:"vitaminas" },
+{ id_produto:67, nome:"Ácido Fólico 5 Mg", preco:17.90, imagem:"Ácido Fólico 5 Mg 120 Cápsulas.png", cat:"vitaminas" },
+{ id_produto:68, nome:"Coenzima Q10", preco:65.00, imagem:"Coenzima Q10.png", cat:"vitaminas" }
+];
+
+const catalogoContainer = document.getElementById('catalogo-produtos');
+let categoriaAtual = "todos";
+let buscaAtual = "";
+
+function renderizar(){
+  catalogoContainer.innerHTML="";
+  const filtrados = produtosDoBanco.filter(p=>{
+    const catOk = categoriaAtual==="todos" || p.cat===categoriaAtual;
+    const buscaOk = p.nome.toLowerCase().includes(buscaAtual);
+    return catOk && buscaOk;
+  });
+  if(filtrados.length===0){ catalogoContainer.innerHTML="<p style='padding:20px'>Nenhum produto encontrado.</p>"; return; }
+  for(let i=0;i<filtrados.length;i+=4){
+    const grupo = filtrados.slice(i,i+4);
+    const container = document.createElement('div'); container.className='container-produtos';
+    grupo.forEach(linha=>{
+      const preco = Number(linha.preco).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+      const div = document.createElement('div'); div.className='produto';
+      div.innerHTML=`<img src="produtos/${linha.imagem}" loading="lazy" onerror="this.src='img/logo.png'"><h3 class="produto-title">${linha.nome}</h3><p><strong>${preco}</strong></p><button class="btn" onclick="adicionarAoCarrinho(${linha.id_produto}, this)">Adicionar ao carrinho</button>`;
+      container.appendChild(div);
+    });
+    catalogoContainer.appendChild(container);
+  }
+}
+function atualizarContador(){ const c=JSON.parse(localStorage.getItem('carrinho'))||[]; document.getElementById('contador-carrinho').textContent=c.reduce((a,i)=>a+(i.quantidade||0),0); }
+function adicionarAoCarrinho(id,btn){
+  const prod=produtosDoBanco.find(p=>p.id_produto===id);
+  let carrinho=JSON.parse(localStorage.getItem('carrinho'))||[];
+  const item=carrinho.find(i=>i.id_produto===id);
+  if(item) item.quantidade++; else carrinho.push({...prod,quantidade:1});
+  localStorage.setItem('carrinho',JSON.stringify(carrinho)); atualizarContador();
+  if(btn){btn.innerText="Adicionado ✓";btn.classList.add("adicionado");setTimeout(()=>{btn.innerText="Adicionar ao carrinho";btn.classList.remove("adicionado")},1000);}
+  const r=document.getElementById("result"), ci=document.getElementById("cartao-informativo"), st=document.getElementById("sobreposicao-tela");
+  r.innerHTML=`<h3>${prod.nome}</h3><p>foi adicionado!</p><br><button onclick="fecharMensagem()" style="background:#1f8f5f;color:white;padding:10px 20px;border-radius:10px;border:none;font-weight:bold;cursor:pointer">Ok</button>`;
+  ci.style.background="#fff";ci.style.padding="30px";ci.style.borderRadius="16px";ci.style.textAlign="center";ci.style.maxWidth="320px";ci.style.width="90%";ci.style.boxShadow="0 20px 40px rgba(0,0,0,0.15)";
+  st.style.display="flex";st.style.position="fixed";st.style.top="0";st.style.left="0";st.style.width="100%";st.style.height="100%";st.style.background="rgba(0,0,0,0.5)";st.style.backdropFilter="blur(4px)";st.style.justifyContent="center";st.style.alignItems="center";st.style.zIndex="9999";
+}
+function fecharMensagem(){document.getElementById('sobreposicao-tela').style.display='none';}
+document.querySelectorAll('input[name="filtro"]').forEach(radio=>{
+  radio.addEventListener('change', e=>{ categoriaAtual = e.target.id; renderizar(); });
+});
+document.getElementById('input-busca').addEventListener('input', function(){ buscaAtual = this.value.toLowerCase(); renderizar(); });
+
+
+(function(){
+  const topiEl=document.getElementById('topi'), avatarEl=document.getElementById('avatar-letra'), linkPerfil=document.getElementById('Link-perfil');
+  const nomeLocal=localStorage.getItem('nomedoUsuario')||localStorage.getItem('nomeUsuario')||"";
+  if(localStorage.getItem('usuarioLogado')==='true' && nomeLocal){
+    topiEl.textContent=nomeLocal;
+    avatarEl.textContent=nomeLocal.charAt(0).toUpperCase();
+    linkPerfil.href="Conta_Do_Usuario.html";
+  }
+  atualizarContador(); renderizar();
+})();
+</script>
+</body>
+</html>

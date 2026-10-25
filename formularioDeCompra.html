@@ -274,6 +274,17 @@ line-height: 1.4;
 
 </head>
 <body>
+
+<div id="sobreposicao-tela">
+
+<div id="cartao-informativo">
+
+<div id="result"></div>
+</div>
+</div>
+
+
+
 <header class="header-topo">
     <div class="logo-area">
         <a href="index.html">
@@ -301,7 +312,7 @@ line-height: 1.4;
 
 <div id="carrinho">
 
-<form action="" method="POST">
+<form action="" method="POST" id="form">
 <label for="nome">Nome Completo:</label>
 <input type="text" id="nome" name="nomeUsuario" required>
 
@@ -414,40 +425,35 @@ function mostrarCampos() {
     boleto.style.display = "none";
     pix.style.display = "none";
 
-    if (metodo === "Cartão de Crédito") {
-        cartao.style.display = "block";
-    } else if (metodo === "Boleto Bancário") {
-        boleto.style.display = "block";
-    } else if (metodo === "PIX") {
-        pix.style.display = "block";
-    }
+    if (metodo === "Cartão de Crédito") cartao.style.display = "block";
+    else if (metodo === "Boleto Bancário") boleto.style.display = "block";
+    else if (metodo === "PIX") pix.style.display = "block";
 }
 
+let usuarioIdGlobal = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+    const dados = localStorage.getItem('emailUsuario') || localStorage.getItem('cpf');
+
+    fetch('http://localhost:8082/usuarios/')
+        .then(r => r.json())
+        .then(data => {
+            const usuarioLogado = data.find(u => u.emailUsuario === dados || u.cpf === dados);
+            if (usuarioLogado) {
+                usuarioIdGlobal = usuarioLogado.usuarioId;
+                localStorage.setItem('usuarioId', usuarioIdGlobal);
+                document.getElementById("nome").value = usuarioLogado.nomeUsuario;
+                document.getElementById("cep").value = usuarioLogado.cep;
+                document.getElementById("uf").value = usuarioLogado.estado;
+                document.getElementById("cidade").value = usuarioLogado.cidade;
 
 
-document.addEventListener('DOMContentLoaded',function(){
- const dados = localStorage.getItem('emailUsuario') || localStorage.getItem('cpf');
-
-fetch('http://localhost:8082/usuarios/')
- .then(response => response.json())
- .then(data=>{
-    const usuarioLogado = data.find(usuario => usuario.emailUsuario === dados || usuario.cpf === dados);
-
- if(usuarioLogado){
-     let usuarioIdLogado = usuarioLogado.usuarioId;
-    let nomeUsuario = usuarioLogado.nomeUsuario;
-
-     // Se precisar add mais algum dado da api para ver se o usuario esta logado pode vir aqui
-
-document.getElementById("nome").value=usuarioLogado.nomeUsuario;
-
-document.getElementById("cep").value=usuarioLogado.cep;
-document.getElementById("uf").value=usuarioLogado.estado;
-document.getElementById("cidade").value=usuarioLogado.cidade;
 
 
-}else{
-const  result = document.getElementById("result");
+
+                
+            }else{
+                const  result = document.getElementById("result");
 const modal = document.getElementById("cartao-informativo");
    const caixa = document.getElementById("sobreposicao-tela");
 result.innerHTML=`<h3>Erro </h3><br><p>Usuário não encontrado.Por favor,crie uma conta ou faça login</p> <br> <button id="tentativa" onclick="window.location.href='cadastro.html'">Cadastre</button>`;
@@ -488,37 +494,157 @@ con.style.transition="background 0.3s ease, transform 0.3s ease";
 con.style.padding="10px 20px";
 
 
+            }
+        });
 
-
-}
-
-})
-.catch(error =>{
-    console.error('Erro ao buscar os dados da api(provavelmente desligada) ',error);
+    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    const divItens = document.getElementById("itensPedidos");
+    let totalGeral = 0;
+    if (divItens) {
+        divItens.innerHTML = carrinho.map(item => {
+            totalGeral += item.preco * item.Quantidade;
+            return `<div style="display:flex; justify-content:space-between; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px 16px; margin-bottom:8px;"><span>${item.nome} (Qtd: ${item.Quantidade})</span><span style="font-weight:700; color:#0f766e; background:#ccfbf1; padding:4px 10px; border-radius:20px; font-size:14px;">
+                R$ ${Number(item.preco).toFixed(2)}
+              </span></div>`;
+        }).join('');
+        document.getElementById('totalPedido').innerHTML = `Total : R$ ${totalGeral.toFixed(2)}`;
+    }
 });
 
+document.getElementById("form").addEventListener('submit', function (e) {
+    e.preventDefault();
+    const pagamento = document.getElementById("pagamento").value;
+    if (pagamento === "") {
+        alert("Por favor, selecione um método de pagamento!");
+        return;
+    }
+
+    const carrinhoFinal = JSON.parse(localStorage.getItem('carrinho')) || [];
+    const totalFinal = carrinhoFinal.reduce((acc, item) => acc + (item.preco * item.Quantidade), 0);
+    const qtdTotal = carrinhoFinal.reduce((acc, item) => acc + item.Quantidade, 0);
+
+    // Payload igual as colunas da sua tabela da print
+    const dadosDoPedido = {
+       
+        produto_json: JSON.stringify(carrinhoFinal),
+        pagamento: pagamento,
+        valor_total: totalFinal,
+        quantidade_total: qtdTotal
+    };
+
+    console.log("Enviando pro back:", dadosDoPedido);
+
+    fetch('http://localhost:8082/pedidos/finalizar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dadosDoPedido)
+    })
+    .then(res => {
+        if (!res.ok) throw new Error("Status " + res.status);
+        return res.json();
+    })
+    .then(pedidoSalvo => {
+        console.log("Salvo!", pedidoSalvo);
+        localStorage.removeItem('carrinho');
+const  result = document.getElementById("result");
+const modal = document.getElementById("cartao-informativo");
+   const caixa = document.getElementById("sobreposicao-tela");
+result.innerHTML=`<h3>Sucesso </h3><br><p>Compra efetuada com sucesso!</p> <br> <button id="tentativa" onclick="window.location.href='confirmacao.html?id=${pedidoSalvo.pedidos_id || pedidoSalvo.id || ''}'">Ver Status</button>`;
+    
+
+const con = document.getElementById("tentativa");
+ document.querySelector("h3").style.color="green";
+ document.querySelector('p').style.color="black";
+
+modal.style.background="#fff";
+        modal.style.padding="40px";
+        modal.style.borderRadius= "20px";
+        modal.style.textAlign= "center";
+        modal.style.maxWidth= "380px";
+        modal.style.width= "90%";
+        modal.style.boxShadow= "0 15px 30px rgba(0,0,0,0.3)";
+        modal.style.animation= "entradaSuave 0.4s cubic-bezier(0.68,-0.55,0.265,1.55) forwards";
+     
+caixa.style.position="fixed";
+caixa.style.top="0";
+caixa.style.left="0";
+caixa.style.width="100%";
+caixa.style.height="100%";
+caixa.style.background="rgba(0,0,0,0.7)";
+caixa.style.display="flex";
+caixa.style.justifyContent="center";
+caixa.style.alignItems="center";
+caixa.style.zIndex="9999";
+caixa.style.backdropFilter="blur(5px)";        
+
+con.style.background="blue";
+con.style.color="white";
+con.style.fontWeight="BOLD";
+con.style.fontSize="18px";
+con.style.borderRadius="10px";
+con.style.cursor="pointer";
+con.style.transition="background 0.3s ease, transform 0.3s ease";
+con.style.padding="10px 20px";
+
+
+
+
+
+
+
+
+        // window.location.href = `confirmacao.html?id=${pedidoSalvo.pedidos_id || pedidoSalvo.id || ''}`;
+    })
+    .catch(err => {
+        console.error(err);
+       console("Erro ao finalizar: " + err.message + " - Verifique se o back está rodando em http://localhost:8082");
+
+
+const  result = document.getElementById("result");
+const modal = document.getElementById("cartao-informativo");
+   const caixa = document.getElementById("sobreposicao-tela");
+result.innerHTML=`<h3>Erro </h3><br><p>Erro ao finalizar: " + err.message + " - Verifique se o back está rodando em http://localhost:8082</p> <br> <button id="tentativa" onclick="window.location.href='formularioDeCompra.html'">Cadastre</button>`;
+    
+
+const con = document.getElementById("tentativa");
+ document.querySelector("h3").style.color="red";
+ document.querySelector('p').style.color="black";
+
+modal.style.background="#fff";
+        modal.style.padding="40px";
+        modal.style.borderRadius= "20px";
+        modal.style.textAlign= "center";
+        modal.style.maxWidth= "380px";
+        modal.style.width= "90%";
+        modal.style.boxShadow= "0 15px 30px rgba(0,0,0,0.3)";
+        modal.style.animation= "entradaSuave 0.4s cubic-bezier(0.68,-0.55,0.265,1.55) forwards";
+     
+caixa.style.position="fixed";
+caixa.style.top="0";
+caixa.style.left="0";
+caixa.style.width="100%";
+caixa.style.height="100%";
+caixa.style.background="rgba(0,0,0,0.7)";
+caixa.style.display="flex";
+caixa.style.justifyContent="center";
+caixa.style.alignItems="center";
+caixa.style.zIndex="9999";
+caixa.style.backdropFilter="blur(5px)";        
+
+con.style.background="blue";
+con.style.color="white";
+con.style.fontWeight="BOLD";
+con.style.fontSize="18px";
+con.style.borderRadius="10px";
+con.style.cursor="pointer";
+con.style.transition="background 0.3s ease, transform 0.3s ease";
+con.style.padding="10px 20px";
+
+
+
+
+    });
 });
-
-
-const carrinho=JSON.parse(localStorage.getItem("carrinho")) || [];
-const divItens = document.getElementById("itensPedidos");
- 
-let total= 0;
-divItens.innerHTML=carrinho.map(item=>{
-    total+=item.preco*item.Quantidade;
-    return `<div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px 16px; margin-bottom:8px; font-family: sans-serif;">
-  <div style="display:flex; flex-direction:column;">
-    <span style="font-weight:600; color:#1e293b; font-size:15px;">${item.nome}</span>
-    <span style="font-size:12px; color:#64748b;">Qtd: ${item.Quantidade}</span>
-  </div>
-  <span style="font-weight:700; color:#0f766e; background:#ccfbf1; padding:4px 10px; border-radius:20px; font-size:14px;">
-    R$ ${Number(item.preco).toFixed(2)}
-  </span>
-</div>
-`.trim()
-}).join('');
-
-
 </script>
 
 

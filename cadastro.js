@@ -60,7 +60,7 @@ cartaoinformativo.style.background="#fff";
          ok.style.transition="background 0.3s ease, transform 0.3s ease";
          ok.style.padding="10px 20px";
 return
-    } // verificar isso amanhã
+    } 
 
 
 

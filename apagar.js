@@ -1,11 +1,11 @@
 let usuarioIdLogado = null;
 function apagar(event) {
 
-  if(event) event.preventDefault(); // Evita o comportamento padrão do botão
+  if(event) event.preventDefault(); 
 
 
-  //novo nome para armazenar o ID do usuário logado:
-        const id =  localStorage.getItem('usuarioId'); // Obtém o ID do usuário logado do localStorage
+  
+        const id =  localStorage.getItem('usuarioId'); 
 
         
 
@@ -14,8 +14,7 @@ const cartaoinformativo = document.getElementById("cartao-informativo");
 const sobreposicaotela=document.getElementById("sobreposicao-tela");
 
    if(!id) {
-        // alert('Não foi possível identificar o usuário logado.');
-        // return;
+       
         result.innerHTML = `<span id = "error"> &#1006;   </span><br> <p>Não foi possível identificar o usuário logado.</p> `;
 
 result.querySelector('p').style.color = "red";
@@ -117,7 +116,7 @@ if(modal && sobreposicaotela){
             if (response.ok) {
                 
                 
-                // alert('Conta apagada com sucesso!');
+               
                 localStorage.clear();
                  
 

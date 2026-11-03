@@ -29,7 +29,7 @@
 
 
 <div id="pesquisa">
-  <input placeholder="O que você procura?">
+  <input id="campo-busca" type="text" placeholder="O que você procura?">
   <img src="img/pesquisando (1).png" id="lupa" alt="Buscar">
 </div>
 
@@ -168,11 +168,7 @@
 
 <script>
 
-// const sobreposicaotela = document.getElementById("sobreposicao-tela");
-// const cartaoinformativo=document.getElementById("cartao-informativo"); 
-// const resposta = document.getElementById("result");
 
-// Seus grupos de IDs
 const grupos_produtos = [
     [5, 6, 7, 8],
     [9, 10, 11, 12],
@@ -341,7 +337,7 @@ cartaoinformativo.style.background = "#fff";
     sobreposicaotela.style.zIndex = "9999";
     sobreposicaotela.style.backdropFilter = "blur(5px)";
 
-// alert(`"${produto.nome}" foi adicionado ao carrinho!`);
+
 
 }
 function fecharMensagem() {
@@ -402,6 +398,7 @@ function fecharMensagem() {
 
 
 
+    <script src="busca.js"></script>
     <script src="index.js" ></script>
 </body>
 </html>

@@ -219,18 +219,7 @@ cartaoinformativo.style.background="#fff";
          sobreposicaotela.style.zIndex="9999";
          sobreposicaotela.style.backdropFilter="blur(5px)";                                                     
          
-        //  msg.style.background="blue";
-        //  msg.style.color="white";
-        //  msg.style.fontWeight="BOLD";
-        //  msg.style.fontSize="18px";
-        //  msg.style.borderRadius="10px";
-        //  msg.style.cursor="pointer";
-        //  msg.style.transition="background 0.3s ease, transform 0.3s ease";
-        //  msg.style.padding="10px 20px";
-
-//ctrl +shift+l -> seleciona palavras de mesma correspondecia rapidamente
-
-            // window.location.href = 'minhaconta.html'; // Redireciona para a página de listagem de usuários
+        
         } else {
 const msg = document.getElementById("result");
 const cartaoinformativo = document.getElementById("cartao-informativo");
@@ -274,7 +263,7 @@ const cartaoinformativo = document.getElementById("cartao-informativo");
 
 
         console.error('Erro na requisição:', error);
-        // alert('Ocorreu um erro ao tentar fazer login. Tente novamente mais tarde.');
+        
 
         msg.innerHTML = `<span id = "error"> &#1006;   </span><br> <p>Ocorreu um erro ao tentar fazer login. Tente novamente mais tarde.</p> <br> <button id="btns" onclick="fecharModal()">OK</button> `;
 

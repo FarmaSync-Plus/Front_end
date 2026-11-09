@@ -19,62 +19,430 @@ input {
   outline: none;
   margin: 0;                 /* Remove margin-left: 200px que desregulava o alinhamento */
 }
-#pesquisa {
-  display: flex;             /* Junta input e lupa lado a lado sem vão */
-  align-items: center;
-  margin-right: 40px;        /* Espaço controlado antes do bloco de usuário */
-  margin-left: 20px;         /* Espaço após a logo */
-}
-#elements{
-   display: flex;
-   align-items: center;
-  justify-content: center; /* Centraliza o bloco na tela */
+
+
+
+/* ==========================================================================
+   CABEÇALHO: logo, busca, conta, carrinho + MENU DE NAVEGAÇÃO
+   (afeta apenas o <header class="site-header"> da página index)
+   ========================================================================== */
+
+.site-header {
   position: relative;
+  z-index: 100;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 60, 55, 0.08);
+}
+
+/* ---------- Linha superior ---------- */
+#elements {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-sizing: border-box;
   width: 100%;
-  margin-top:100px ;
-  margin-bottom: 20px;
-  gap:40px;
-  margin-right: 100px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 14px 24px;
 }
 
+#logo {
+  display: block;
+  flex: none;
+  height: 72px;
+  width: auto;
+  margin: 0;
+}
 
+/* ---------- Busca ---------- */
+#pesquisa {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 560px;
+  min-width: 0;
+  max-width: 640px;
+  height: 48px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #cfd9d7;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
 
-#user{
-height: 30px;
-cursor: pointer;
+#pesquisa:hover {
+  border-color: #9db8b4;
 }
-#frase{
-  font-size: 10px;
-  
-  
+
+#pesquisa:focus-within {
+  border-color: #006C63;
+  box-shadow: 0 0 0 3px rgba(0, 108, 99, 0.15);
 }
-#topi,#pedido{
-margin-right: 30px;
-cursor:pointer;
+
+#campo-busca {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0 16px;
+  border: 0;
+  background: transparent;
+  color: #1f2d2b;
+  font-size: 15px;
+  font-weight: 400;
 }
+
+#campo-busca::placeholder {
+  color: #7b8a87;
+  font-weight: 400;
+}
+
+.botao-busca {
+  display: flex;
+  flex: none;
+  background: #006C63;
+  transition: background-color 0.2s ease;
+}
+
+.botao-busca:hover {
+  background: #00857a;
+}
+
+#lupa {
+  display: block;
+  width: 48px;
+  height: 100%;
+  padding: 14px;
+  box-sizing: border-box;
+  object-fit: contain;
+  cursor: pointer;
+  filter: brightness(0) invert(1);
+}
+
+/* ---------- Conta do usuário ---------- */
+.conta-usuario {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.conta-usuario:hover {
+  background: #eef5f4;
+}
+
+#user {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+#frase {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+#frase a {
+  display: block;
+  line-height: 1.25;
+}
+
+#frase h3 {
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+/* !important: o index.js define font-size inline quando o usuário está logado */
+#topi {
+  font-size: 14px !important;
+  font-weight: 700;
+  color: #1f2d2b;
+  white-space: nowrap;
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+#teste {
+  font-size: 12px;
+  font-weight: 500;
+  color: #5b6b68;
+  cursor: pointer;
+}
+
+#teste::first-letter {
+  text-transform: uppercase;
+}
+
+#frase a:hover h3 {
+  color: #006C63;
+}
+
+/* ---------- Carrinho ---------- */
+.link-carrinho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.link-carrinho:hover {
+  background: #eef5f4;
+}
+
+#carrinho {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* ---------- Menu de navegação ---------- */
+.escolha {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  background-color: #006C63;
+  font-weight: 500;
+}
+
+.escolha ul {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 4px;
+  box-sizing: border-box;
+  max-width: 1240px;
+  height: 52px;
+  margin: 0 auto;
+  padding: 0 24px;
+  list-style: none;
+}
+
+.escolha li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 18px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Indicador sutil sob o item no hover */
+.escolha li::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: #ffffff;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.escolha li:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.escolha li:hover::after {
+  transform: scaleX(1);
+}
+
+/* Todas as Categorias: bloco discreto com seta indicando menu */
+.escolha .categoria-principal {
+  padding: 0;
+  margin-right: 12px;
+  background: rgba(0, 0, 0, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.escolha .categoria-principal:hover {
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.escolha .categoria-principal::after {
+  left: 16px;
+  right: 16px;
+}
+
+.escolha .categoria-principal a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding: 0 18px 0 16px;
+  color: #ffffff;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.escolha .categoria-principal a::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 4px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.escolha .categoria-principal:hover a::after {
+  transform: rotate(45deg) translate(2px, 2px);
+}
+
+#list {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* Ofertas: pílula discreta em tom âmbar suave, alinhada à direita */
+.escolha li.ofertas {
+  align-self: center;
+  height: 34px;
+  margin-left: auto;
+  padding: 0 16px 0 14px;
+  color: #ffe2a6;
+  background: rgba(255, 214, 140, 0.1);
+  border: 1px solid rgba(255, 214, 140, 0.5);
+  border-radius: 999px;
+}
+
+.escolha li.ofertas::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #ffc95c;
+}
+
+.escolha li.ofertas::after {
+  display: none;
+}
+
+.escolha li.ofertas:hover {
+  color: #fff1d0;
+  background: rgba(255, 214, 140, 0.2);
+  border-color: rgba(255, 214, 140, 0.85);
+}
+
+/* ---------- Responsividade do cabeçalho ---------- */
+@media (max-width: 900px) {
+  #elements {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 16px;
+  }
+
+  #logo {
+    height: 56px;
+    margin-right: auto;
+  }
+
+  .conta-usuario { order: 2; }
+  .link-carrinho { order: 3; }
+
+  #pesquisa {
+    order: 4;
+    flex: 1 1 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .escolha {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .escolha::-webkit-scrollbar {
+    display: none;
+  }
+
+  .escolha ul {
+    width: max-content;
+    min-width: 100%;
+    height: 48px;
+    padding: 0 12px;
+  }
+
+  .escolha li {
+    padding: 0 12px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .escolha li::after {
+    left: 12px;
+    right: 12px;
+  }
+
+  .escolha li.ofertas {
+    margin-left: auto;
+    padding: 0 14px 0 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  #logo {
+    height: 48px;
+  }
+
+  #user {
+    display: none;
+  }
+
+  .conta-usuario {
+    padding: 4px 6px;
+  }
+
+  #topi {
+    font-size: 13px !important;
+    max-width: 150px;
+  }
+
+  .link-carrinho {
+    width: 42px;
+    height: 42px;
+  }
+}
+
 #pedidos{
   font-size: 13px;
  cursor: pointer;
  height: 35px;
 }
 
-#carrinho{
-height: 30px;
-margin-left:40px ;
-cursor: pointer;
- 
-}
 
-#lupa {
-  cursor: pointer;
-  height: 48px;              /* Mesma altura exata do input */
-  width: 48px;
-  box-sizing: border-box;
-  background-color: green;
-  border: 1px solid green;
-  display: block;
-  padding: 10px;             /* Ajusta o ícone dentro do quadrado verde */
-}
 
 
 #info{
@@ -83,43 +451,11 @@ cursor: pointer;
 }
 
 
-.escolha {
-  background-color: #006C63;
-  padding: 50px;
-  height: 40px;
-  font-weight: bold;
-  
-}
 
 
-.escolha ul {
-  display: flex;
-  align-items: center;            /* Centraliza todos os itens na vertical */
-  justify-content: space-between; /* Distribui as categorias pela barra */
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
 
-.escolha li {
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 16px;
-}
 
-.categoria-principal {
-  display: flex;
-  align-items: center;            /* Trava o ícone no meio da linha do texto */
-  gap: 50px;                     /* Espaço entre ícone e 'Todas as Categorias' */
-}
 
-#list {
-  width: 44px;         /* Aumente aqui (ex: 40px, 44px ou 48px) */
-  height: 44px;        /* Mantenha o mesmo valor para não deformar */
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  display: block;
-}
 
 
 ul,li{
@@ -379,11 +715,6 @@ footer {
   }
 }
 
-#logo{
-    height: 180px;
-    margin-bottom: 60px;
-    
-}
 
 .img_element,h1{
   height: 80px;

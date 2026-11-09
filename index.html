@@ -21,19 +21,20 @@
 
 </head>
 
-<header>
+<header class="site-header">
 
     <nav id="elements">
 
-<img src="img/logo.png" id="logo">
+<img src="img/logo.png" id="logo" alt="FarmaSync">
 
 
 <div id="pesquisa">
   <input id="campo-busca" type="text" placeholder="O que você procura?">
-  <img src="img/pesquisando (1).png" id="lupa" alt="Buscar">
+  <span class="botao-busca"><img src="img/pesquisando (1).png" id="lupa" alt="Buscar"></span>
 </div>
 
-    <img src="img/usuário.png" id="user">
+    <div class="conta-usuario">
+    <img src="img/usuário.png" id="user" alt="">
     <div id = "frase">
     <a id="Link-perfil" href="cadastro.html">
         <H3 id="topi">Entrar ou Cadastrar</H3>
@@ -44,16 +45,12 @@
     </a>
     
     </div>
+    </div>
 <!-- 
     <img src = "img/pedidos.png" alt="pedidos" id="pedidos"> -->
 
     
-    <a href="carrinho.html"><img src="img/carrinho.png" alt="" id="carrinho"></a>
-
-
-
-
-
+    <a href="carrinho.html" class="link-carrinho" aria-label="Carrinho"><img src="img/carrinho.png" alt="" id="carrinho"></a>
 
 </nav>
 
@@ -61,29 +58,19 @@
 
 <div class = "escolha">
 
-
-   
-
-
 <ul>
 <li class="categoria-principal">
- <img id="list" src="img/list.png">
-<a href="produtos.html"<span>Todas as Categorias</span> </li></a>
+ <a href="produtos.html"><img id="list" src="img/list.png" alt=""><span>Todas as Categorias</span></a>
 </li>
 
-   
 <li>Medicamentos</li>
 <li>Higiene</li>
 <li>Cuidados Pessoais</li>
 <li>Infantil</li>
-<li>Ofertas</li>
+<li class="ofertas">Ofertas</li>
 </ul>
 
-
-
 </div>
-
-
 
 </header>
 

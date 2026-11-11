@@ -1,43 +1,69 @@
+/* ==========================================================================
+   RESET & CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #1f2d2b;
 }
 
 header {
-    padding: 20px 40px;
-    border-bottom: 1px solid #E0E0E0;
+    padding: 16px 40px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #E2E8F0;
 }
 
 .logo img {
-    height: 100px;
+    height: 60px;
     width: auto;
     display: block;
 }
 
+/* ==========================================================================
+   MENU DE NAVEGAÇÃO
+   ========================================================================== */
 .menu {
     width: 100%;
-    justify-content: center;
-    background-color: #006859;
+    justify-content: flex-start;
+    background-color: #006C63;
     color: #FFFFFF;
-    padding: 25px 30px;
+    padding: 16px 40px;
     display: flex;
     align-items: center;
-    gap: 150px;
+    gap: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.links-navegacao {
+    display: flex;
+    gap: 30px;
 }
 
 .menu-todos {
     position: relative; 
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-weight: bold;
-    font-size: 18px;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 16px;
     color: #ffffff;
     cursor: pointer;
-    margin-right: 10px;
-    transition: opacity 0.2s;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.menu-todos:hover {
+    background: rgba(0, 0, 0, 0.25);
 }
 
 .icone-seta {
@@ -47,28 +73,26 @@ header {
 .menu a {
     color: #FFFFFF;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 500;
     transition: opacity 0.2s;
 }
 
-.menu a:hover,
-.menu-todos span:hover {
-    opacity: 0.8;
+.menu a:hover {
+    opacity: 0.85;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 10px);
     left: 0;
-    width: 220px;
+    width: 240px;
     background-color: #ffffff;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     list-style: none;
-    padding: 10px 0;
+    padding: 8px 0;
     z-index: 1000;
-    
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -78,265 +102,314 @@ header {
 .dropdown-menu li a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     padding: 12px 20px;
     color: #333333 !important;
-    font-size: 15px;
-    font-weight: normal;
-    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
     transition: background-color 0.2s, color 0.2s;
 }
 
 .dropdown-menu li a:hover {
-    background-color: #f0f0f0;
-    color: #006859 !important;
+    background-color: #f1f5f9;
+    color: #006C63 !important;
 }
 
 .menu-todos.ativo .dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateY(10px);
+    transform: translateY(0);
 }
 
 .menu-todos.ativo .icone-seta {
     transform: rotate(180deg);
 }
 
-p {
-    color: #414141;
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-left: 40px;
+/* ==========================================================================
+   ESTRUTURA DO CARRINHO
+   ========================================================================== */
+.carrinho-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 24px;
 }
 
-.carrinho-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
+.carrinho-container h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 24px;
+}
+
+.titulo-produtos-semelhantes {
+    margin-top: 50px;
 }
 
 .carrinho-layout {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-  margin-bottom: 40px;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
 }
 
 .bloco-produtos {
-  flex: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
+/* Cartão do Produto */
 .cartao-produto {
-  border: 1.5px solid #333;
-  border-radius: 16px;
-  padding: 20px;
-  background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.2s ease;
+}
+
+.cartao-produto:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
 .produto-detalhes {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
 }
-
 
 .produto-img {
-  width: 70px;
-  height: auto;
-  object-fit: contain;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 4px;
 }
 
-
 .produto-titulo {
-  flex: 1;
-  font-size: 14px;
-  color: #444;
-  margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
 }
 
 .produto-preco {
-  font-size: 18px;
-  color: #444;
-  white-space: nowrap;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    white-space: nowrap;
 }
 
 .produto-acoes {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.produto-acoes label {
-  font-size: 18px;
-  font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .select-qtd {
-  padding: 6px 16px;
-  border-radius: 12px;
-  border: 1.5px solid #333;
-  font-size: 16px;
-  background-color: #fff;
-  cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
 }
 
 .btn-remover {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  margin-left: 8px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
 }
 
+.btn-remover:hover {
+    background-color: #fee2e2;
+}
 
+/* ==========================================================================
+   RESUMO DA COMPRA (SIDEBAR)
+   ========================================================================== */
 .bloco-resumo-wrapper {
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    width: 360px;
 }
 
 .bloco-resumo {
-  border: 1.5px solid #333;
-  border-radius: 20px;
-  padding: 24px 20px;
-  background-color: #fff;
-  text-align: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
 .bloco-resumo h3 {
-  margin-top: 0;
-  text-align: left;
-  font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 12px;
 }
 
 .linha-resumo {
-  display: flex;
-  justify-content: space-between;
-  margin: 16px 0;
-  font-size: 18px;
-  color: #666;
+    display: flex;
+    justify-content: space-between;
+    margin: 14px 0;
+    font-size: 15px;
+    color: #475569;
 }
 
 .linha-resumo.total {
-  color: #333;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 14px;
+    margin-top: 14px;
 }
 
 .btn-finalizar {
-  width: 100%;
-  background-color: #00665e;
-  color: #fff;
-  border: none;
-  padding: 12px 0;
-  border-radius: 25px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px;
+    width: 100%;
+    background-color: #006C63;
+    color: #fff;
+    border: none;
+    padding: 14px 0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-finalizar:hover {
+    background-color: #00564f;
+}
+
+.btn-finalizar:active {
+    transform: scale(0.98);
 }
 
 .link-continuar {
-  display: inline-block;
-  margin-top: 12px;
-  color: #222;
-  text-decoration: none;
-  font-size: 16px;
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    color: #006C63;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s;
 }
 
-
-.btn-endereco {
-  width: 100%;
-  background-color: #00b39b;
-  color: #000;
-  border: 1.5px solid #333;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
+.link-continuar:hover {
+    color: #004d44;
+    text-decoration: underline;
 }
 
-
-
-/* TELA CARRINHO VAZIO - BONITA */
+/* ==========================================================================
+   TELA DE CARRINHO VAZIO
+   ========================================================================== */
 .carrinho-vazio-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  background-color: #f8f9fa;
-  padding: 20px;
-  font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 20px;
 }
 
 .carrinho-vazio-conteudo {
-  background: #ffffff;
-  padding: 50px 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-  text-align: center;
-  max-width: 450px;
-  width: 100%;
-  animation: subir 0.4s ease-out;
+    background: #ffffff;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    animation: subir 0.4s ease-out;
 }
 
 .icone-wrapper {
-  width: 120px;
-  height: 120px;
-  background: #e8f5e9; /* verde bem clarinho */
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto 25px auto;
+    width: 100px;
+    height: 100px;
+    background: #e6f4f1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
 }
 
 .carrinho-vazio-img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  opacity: 0.8;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
 }
 
 .titulo-carrinho-vazio {
-  font-size: 24px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
 }
 
 .subtitulo-carrinho-vazio {
-  font-size: 15px;
-  color: #6c757d;
-  line-height: 1.6;
-  margin-bottom: 30px;
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 24px;
 }
 
 .btn-voltar-link {
-  display: inline-block;
-  background-color: #00695c; /* seu verde escuro */
-  color: #fff;
-  padding: 14px 32px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0, 105, 92, 0.2);
+    display: inline-block;
+    background-color: #006C63;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 108, 99, 0.2);
 }
 
 .btn-voltar-link:hover {
-  background-color: #004d40;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 105, 92, 0.3);
+    background-color: #00564f;
+    transform: translateY(-2px);
 }
 
 @keyframes subir {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 900px) {
+    .carrinho-layout {
+        flex-direction: column;
+    }
+    .bloco-resumo-wrapper {
+        width: 100%;
+    }
+    .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 16px 20px;
+    }
+    .links-navegacao {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
 }

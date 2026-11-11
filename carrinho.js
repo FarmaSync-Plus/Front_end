@@ -10,7 +10,7 @@ fetch('http://localhost:8082/usuarios/')
      let usuarioIdLogado = usuarioLogado.usuarioId;
     let nomeUsuario = usuarioLogado.nomeUsuario;
 
-     // Se precisar add mais algum dado da api para ver se o usuario esta logado pode vir aqui
+     
 }else{
 const  result = document.getElementById("result");
 const modal = document.getElementById("cartao-informativo");
@@ -164,9 +164,9 @@ document.querySelectorAll(".select-qtd").forEach(input =>{
       document.addEventListener('click',(e) =>{
     let botao = e.target.closest(".btn-remover");
     if(botao){
-        let index = botao.dataset.index // tem que ser botao, não e.target
+        let index = botao.dataset.index 
 
-        // 1. Cria o fundo escuro
+        
         let caixa = document.createElement("div");
         caixa.style.position="fixed";
         caixa.style.top="0";
@@ -180,7 +180,7 @@ document.querySelectorAll(".select-qtd").forEach(input =>{
         caixa.style.zIndex="9999";
         caixa.style.backdropFilter="blur(5px)";
 
-        // 2. Cria o modal branco
+        
         let modal = document.createElement("div");
         modal.style.background="#fff";
         modal.style.padding="40px";
@@ -203,12 +203,12 @@ document.querySelectorAll(".select-qtd").forEach(input =>{
         caixa.appendChild(modal);
         document.body.appendChild(caixa);
 
-        // 3. Se clicar em Cancelar, só fecha
+        
         modal.querySelector("#btn-cancelar").addEventListener('click', () => {
             caixa.remove();
         });
 
-        // 4. Se clicar em Remover, aí sim apaga
+        
         modal.querySelector("#btn-confirmar").addEventListener('click', () => {
             let carrinhoAtual = JSON.parse(localStorage.getItem("carrinho")) || [];
             carrinhoAtual.splice(index, 1);
@@ -216,7 +216,7 @@ document.querySelectorAll(".select-qtd").forEach(input =>{
             location.reload();
         });
 
-        // Clicou fora do modal, fecha também
+       
         caixa.addEventListener('click', (event) => {
             if(event.target === caixa){
                 caixa.remove();

@@ -54,42 +54,58 @@
     function salvarPreferencias(mostrarMensagem = true) {
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(preferencias));
-            if (mostrarMensagem) informar('Preferências salvas neste navegador.');
+            if (mostrarMensagem) informar('Preferências salvas com sucesso.');
         } catch (erro) {
-            informar('As alterações estão aplicadas, mas o navegador não permitiu salvá-las.');
+            informar('Alterações aplicadas, mas o navegador impediu o salvamento local.');
         }
     }
 
     function aplicarPreferencias() {
+        // Aplicação de classes globais no body
         document.body.classList.toggle('tema-escuro', preferencias.theme === 'escuro');
         document.body.classList.toggle('alto-contraste', preferencias.altoContraste);
         document.body.classList.toggle('destacar-interativos', preferencias.destacarInterativos);
         document.body.classList.toggle('reduzir-animacoes', preferencias.reduzirAnimacoes);
         document.documentElement.classList.toggle('reduzir-animacoes', preferencias.reduzirAnimacoes);
-        if (window.FarmaSyncAcessibilidade) window.FarmaSyncAcessibilidade.aplicar(preferencias);
+        
+        // Aplicação da escala de fonte via atributo data-scale
+        document.body.setAttribute('data-scale', preferencias.fontScale);
 
+        if (window.FarmaSyncAcessibilidade && typeof window.FarmaSyncAcessibilidade.aplicar === 'function') {
+            window.FarmaSyncAcessibilidade.aplicar(preferencias);
+        }
+
+        // Atualização visual dos botões de escala de fonte
         escalaBotoes.forEach((botao) => {
             const escala = Number(botao.dataset.fontScale);
-            botao.setAttribute('aria-pressed', String(escala === preferencias.fontScale));
+            const ativo = escala === preferencias.fontScale;
+            botao.classList.toggle('selecionado', ativo);
+            botao.setAttribute('aria-pressed', String(ativo));
         });
 
+        // Atualização visual dos botões de tema
         temaBotoes.forEach((botao) => {
             const selecionado = botao.dataset.theme === preferencias.theme;
             botao.classList.toggle('selecionado', selecionado);
             botao.setAttribute('aria-pressed', String(selecionado));
         });
 
+        // Atualização dos inputs do tipo switch/checkbox
         controles.forEach((controle) => {
             const nome = controle.dataset.setting;
-            controle.checked = Boolean(preferencias[nome]);
-            const texto = controle.closest('.controle-switch')?.querySelector('.texto-switch');
-            if (texto) texto.textContent = controle.checked ? 'Ativado' : 'Desativado';
+            if (nome && Object.prototype.hasOwnProperty.call(preferencias, nome)) {
+                controle.checked = Boolean(preferencias[nome]);
+                const wrapper = controle.closest('.controle-switch');
+                const texto = wrapper?.querySelector('.texto-switch');
+                if (texto) texto.textContent = controle.checked ? 'Ativado' : 'Desativado';
+            }
         });
 
         if (ouvirBotao) ouvirBotao.disabled = !preferencias.leituraVoz;
         if (pararBotao) pararBotao.disabled = !preferencias.leituraVoz;
     }
 
+    // Eventos de clique nos botões de escala
     escalaBotoes.forEach((botao) => {
         botao.addEventListener('click', () => {
             const escala = Number(botao.dataset.fontScale);
@@ -100,14 +116,17 @@
         });
     });
 
+    // Eventos de clique nos botões de tema (Claro / Escuro)
     temaBotoes.forEach((botao) => {
         botao.addEventListener('click', () => {
-            preferencias.theme = botao.dataset.theme === 'escuro' ? 'escuro' : 'claro';
+            const novoTema = botao.dataset.theme;
+            preferencias.theme = novoTema === 'escuro' ? 'escuro' : 'claro';
             aplicarPreferencias();
             salvarPreferencias();
         });
     });
 
+    // Eventos de mudança nos switches de configuração
     controles.forEach((controle) => {
         controle.addEventListener('change', () => {
             const nome = controle.dataset.setting;
@@ -121,28 +140,30 @@
         });
     });
 
+    // Leitura por voz (SpeechSynthesis)
     if (ouvirBotao) {
         ouvirBotao.addEventListener('click', () => {
             if (!preferencias.leituraVoz) {
-                informar('Ative a leitura em voz alta antes de ouvir as orientações.');
+                informar('Ative a leitura em voz alta nas opções de acessibilidade.');
                 return;
             }
             if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') {
-                informar('A leitura em voz alta não está disponível neste navegador.');
+                informar('Seu navegador não suporta leitura em voz alta.');
                 return;
             }
 
-            const conteudo = document.querySelector('.conteudo-configuracoes');
-            const copia = conteudo ? conteudo.cloneNode(true) : document.body.cloneNode(true);
+            const conteudo = document.querySelector('.conteudo-configuracoes') || document.body;
+            const copia = conteudo.cloneNode(true);
             copia.querySelectorAll('button, input, script, style, .acoes-leitura, .controle-switch').forEach((no) => no.remove());
             const texto = (copia.innerText || copia.textContent || '').replace(/\s+/g, ' ').trim();
+            
             window.speechSynthesis.cancel();
             const fala = new window.SpeechSynthesisUtterance(texto);
             fala.lang = 'pt-BR';
-            fala.rate = 0.9;
-            fala.onstart = () => informar('Lendo as orientações em voz alta…');
-            fala.onend = () => informar('Leitura concluída.');
-            fala.onerror = () => informar('Não foi possível concluir a leitura neste momento.');
+            fala.rate = 0.95;
+            fala.onstart = () => informar('Lendo página em voz alta...');
+            fala.onend = () => informar('Leitura finalizada.');
+            fala.onerror = () => informar('Erro ao executar a leitura.');
             window.speechSynthesis.speak(fala);
         });
     }
@@ -154,19 +175,20 @@
         });
     }
 
+    // Botão de restaurar padrões
     if (restaurarBotao) {
         restaurarBotao.addEventListener('click', () => {
-            const confirmar = window.confirm('Deseja restaurar todas as configurações para os valores padrão?');
+            const confirmar = window.confirm('Deseja retornar todas as preferências para os valores originais?');
             if (!confirmar) return;
             preferencias = { ...PADRAO };
             if ('speechSynthesis' in window) window.speechSynthesis.cancel();
             aplicarPreferencias();
             salvarPreferencias(false);
-            informar('Configurações padrão restauradas.');
+            informar('Configurações restauradas com sucesso.');
         });
     }
 
+    // Inicialização automática ao carregar a página
     preferencias = carregarPreferencias();
     aplicarPreferencias();
-    informar('Suas preferências ficam salvas neste navegador.');
 })();

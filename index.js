@@ -24,6 +24,8 @@ if(nomeUsuario){
 
 
 
-
-
-
+(function(){
+    const campoBusca = document.getElementById('campo-busca');
+    if(!campoBusca || !window.FarmaBusca) return;
+    FarmaBusca.iniciar({ campo: campoBusca, lupa: document.getElementById('lupa') });
+})();

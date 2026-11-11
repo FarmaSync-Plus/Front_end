@@ -1,138 +1,160 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trocar Senha - FarmaSync</title>
 
-    <title>Trocar senha | FarmaSync</title>
+    <!-- Ícones e Fontes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
+        /* ==========================================================================
+           RESET & CONFIGURAÇÕES GLOBAIS
+           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #edf2fd, #dce7ff);
+            background-color: #f4f6f8;
+            color: #1f2d2b;
             min-height: 100vh;
-            color: #20234f;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Cabeçalho */
+        /* ==========================================================================
+           CABEÇALHO
+           ========================================================================== */
         .cabecalho {
-            background-color: #c4ee94;
-            border-bottom: 4px solid #1f2691;
-            padding: 18px 6%;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 2px 12px rgba(0, 60, 55, 0.06);
+            padding: 15px 40px;
         }
 
         .logo {
-            width: 18%;
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: white;
+            padding: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             display: block;
         }
 
-        /* Área principal */
+        /* ==========================================================================
+           ÁREA PRINCIPAL & CARTÃO
+           ========================================================================== */
         .principal {
             width: 90%;
-            max-width: 850px;
-            margin: 45px auto;
+            max-width: 650px;
+            margin: 40px auto;
+            flex: 1;
         }
 
-        /* Cartão principal */
         .cartao {
             background-color: #ffffff;
-            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
             padding: 40px;
-            box-shadow: 0 12px 35px rgba(31, 38, 145, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         /* Ícone */
         .icone-chave {
-            width: 70px;
-            height: 70px;
-            background-color: #edf2fd;
-            border: 3px solid #1f2691;
+            width: 64px;
+            height: 64px;
+            background-color: #e6f4f1;
+            border: 2px solid #006C63;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 36px;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: #006C63;
         }
 
         /* Títulos */
         h1 {
-            color: #1f2691;
+            color: #0f172a;
             text-align: center;
-            font-size: 32px;
-            margin-bottom: 12px;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .subtitulo {
-            color: #666666;
+            color: #64748b;
             text-align: center;
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.5;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
         /* Formulário */
         .formulario {
-            max-width: 550px;
-            margin: 0 auto;
+            width: 100%;
         }
 
         .campo {
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .campo label {
             display: block;
-            color: #1f2691;
-            font-size: 15px;
-            font-weight: bold;
-            margin-bottom: 8px;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
         }
 
         .campo input {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #d5dcf5;
-            border-radius: 12px;
-            background-color: #f7f9ff;
-            color: #222222;
-            font-size: 16px;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-size: 15px;
             outline: none;
-            transition: 0.3s;
+            transition: all 0.2s ease;
         }
 
         .campo input:focus {
             background-color: #ffffff;
-            border-color: #1f2691;
-            box-shadow: 0 0 0 4px rgba(171, 255, 75, 0.45);
+            border-color: #006C63;
+            box-shadow: 0 0 0 3px rgba(0, 108, 99, 0.12);
         }
 
         .ajuda {
-            color: #777777;
+            color: #64748b;
             font-size: 13px;
-            margin-top: 7px;
+            margin-top: 6px;
             line-height: 1.4;
         }
 
         /* Regras da senha */
         .regras {
-            background-color: #f4f7ff;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 18px;
-            margin: 25px 0;
+            margin: 24px 0;
         }
 
         .regras h2 {
-            color: #1f2691;
-            font-size: 17px;
-            margin-bottom: 12px;
+            color: #0f172a;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .regras ul {
@@ -140,14 +162,14 @@
         }
 
         .regras li {
-            color: #555555;
+            color: #475569;
             font-size: 14px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .regras li::before {
             content: "✓";
-            color: #36a852;
+            color: #16a34a;
             font-weight: bold;
             margin-right: 8px;
         }
@@ -156,65 +178,101 @@
         .acoes {
             display: flex;
             gap: 15px;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
         .botao {
             flex: 1;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
             text-align: center;
             text-decoration: none;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .botao-cancelar {
             background-color: #ffffff;
-            color: #1f2691;
-            border: 2px solid #1f2691;
+            color: #475569;
+            border: 1px solid #cbd5e1;
         }
 
         .botao-cancelar:hover {
-            background-color: #edf2fd;
+            background-color: #f1f5f9;
+            color: #0f172a;
         }
 
         .botao-confirmar {
-            background-color: #1f2691;
+            background-color: #006C63;
             color: #ffffff;
-            border: 2px solid #1f2691;
+            border: 1px solid #006C63;
+            box-shadow: 0 4px 12px rgba(0, 108, 99, 0.2);
         }
 
         .botao-confirmar:hover {
-            background-color: #abff4b;
-            color: #1f2691;
+            background-color: #00564f;
             transform: translateY(-2px);
+        }
+
+        .botao-confirmar:active {
+            transform: scale(0.98);
         }
 
         /* Rodapé */
         .rodape {
-            color: #888888;
+            color: #94a3b8;
             font-size: 13px;
             text-align: center;
             margin-top: 30px;
         }
 
+        /* Modal e Overlay */
+        #sobreposicao-tela {
+            display: none;
+        }
+
+        @keyframes entradaSuaveModal {
+            0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        #cartao-informativo {
+            background: #fff;
+            padding: 35px 30px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 380px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: entradaSuaveModal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         /* Responsividade */
         @media (max-width: 600px) {
+            .cabecalho {
+                padding: 15px 20px;
+                text-align: center;
+            }
+
+            .logo {
+                margin: 0 auto;
+            }
 
             .principal {
                 width: 94%;
-                margin: 25px auto;
+                margin: 20px auto;
             }
 
             .cartao {
                 padding: 25px 20px;
-            }
-
-            h1 {
-                font-size: 26px;
             }
 
             .acoes {
@@ -230,121 +288,74 @@
 
 <body>
 
-
+    <!-- Overlay & Modal -->
     <div id="sobreposicao-tela">
+        <div id="cartao-informativo">
+            <div id="sucesso">
+                <div id="error"></div>
+            </div>
+        </div>
+    </div>
 
-<div id="cartao-informativo">
-    <div id="sucesso">
-
-<div id="error"></div></div></div></div>
-
+    <!-- Cabeçalho -->
     <header class="cabecalho">
-        <img class="logo" src="Logo.png" alt="Logo FarmaSync">
+        <img class="logo" src="img/Logo.png" alt="Logo FarmaSync">
     </header>
 
     <main class="principal">
-
         <section class="cartao">
 
-            <div class="icone-chave">🔑</div>
+            <div class="icone-chave">
+                <i class="fa-solid fa-key"></i>
+            </div>
 
             <h1>Troque sua senha</h1>
 
             <p class="subtitulo">
-                Crie uma nova senha para manter sua conta
-                FarmaSync protegida e segura.
+                Crie uma nova senha para manter sua conta FarmaSync protegida e segura.
             </p>
 
-            <form class="formulario" method="POST" action=""    id = "update-form">
+            <form class="formulario" method="POST" action="" id="update-form">
 
-
-          <input type="hidden" id="bairro" name="bairro">
-
-
-          <input type="hidden" id="cidade" name="cidade">
-
-          <input type="hidden"  id= "logradouro" name="logradouro">
-
-          <input type="hidden"  id="email"  name="emailUsuario">
-
-          <input type="hidden"  id= "genero"        name = "genero">
-
-          <input type="hidden" id="nome"   name="nomeUsuario">
-
-          <input type="hidden"  id="cpf" name="cpf">
-
-            <input type="hidden"  id="estado" name="estado">
-            <input type="hidden"  id="telefone" name="telefone">
-
-
-
-
-
-
-          
-
-
-                
+                <input type="hidden" id="bairro" name="bairro">
+                <input type="hidden" id="cidade" name="cidade">
+                <input type="hidden" id="logradouro" name="logradouro">
+                <input type="hidden" id="email" name="emailUsuario">
+                <input type="hidden" id="genero" name="genero">
+                <input type="hidden" id="nome" name="nomeUsuario">
+                <input type="hidden" id="cpf" name="cpf">
+                <input type="hidden" id="estado" name="estado">
+                <input type="hidden" id="telefone" name="telefone">
 
                 <div class="campo">
                     <label for="senha-nova">Nova senha</label>
-
-                    <input
-                        type="text"
-                        id="senha-nova"
-                        name="senha-nova"
-                        placeholder="Digite sua nova senha"
-                        required
-                        minlength="8"
-                    >
-
-                    <p class="ajuda">
-                        Escolha uma senha que você ainda não tenha utilizado.
-                    </p>
+                    <input type="password" id="senha-nova" name="senha-nova" placeholder="Digite sua nova senha" required minlength="8">
+                    <p class="ajuda">Escolha uma senha que você ainda não tenha utilizado.</p>
                 </div>
 
                 <div class="campo">
-                    <label for="confirmar-senha">
-                        Confirme sua nova senha
-                    </label>
-
-                    <input
-                        type="text"
-                        id="confirmar-senha"
-                        name="confirmar-senha"
-                        placeholder="Digite novamente sua nova senha"
-                        required
-                        minlength="8"
-                    >
+                    <label for="confirmar-senha">Confirme sua nova senha</label>
+                    <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Digite novamente sua nova senha" required minlength="8">
                 </div>
 
                 <div class="regras">
-
                     <h2>Sua nova senha deve conter:</h2>
-
                     <ul>
                         <li>Pelo menos 8 caracteres.</li>
                         <li>Uma letra maiúscula.</li>
                         <li>Uma letra minúscula.</li>
                         <li>Um número.</li>
                     </ul>
-
                 </div>
 
                 <div class="acoes">
-
-                    <a
-                        href="Conta_Do_Usuario.html"
-                        class="botao botao-cancelar"
-                    >
+                    <a href="Conta_Do_Usuario.html" class="botao botao-cancelar">
                         Cancelar
                     </a>
 
-                    <button
-                        type="button" onclick="abrirModalConfirmacao(event)" class="botao botao-confirmar">
+                    <button type="button" onclick="abrirModalConfirmacao(event)" class="botao botao-confirmar">
                         Confirmar alteração
                     </button>
-
                 </div>
 
             </form>
@@ -354,19 +365,16 @@
             </p>
 
         </section>
-
     </main>
-<div id="modal-atualizar">
-   <div id="caixa-alerta">
 
-<div id="confirm">
+    <!-- Modal Dinâmico -->
+    <div id="modal-atualizar">
+        <div id="caixa-alerta">
+            <div id="confirm"></div> 
+        </div>
+    </div>
 
-</div> 
- 
- </div>
-  </div>
-
+    <!-- Script Externo -->
     <script src="senha.js"></script>
 </body>
-
 </html>

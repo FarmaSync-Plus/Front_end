@@ -5,14 +5,14 @@ create table Usuarios(
 usuario_id int  auto_increment primary key ,
 nome_usuario varchar(25) not null,
 CPF char(11) not null unique,
-genero ENUM('Masculino','Feminino','Outro','Prefiro não dizer')Not null, -- o enum serve para limitar as opções de escolha
+genero ENUM('Masculino','Feminino','Outro','Prefiro não dizer')Not null, 
 logradouro  varchar(150) not null,
 bairro varchar(100) not null,
 Cidade varchar(100) not null,
 estado char(2) not null,
 cep char(8) not null,
 telefone char(9) unique,
--- peso decimal(4,2) not null  esse aqui vai para o matheus e alexander fazerem
+
 email_usuario varchar(30) not null unique ,
 senha_usuario varchar(128) not null,
 data_de_nasc date
@@ -21,7 +21,7 @@ data_de_nasc date
 
 insert into Usuarios(nome_usuario,CPF,genero,logradouro,bairro,Cidade,estado,cep,email_usuario,senha_usuario,data_de_nasc) values('Marcos',1223343,'Masculino', 'Rua das Alamedas 12','Vale dos Lírios','São Paulo','SP','01753252','marcos@gmail.com','1234567','1985-02-09');
 
-truncate Usuarios; -- truncate serve para apagar os registros do banco de dados sem alterar a estrutura
+truncate Usuarios; 
 select * from Usuarios;
 drop table usuarios;
 alter table Usuarios drop peso;

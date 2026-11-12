@@ -1,49 +1,271 @@
-body{
-    background: #D9D9D9;
+/* ==========================================================================
+   PÁGINA "SOBRE NÓS" (sobrenos.html)
+   Este arquivo é usado apenas por sobrenos.html.
+   Paleta do site: verde-azulado #006C63 / #004d46 / #00857a, fundo #f4f6f8
+   ========================================================================== */
 
+body {
+    margin: 0;
+    background: #f4f6f8;
+    color: #1f2d2b;
+    font-family: "Roboto", "Segoe UI", Arial, sans-serif;
 }
- #img1{
-    height: 300px;
-   margin-top:25px;
-    
 
+/* Faixa decorativa no topo */
+#linha {
+    height: 6px;
+    margin: 0;
+    background: #006C63;
 }
 
-#img{
-    margin-left: 900px;
-    display: flex;
+/* ---------- Destaque: título + texto + imagem ---------- */
+#img {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    align-items: center;
+    gap: 40px;
+    box-sizing: border-box;
+    max-width: 1100px;
+    margin: 40px auto 0;
+    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #e1e8e6;
+    border-radius: 20px;
+    box-shadow: 0 4px 18px rgba(0, 60, 55, 0.08);
 }
-h1{
-    margin-right: 10px;
-    background: greenyellow;
-    border:1px solid black;
-    border-radius: 30px;
-    width: 30vw;
-    padding: 30px;
-    font-display: flex;
+
+h1 {
+    margin: 0;
+    color: #004d46;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0.5px;
 }
-#linha{
-    background: green;
+
+/* Detalhe sutil sob o título */
+h1::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin: 20px 0 20px;
+    border-radius: 4px;
+    background: #006C63;
+}
+
+.intro {
+    margin: 0;
+    color: #4a5a57;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+#img1 {
+    display: block;
     width: 100%;
-    height: 24px;
-    margin:50px 0px 0px 0px ;
-
+    height: auto;
+    max-height: 380px;
+    margin: 0;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
-#elements{
-display: flex;
-gap:281px;
-
+/* ---------- Ícones minimalistas (círculo suave + traço) ---------- */
+.icone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    background: #e6f2f0;
+    color: #006C63;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.element{
-border: 2px solid #3c3cb8;  
-border-radius: 16px;
-background: #6155F5;
-margin:50px 0px 0px 0px ;
-height: 400px;  
-padding: 20px 24px;
-width: 320px;
+/* ---------- Cartões: quem somos, propósito, valores ---------- */
+#elements {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    box-sizing: border-box;
+    max-width: 1100px;
+    margin: 32px auto 0;
+}
 
+.element {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e1e8e6;
+    border-top: 4px solid #006C63;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 60, 55, 0.06);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
 
+.element:hover {
+    border-color: #b8d3cf;
+    border-top-color: #006C63;
+    box-shadow: 0 6px 18px rgba(0, 60, 55, 0.12);
+}
+
+.element:hover .icone {
+    background: #006C63;
+    color: #ffffff;
+}
+
+.element h2 {
+    margin: 0 0 10px;
+    color: #004d46;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.element p {
+    margin: 0;
+    color: #4a5a57;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* ---------- Por que confiar ---------- */
+#confianca {
+    box-sizing: border-box;
+    max-width: 1100px;
+    margin: 32px auto 64px;
+    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #e1e8e6;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 60, 55, 0.06);
+}
+
+.confianca-titulo {
+    margin: 0 0 28px;
+    color: #004d46;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.confianca-titulo::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    margin-top: 12px;
+    border-radius: 3px;
+    background: #006C63;
+}
+
+.confianca-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.confianca-item {
+    padding-left: 20px;
+    border-left: 1px solid #e1e8e6;
+}
+
+.confianca-item:first-child {
+    padding-left: 0;
+    border-left: 0;
+}
+
+.confianca-item .icone {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+}
+
+.confianca-item h3 {
+    margin: 0 0 6px;
+    color: #004d46;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.confianca-item p {
+    margin: 0;
+    color: #4a5a57;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ---------- Responsividade ---------- */
+@media (max-width: 900px) {
+    #img {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin: 28px 20px 0;
+        padding: 24px;
+    }
+
+    #elements {
+        gap: 16px;
+        margin: 24px 20px 0;
+    }
+
+    .element {
+        padding: 22px;
+    }
+
+    #confianca {
+        margin: 24px 20px 48px;
+        padding: 24px;
+    }
+
+    .confianca-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .confianca-item,
+    .confianca-item:first-child {
+        padding-left: 0;
+        border-left: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    #elements {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    #img {
+        margin: 20px 14px 0;
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    #elements {
+        margin: 16px 14px 0;
+    }
+
+    #confianca {
+        margin: 16px 14px 40px;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .confianca-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .intro {
+        font-size: 16px;
+    }
 }

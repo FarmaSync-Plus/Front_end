@@ -10,7 +10,8 @@ const btn = document.getElementById("cadastrar");
 const form = document.getElementById("cadastro-form");
 
 
- const url = "http://localhost:5043/usuarios/save";
+// MUDANÇA 1: link da API em C# (porta 5043 + rota /usuarios/save)
+const url="http://localhost:5043/usuarios/save";
 
 form.addEventListener("submit",async function(event) {
  event.preventDefault();
@@ -68,12 +69,19 @@ return
     const formData = new FormData(form)
     console.log(formData);
 
+    // MUDANÇA 2: transforma o formulário em objeto e limpa CEP e CPF
+    // (remove hífen, pontos e espaços) para caber nas colunas do banco.
+    // O "if" evita erro caso o campo tenha outro nome no HTML.
+    const dados = Object.fromEntries(formData);
+    if (dados.cep) dados.cep = dados.cep.replace(/\D/g, "");
+    if (dados.cpf) dados.cpf = dados.cpf.replace(/\D/g, "");
+
     const response = await fetch(url,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
         },
-        body:JSON.stringify(Object.fromEntries(formData))
+        body:JSON.stringify(dados)
     });
     if(response.ok){
 

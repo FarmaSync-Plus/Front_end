@@ -10,8 +10,7 @@ const btn = document.getElementById("cadastrar");
 const form = document.getElementById("cadastro-form");
 
 
-// MUDANÇA 1: link da API em C# (porta 5043 + rota /usuarios/save)
-const url="http://localhost:5043/usuarios/save";
+const url="http://localhost:8082/usuarios/save";
 
 form.addEventListener("submit",async function(event) {
  event.preventDefault();
@@ -61,7 +60,7 @@ cartaoinformativo.style.background="#fff";
          ok.style.transition="background 0.3s ease, transform 0.3s ease";
          ok.style.padding="10px 20px";
 return
-    } 
+    } // verificar isso amanhã
 
 
 
@@ -69,32 +68,12 @@ return
     const formData = new FormData(form)
     console.log(formData);
 
-    // MUDANÇA 2: transforma o formulário em objeto e limpa CEP e CPF
-    // (remove hífen, pontos e espaços) para caber nas colunas do banco.
-    // O "if" evita erro caso o campo tenha outro nome no HTML.
-    const dados = Object.fromEntries(formData);
-    for (const campo in dados) {
-        // tira espaços do começo e do fim de qualquer campo de texto
-        if (typeof dados[campo] === "string") {
-            dados[campo] = dados[campo].trim();
-        }
-        const nome = campo.toLowerCase();
-        if (nome.includes("cpf") || nome.includes("cep") || nome.includes("telefone")) {
-            dados[campo] = String(dados[campo]).replace(/\D/g, "");
-        }
-    }
-    // telefone é opcional e UNIQUE no banco: se estiver vazio, não envia
-    // (dois cadastros com "" dariam erro de valor duplicado)
-    if (!dados.telefone) delete dados.telefone;
-
-    console.log("Enviando para a API:", dados);
-
     const response = await fetch(url,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
         },
-        body:JSON.stringify(dados)
+        body:JSON.stringify(Object.fromEntries(formData))
     });
     if(response.ok){
 

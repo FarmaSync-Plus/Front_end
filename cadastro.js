@@ -73,8 +73,21 @@ return
     // (remove hífen, pontos e espaços) para caber nas colunas do banco.
     // O "if" evita erro caso o campo tenha outro nome no HTML.
     const dados = Object.fromEntries(formData);
-    if (dados.cep) dados.cep = dados.cep.replace(/\D/g, "");
-    if (dados.cpf) dados.cpf = dados.cpf.replace(/\D/g, "");
+    for (const campo in dados) {
+        // tira espaços do começo e do fim de qualquer campo de texto
+        if (typeof dados[campo] === "string") {
+            dados[campo] = dados[campo].trim();
+        }
+        const nome = campo.toLowerCase();
+        if (nome.includes("cpf") || nome.includes("cep") || nome.includes("telefone")) {
+            dados[campo] = String(dados[campo]).replace(/\D/g, "");
+        }
+    }
+    // telefone é opcional e UNIQUE no banco: se estiver vazio, não envia
+    // (dois cadastros com "" dariam erro de valor duplicado)
+    if (!dados.telefone) delete dados.telefone;
+
+    console.log("Enviando para a API:", dados);
 
     const response = await fetch(url,{
         method:'POST',

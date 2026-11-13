@@ -10,7 +10,7 @@ const btn = document.getElementById("cadastrar");
 const form = document.getElementById("cadastro-form");
 
 
-const url=http:"//localhost:5043";
+const const url = "http://localhost:5043";
 
 form.addEventListener("submit",async function(event) {
  event.preventDefault();

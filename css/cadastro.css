@@ -1,3 +1,6 @@
+/* ==========================================================================
+   RESET & ESTILOS ORIGINAIS
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -5,11 +8,16 @@
     font-family: Arial, sans-serif;
 }
 
+body {
+    background-color: #ffffff;
+    color: #333333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 img {
     max-width: 181px;
     height: auto;
 }
-
 
 .cadastre-se {
     display: flex;
@@ -17,6 +25,8 @@ img {
     justify-content: space-between;
     padding: 20px 40px;
     margin-right: 100px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
 }
 
 #logo2 {
@@ -30,6 +40,8 @@ img {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .conteudo-duplo {
@@ -55,6 +67,8 @@ img {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #ffffff;
+    color: #333333;
 }
 
 .rodape-form {
@@ -64,54 +78,53 @@ img {
     margin-top: 30px;
 }
 
-
 @media (max-width: 768px) {
     .conteudo-duplo {
         flex-direction: column;
         gap: 20px;
     }
 }
-.boas-vindas{
+
+.boas-vindas {
     font-weight: bold;
-    margin-left:320px
+    margin-left: 320px;
 }
-.link-ajuda,a {
-color: #000000; 
-  text-decoration: none;
+
+.link-ajuda, a {
+    color: #000000; 
+    text-decoration: none;
 }
 
 .btn-cadastrar {
-  display: inline-block;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-family: sans-serif;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #2563eb; 
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  margin-top:50px;
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #2563eb; 
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    margin-top: 50px;
 }
-
 
 .btn-cadastrar:hover {
-  background-color: #1d4ed8;
-  transform: translateY(-1px);
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
 }
 
-
 .btn-cadastrar:active {
-  transform: translateY(1px);
+    transform: translateY(1px);
 }
 
 .conteudo-conta {
     position: absolute;
     top: 200px;        
-    right: 80px;     
+    right: 80px;    
     width: 260px;
     padding: 30px 20px;
     border: 1px solid #e1e1e1;
@@ -130,8 +143,8 @@ color: #000000;
 .conteudo-conta h3 {
     font-size: 14px;
     margin: 0;
+    color: #333333;
 }
-
 
 .conteudo-conta .ok {
     display: inline-block;
@@ -146,4 +159,43 @@ color: #000000;
     color: #1557b0;         
     text-decoration: underline;
 }
-  
+
+/* ==========================================================================
+   SUPORTE AO TEMA ESCURO (ADICIONADO)
+   ========================================================================== */
+body.tema-escuro {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+body.tema-escuro .formulario-de-cadastro {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+body.tema-escuro .coluna h3,
+body.tema-escuro .formulario-de-cadastro h3 {
+    color: #f8fafc !important;
+}
+
+body.tema-escuro .grupo input {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+body.tema-escuro .conteudo-conta {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+body.tema-escuro .conteudo-conta h2,
+body.tema-escuro .conteudo-conta h3 {
+    color: #f8fafc !important;
+}
+
+body.tema-escuro .link-ajuda, 
+body.tema-escuro a:not(.btn-cadastrar):not(.ok) {
+    color: #94a3b8 !important;
+}

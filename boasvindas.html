@@ -8,12 +8,13 @@
     <!-- Ícones e Fontes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="preferencias-globais.js" defer></script>
     <link rel="icon" href="img/logo.png">
 
     <style>
         /* ==========================================================================
-           RESET & CONFIGURAÇÕES GLOBAIS
-           ========================================================================== */
+            RESET & CONFIGURAÇÕES GLOBAIS
+            ========================================================================== */
         * {
             margin: 0;
             padding: 0;
@@ -30,6 +31,76 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ==========================================================================
+           SUPORTE AO TEMA ESCURO (.tema-escuro) - Cores cirúrgicas sem quebrar o layout
+           ========================================================================== */
+        body.tema-escuro {
+            background-color: #121212 !important;
+            color: #e2e8f0 !important;
+        }
+
+        body.tema-escuro .login {
+            background: #1e1e1e !important;
+            border: 1px solid #333333 !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        body.tema-escuro .topo h1 {
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .topo .ajuda {
+            color: #008f81 !important;
+        }
+
+        body.tema-escuro .campo h3 {
+            color: #cbd5e1 !important;
+        }
+
+        body.tema-escuro .login input[type="text"],
+        body.tema-escuro .login input[type="password"] {
+            background-color: #2a2a2a !important;
+            border: 1px solid #444444 !important;
+            color: #ffffff !important;
+        }
+
+        body.tema-escuro .login input:focus {
+            background-color: #333333 !important;
+            border-color: #008f81 !important;
+            box-shadow: 0 0 0 3px rgba(0, 140, 129, 0.25) !important;
+        }
+
+        body.tema-escuro .login p {
+            color: #94a3b8 !important;
+        }
+
+        body.tema-escuro .esqueceu h3 {
+            color: #008f81 !important;
+        }
+
+        body.tema-escuro .botoes-inferiores {
+            border-top: 1px solid #333333 !important;
+        }
+
+        body.tema-escuro .botoes-inferiores h3 {
+            color: #94a3b8 !important;
+        }
+
+        body.tema-escuro #cartao-informativo {
+            background: #1e1e1e !important;
+            color: #f8fafc !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        body.tema-escuro #result p {
+            color: #cbd5e1 !important;
+        }
+
+        body.tema-escuro #result h3 {
+            color: #f8fafc !important;
         }
 
         /* ==========================================================================

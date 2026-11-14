@@ -1,11 +1,8 @@
-
 (function () {
-  const API_URL = 'http://localhost:8082';
   const MINIMO_DE_LETRAS = 2;
   const MAXIMO_DE_SUGESTOES = 6;
-  const ESPERA_EM_MS = 250;
+  const ESPERA_EM_MS = 150;
 
- 
   function normalizar(texto) {
     return String(texto == null ? '' : texto).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   }
@@ -15,10 +12,9 @@
   }
 
   function irParaProdutos(texto) {
-    const endereco = 'produtos.html' + (texto ? '?busca=' + encodeURIComponent(texto) : '');
-    
-    if (window.FarmaBusca && typeof window.FarmaBusca.navegar === 'function') window.FarmaBusca.navegar(endereco);
-    else window.location.href = endereco;
+    const termoLimpo = String(texto || '').trim();
+    const endereco = 'produtos.html' + (termoLimpo ? '?busca=' + encodeURIComponent(termoLimpo) : '');
+    window.location.href = endereco;
   }
 
   function injetarEstilos() {
@@ -26,7 +22,7 @@
     const estilo = document.createElement('style');
     estilo.id = 'farmabusca-css';
     estilo.textContent = `
-      .fb-lista { position: fixed; z-index: 10000; background: #fff; color: #222; border: 1px solid #d9d9d9;
+      .fb-lista { position: absolute; z-index: 10000; background: #fff; color: #222; border: 1px solid #d9d9d9;
         border-radius: 12px; box-shadow: 0 12px 28px rgba(0,0,0,.18); overflow-x: hidden; overflow-y: auto;
         max-height: 70vh; font-family: inherit; text-align: left; }
       .fb-aviso { padding: 10px 14px; font-size: 13px; color: #666; background: #fafafa; border-bottom: 1px solid #eee; }
@@ -63,13 +59,11 @@
     let acoes = [];          
     let ativo = -1;           
     let temporizador = null;
-    let numeroDaRequisicao = 0;
-    const guardados = new Map(); 
 
     function posicionar() {
       const r = campo.getBoundingClientRect();
-      lista.style.left = r.left + 'px';
-      lista.style.top = (r.bottom + 6) + 'px';
+      lista.style.left = r.left + window.scrollX + 'px';
+      lista.style.top = (r.bottom + 6 + window.scrollY) + 'px';
       lista.style.width = Math.max(r.width, 280) + 'px';
     }
 
@@ -99,23 +93,43 @@
       acoes[indice]();
     }
 
-    function mostrar(termo, produtos) {
-      if (produtos.length === 0) {
+    function buscarEFiltrar(termo) {
+      // Usa diretamente o array produtosDoBanco da página index.html
+      if (typeof produtosDoBanco === 'undefined') {
+        mensagem('Nenhum produto cadastrado.');
+        return;
+      }
+
+      const t = normalizar(termo);
+      
+      // Filtra os produtos que contêm o termo
+      const filtrados = produtosDoBanco.filter(p => normalizar(p.nome).includes(t));
+
+      if (filtrados.length === 0) {
         mensagem('Nenhum produto encontrado para “' + termo + '”.');
         return;
       }
+
+      // Ordenação rigorosa:
+      // 1. O nome começa exatamente com o termo digitado (Prioridade Máxima)
+      // 2. Ordem alfabética ou índice de aparição
+      filtrados.sort((a, b) => {
+        const nomeA = normalizar(a.nome);
+        const nomeB = normalizar(b.nome);
+
+        const começaA = nomeA.startsWith(t) ? 0 : 1;
+        const começaB = nomeB.startsWith(t) ? 0 : 1;
+        if (começaA !== começaB) return começaA - começaB;
+
+        return nomeA.indexOf(t) - nomeB.indexOf(t);
+      });
+
+      mostrar(termo, filtrados);
+    }
+
+    function mostrar(termo, produtos) {
       lista.innerHTML = '';
       opcoesDaLista = []; acoes = []; ativo = -1;
-
-      // Se nenhum nome/descrição contém o que foi digitado, o back-end achou por semelhança
-      const t = normalizar(termo);
-      const achouIgual = produtos.some(p => normalizar(p.nome).includes(t) || normalizar(p.descricao).includes(t));
-      if (!achouIgual) {
-        const aviso = document.createElement('div');
-        aviso.className = 'fb-aviso';
-        aviso.textContent = 'Resultados parecidos com “' + termo + '”:';
-        lista.appendChild(aviso);
-      }
 
       produtos.slice(0, MAXIMO_DE_SUGESTOES).forEach(produto => {
         const item = document.createElement('div');
@@ -125,8 +139,14 @@
         const img = document.createElement('img');
         img.className = 'fb-img';
         img.alt = '';
-        img.onerror = function () { this.onerror = null; this.src = 'img/logo.png'; };
-        img.src = produto.imagem ? 'produtos/' + produto.imagem : 'img/logo.png';
+        
+        let imagemNome = produto.imagem ? produto.imagem.trim() : 'default.png';
+        img.src = 'produtos/' + imagemNome;
+        
+        img.onerror = function () { 
+          this.onerror = null; 
+          img.src = 'img/logo.png'; 
+        };
 
         const nome = document.createElement('span');
         nome.className = 'fb-nome';
@@ -153,39 +173,18 @@
       acoes.push(function () { aoPesquisar(termo); });
 
       opcoesDaLista.forEach((el, i) => {
-        el.addEventListener('mousedown', e => e.preventDefault()); // mantém o foco no campo
+        el.addEventListener('mousedown', e => e.preventDefault());
         el.addEventListener('click', () => escolher(i));
         el.addEventListener('mousemove', () => { if (ativo !== i) destacar(i); });
       });
       abrir();
     }
 
-    async function buscar(termo) {
-      const chave = normalizar(termo);
-      if (guardados.has(chave)) { mostrar(termo, guardados.get(chave)); return; }
-
-      const minhaRequisicao = ++numeroDaRequisicao;
-      try {
-        const resposta = await fetch(API_URL + '/produtos?busca=' + encodeURIComponent(termo));
-        if (!resposta.ok) throw new Error('Status ' + resposta.status);
-        const dados = await resposta.json();
-        guardados.set(chave, dados);
-        if (minhaRequisicao !== numeroDaRequisicao) return;   
-        if (campo.value.trim() !== termo) return;             
-        mostrar(termo, dados);
-      } catch (erro) {
-        if (minhaRequisicao !== numeroDaRequisicao) return;
-        console.error('Erro ao buscar sugestões:', erro);
-        mensagem('Não foi possível buscar agora. Confira se o servidor está ligado (' + API_URL + ').', 'fb-vazio');
-      }
-    }
-
     campo.addEventListener('input', function () {
       const termo = campo.value.trim();
       clearTimeout(temporizador);
-      numeroDaRequisicao++;                 
       if (termo.length < MINIMO_DE_LETRAS) { fechar(); return; }
-      temporizador = setTimeout(() => buscar(termo), ESPERA_EM_MS);
+      temporizador = setTimeout(() => buscarEFiltrar(termo), ESPERA_EM_MS);
     });
 
     campo.addEventListener('keydown', function (e) {
@@ -206,21 +205,16 @@
       }
     });
 
-    campo.addEventListener('focus', function () {
-      const termo = campo.value.trim();
-      if (termo.length >= MINIMO_DE_LETRAS && guardados.has(normalizar(termo))) mostrar(termo, guardados.get(normalizar(termo)));
-    });
-
     if (opcoes.lupa) {
       opcoes.lupa.style.cursor = 'pointer';
-      opcoes.lupa.addEventListener('click', function () {
+      const elementoLupa = opcoes.lupa.closest('.botao-busca') || opcoes.lupa;
+      elementoLupa.addEventListener('click', function () {
         clearTimeout(temporizador);
         fechar();
         aoPesquisar(campo.value.trim());
       });
     }
 
- 
     document.addEventListener('mousedown', function (e) {
       if (!lista.contains(e.target) && e.target !== campo) fechar();
     });

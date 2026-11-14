@@ -14,6 +14,7 @@ body {
     background-color: #f4f6f8;
     color: #1f2d2b;
     margin: 0 auto;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -684,6 +685,67 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding: 20px 16px;
     line-height: 1.6;
+}
+
+/* ==========================================================================
+   SUPORTE AO TEMA ESCURO (ADICIONADO NO FIM PARA PRESERVAR O RESTO)
+   ========================================================================== */
+body.tema-escuro {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+body.tema-escuro .site-header {
+    background-color: #1e293b !important;
+    border-bottom: 1px solid #334155 !important;
+}
+
+body.tema-escuro #pesquisa {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+}
+
+body.tema-escuro #campo-busca {
+    color: #f8fafc !important;
+}
+
+body.tema-escuro #campo-busca::placeholder {
+    color: #94a3b8 !important;
+}
+
+body.tema-escuro .conta-usuario:hover,
+body.tema-escuro .link-carrinho:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.tema-escuro #topi {
+    color: #f8fafc !important;
+}
+
+body.tema-escuro #teste {
+    color: #94a3b8 !important;
+}
+
+body.tema-escuro .produto {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+body.tema-escuro .produto-title {
+    color: #f8fafc !important;
+}
+
+body.tema-escuro #cartao-informativo {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+}
+
+body.tema-escuro #result h3 {
+    color: #f8fafc !important;
+}
+
+body.tema-escuro #result p {
+    color: #94a3b8 !important;
 }
 
 /* ==========================================================================

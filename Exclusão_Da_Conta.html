@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="img/logo.png">
     <title>Excluir Conta - FarmaSync</title>
+    <script src="preferencias-globais.js" defer></script>
 
     <!-- Ícones e Fontes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -27,6 +29,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* ==========================================================================
@@ -37,6 +40,7 @@
             border-bottom: 1px solid #e2e8f0;
             box-shadow: 0 2px 12px rgba(0, 60, 55, 0.06);
             padding: 15px 40px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .logo {
@@ -66,6 +70,7 @@
             border-radius: 16px;
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
 
         /* Ícone de Alerta */
@@ -90,6 +95,7 @@
             font-size: 26px;
             font-weight: 700;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
         }
 
         .subtitulo {
@@ -98,6 +104,7 @@
             font-size: 15px;
             line-height: 1.5;
             margin-bottom: 25px;
+            transition: color 0.3s ease;
         }
 
         /* Caixa de Aviso */
@@ -107,6 +114,7 @@
             border-radius: 10px;
             padding: 16px;
             margin-bottom: 24px;
+            transition: background-color 0.3s ease;
         }
 
         .aviso h2 {
@@ -132,6 +140,7 @@
             font-size: 15px;
             font-weight: 700;
             margin-bottom: 12px;
+            transition: color 0.3s ease;
         }
 
         .consequencias ul {
@@ -143,6 +152,7 @@
             border-bottom: 1px solid #f1f5f9;
             color: #475569;
             font-size: 14px;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         .consequencias li::before {
@@ -163,6 +173,7 @@
             border-radius: 10px;
             padding: 14px;
             margin-bottom: 24px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .confirmacao input {
@@ -179,6 +190,7 @@
             line-height: 1.4;
             cursor: pointer;
             font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         /* Botões */
@@ -259,6 +271,80 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ==========================================================================
+           SUPORTE AO TEMA ESCURO (DARK MODE)
+           ========================================================================== */
+        body.tema-escuro {
+            background-color: #0f172a !important;
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .cabecalho {
+            background-color: #1e293b !important;
+            border-bottom-color: #334155 !important;
+        }
+
+        body.tema-escuro .cartao {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.tema-escuro .cartao h1 {
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .subtitulo {
+            color: #94a3b8 !important;
+        }
+
+        body.tema-escuro .aviso {
+            background-color: #451a03 !important;
+            border-left-color: #f59e0b !important;
+        }
+
+        body.tema-escuro .aviso h2 {
+            color: #fbbf24 !important;
+        }
+
+        body.tema-escuro .aviso p {
+            color: #fde68a !important;
+        }
+
+        body.tema-escuro .consequencias h2 {
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .consequencias li {
+            border-bottom-color: #334155 !important;
+            color: #94a3b8 !important;
+        }
+
+        body.tema-escuro .confirmacao {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.tema-escuro .confirmacao label {
+            color: #cbd5e1 !important;
+        }
+
+        body.tema-escuro .botao-cancelar {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+            color: #cbd5e1 !important;
+        }
+
+        body.tema-escuro .botao-cancelar:hover {
+            background-color: #334155 !important;
+            color: #ffffff !important;
+        }
+
+        body.tema-escuro #cartao-informativo {
+            background: #1e293b !important;
+            color: #f8fafc !important;
         }
 
         /* Responsividade */

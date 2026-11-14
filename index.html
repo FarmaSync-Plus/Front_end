@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="preferencias-globais.js" defer></script>
     <title>Home - FarmaSync</title>
     
     <!-- Estilos e Ícones -->
     <link href="css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" href="img/logo.png">
 </head>
 <body>
@@ -111,8 +113,8 @@
 
             <ul class="footer-list">
                 <li><h3>Institucional</h3></li>
-                <li><a href="#" class="footer-link">Sobre nós</a></li>
-                <li><a href="#" class="footer-link">Todas as Marcas</a></li>
+                <li><a href="sobrenos.html" class="footer-link">Sobre nós</a></li>
+                <li><a href="produtos.html" class="footer-link">Todas as Marcas</a></li>
             </ul>
 
             <ul class="footer-list">
@@ -156,11 +158,24 @@
             link.href = "Conta_Do_Usuario.html";
         }
 
-        (function(){
+        // Inicialização Garantida da Barra de Busca Inteligente
+        document.addEventListener("DOMContentLoaded", function() {
             const campoBusca = document.getElementById('campo-busca');
-            if(!campoBusca || !window.FarmaBusca) return;
-            FarmaBusca.iniciar({ campo: campoBusca, lupa: document.getElementById('lupa') });
-        })();
+            const botaoLupa = document.querySelector('.botao-busca');
+            
+            if (campoBusca && window.FarmaBusca) {
+                FarmaBusca.iniciar({ 
+                    campo: campoBusca, 
+                    lupa: botaoLupa,
+                    aoEscolher: function(produto) {
+                        window.location.href = 'produtos.html?busca=' + encodeURIComponent(produto.nome);
+                    },
+                    aoPesquisar: function(termo) {
+                        window.location.href = 'produtos.html?busca=' + encodeURIComponent(termo);
+                    }
+                });
+            }
+        });
 
         const grupos_produtos = [
             [5, 6, 7, 8],
@@ -317,8 +332,7 @@
         }
     </script>
 
-    <!-- Scripts externos -->
+    <!-- Script de Busca Inteligente (busca.js) -->
     <script src="busca.js"></script>
-    <script src="index.js"></script>
 </body>
 </html>

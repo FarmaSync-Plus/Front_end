@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Compra - FarmaSync</title>
-    
+     <link rel="icon" href="img/logo.png">
+    <script src="preferencias-globais.js" defer></script>
     <!-- Ícones e Estilos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -28,6 +29,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* ==========================================================================
@@ -38,6 +40,7 @@
             background: #ffffff;
             padding-bottom: 15px;
             box-shadow: 0 2px 12px rgba(0, 60, 55, 0.08);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .logo-area {
@@ -84,6 +87,7 @@
             align-items: center;
             padding: 0 6px 0 20px;
             justify-content: space-between;
+            transition: background-color 0.3s ease;
         }
 
         .Pesquisa input {
@@ -92,6 +96,7 @@
             width: 100%;
             font-size: 14px;
             background: transparent;
+            color: #1f2d2b;
         }
 
         .btn-pesquisa {
@@ -136,6 +141,7 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.04);
             font-size: 24px;
             font-weight: 700;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .produto {
@@ -156,6 +162,7 @@
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             border: 1px solid #e2e8f0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
 
         #carrinho h2 {
@@ -181,6 +188,7 @@
             font-weight: 600;
             color: #475569;
             font-size: 14px;
+            transition: color 0.3s ease;
         }
 
         #carrinho input,
@@ -211,6 +219,7 @@
             height: 1px;
             background: #e2e8f0;
             margin: 25px 0;
+            transition: background-color 0.3s ease;
         }
 
         #carrinho button[type="submit"] {
@@ -245,6 +254,7 @@
             padding: 24px;
             margin: 20px 0;
             text-align: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .qr-container {
@@ -296,6 +306,87 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ==========================================================================
+           SUPORTE AO TEMA ESCURO (DARK MODE)
+           ========================================================================== */
+        body.tema-escuro {
+            background-color: #0f172a !important;
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .header-topo {
+            background-color: #1e293b !important;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        body.tema-escuro .Pesquisa {
+            background: #0f172a !important;
+            border: 1px solid #334155;
+        }
+
+        body.tema-escuro .Pesquisa input {
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .TITULO {
+            background-color: #1e293b !important;
+            color: #f8fafc !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        body.tema-escuro #carrinho {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro #carrinho h2,
+        body.tema-escuro #carrinho h3 {
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro #carrinho label {
+            color: #94a3b8 !important;
+        }
+
+        body.tema-escuro #carrinho input,
+        body.tema-escuro #carrinho select,
+        body.tema-escuro #carrinho textarea {
+            background: #0f172a !important;
+            border-color: #334155 !important;
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro #carrinho input:focus,
+        body.tema-escuro #carrinho select:focus,
+        body.tema-escuro #carrinho textarea:focus {
+            background: #1e293b !important;
+            border-color: #006C63 !important;
+        }
+
+        body.tema-escuro #carrinho hr {
+            background: #334155 !important;
+        }
+
+        body.tema-escuro #totalPedido {
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .bloco-pix {
+            background-color: #064e3b !important;
+            border-color: #059669 !important;
+        }
+
+        body.tema-escuro .pix-texto {
+            color: #a7f3d0 !important;
+        }
+
+        body.tema-escuro #cartao-informativo {
+            background: #1e293b !important;
+            color: #f8fafc !important;
         }
     </style>
 </head>
@@ -414,8 +505,8 @@
                     <input type="password" id="password" name="password" placeholder="Digite sua senha">
                 </div>
 
-                <div id="detalhes-do-boleto" class="metodo-pagamento" style="display:none; margin-top: 15px; padding: 15px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
-                    <p style="font-size: 14px; color: #475569; line-height: 1.5;"><strong>Após finalizar a compra, um boleto será gerado e enviado para o seu e-mail cadastrado.</strong></p>
+                <div id="detalhes-do-boleto" class="metodo-pagamento" style="display:none; margin-top: 15px; padding: 15px; background: inherit; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <p style="font-size: 14px; color: inherit; line-height: 1.5;"><strong>Após finalizar a compra, um boleto será gerado e enviado para o seu e-mail cadastrado.</strong></p>
                 </div>
 
                 <div id="detalhes-pix" class="bloco-pix" style="display:none;">
@@ -468,15 +559,7 @@
                         const modal = document.getElementById("cartao-informativo");
                         const caixa = document.getElementById("sobreposicao-tela");
                         
-                        result.innerHTML = `<h3>Atenção</h3><br><p style="color:#475569; font-size:14px; margin-bottom:15px;">Usuário não encontrado. Por favor, crie uma conta ou faça login.</p><br><button id="tentativa" onclick="window.location.href='cadastro.html'" style="background:#006C63; color:white; border:none; padding:10px 24px; border-radius:8px; font-weight:600; cursor:pointer;">Cadastrar</button>`;
-                        
-                        modal.style.background = "#fff";
-                        modal.style.padding = "35px";
-                        modal.style.borderRadius = "16px";
-                        modal.style.textAlign = "center";
-                        modal.style.maxWidth = "380px";
-                        modal.style.width = "90%";
-                        modal.style.boxShadow = "0 20px 40px rgba(0,0,0,0.2)";
+                        result.innerHTML = `<h3>Atenção</h3><br><p style="color:inherit; font-size:14px; margin-bottom:15px;">Usuário não encontrado. Por favor, crie uma conta ou faça login.</p><br><button id="tentativa" onclick="window.location.href='cadastro.html'" style="background:#006C63; color:white; border:none; padding:10px 24px; border-radius:8px; font-weight:600; cursor:pointer;">Cadastrar</button>`;
                         
                         caixa.style.position = "fixed";
                         caixa.style.top = "0";
@@ -498,8 +581,8 @@
             if (divItens) {
                 divItens.innerHTML = carrinho.map(item => {
                     totalGeral += item.preco * item.Quantidade;
-                    return `<div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px 14px; margin-bottom:6px;">
-                        <span style="font-size:14px; color:#1e293b;">${item.nome} (Qtd: ${item.Quantidade})</span>
+                    return `<div style="display:flex; justify-content:space-between; align-items:center; background:inherit; border:1px solid #e2e8f0; border-radius:8px; padding:10px 14px; margin-bottom:6px;">
+                        <span style="font-size:14px; color:inherit;">${item.nome} (Qtd: ${item.Quantidade})</span>
                         <span style="font-weight:700; color:#006C63; background:#e6f4f1; padding:4px 10px; border-radius:20px; font-size:13px;">
                             R$ ${Number(item.preco).toFixed(2)}
                         </span>
@@ -543,15 +626,7 @@
                 const modal = document.getElementById("cartao-informativo");
                 const caixa = document.getElementById("sobreposicao-tela");
                 
-                result.innerHTML = `<h3>Sucesso!</h3><br><p style="color:#475569; font-size:14px; margin-bottom:15px;">Compra efetuada com sucesso!</p><br><button id="tentativa" onclick="window.location.href='confirmacao.html?id=${pedidoSalvo.pedidos_id || pedidoSalvo.id || ''}'" style="background:#006C63; color:white; border:none; padding:10px 24px; border-radius:8px; font-weight:600; cursor:pointer;">Ver Status</button>`;
-                
-                modal.style.background = "#fff";
-                modal.style.padding = "35px";
-                modal.style.borderRadius = "16px";
-                modal.style.textAlign = "center";
-                modal.style.maxWidth = "380px";
-                modal.style.width = "90%";
-                modal.style.boxShadow = "0 20px 40px rgba(0,0,0,0.2)";
+                result.innerHTML = `<h3>Sucesso!</h3><br><p style="color:inherit; font-size:14px; margin-bottom:15px;">Compra efetuada com sucesso!</p><br><button id="tentativa" onclick="window.location.href='confirmacao.html?id=${pedidoSalvo.pedidos_id || pedidoSalvo.id || ''}'" style="background:#006C63; color:white; border:none; padding:10px 24px; border-radius:8px; font-weight:600; cursor:pointer;">Ver Status</button>`;
                 
                 caixa.style.position = "fixed";
                 caixa.style.top = "0";
@@ -571,15 +646,7 @@
                 const modal = document.getElementById("cartao-informativo");
                 const caixa = document.getElementById("sobreposicao-tela");
                 
-                result.innerHTML = `<h3>Erro</h3><br><p style="color:#475569; font-size:14px; margin-bottom:15px;">Erro ao finalizar: ${err.message}. Verifique se o back-end está rodando.</p><br><button id="tentativa" onclick="window.location.href='formularioDeCompra.html'" style="background:#006C63; color:white; border:none; padding:10px 24px; border-radius:8px; font-weight:600; cursor:pointer;">Tentar Novamente</button>`;
-                
-                modal.style.background = "#fff";
-                modal.style.padding = "35px";
-                modal.style.borderRadius = "16px";
-                modal.style.textAlign = "center";
-                modal.style.maxWidth = "380px";
-                modal.style.width = "90%";
-                modal.style.boxShadow = "0 20px 40px rgba(0,0,0,0.2)";
+                result.innerHTML = `<h3>Erro</h3><br><p style="color:inherit; font-size:14px; margin-bottom:15px;">Erro ao finalizar: ${err.message}. Verifique se o back-end está rodando.</p><br><button id="tentativa" onclick="window.location.href='formularioDeCompra.html'" style="background:#006C63; color:white; border:none; padding:10px 24px; border-radius:8px; font-weight:600; cursor:pointer;">Tentar Novamente</button>`;
                 
                 caixa.style.position = "fixed";
                 caixa.style.top = "0";

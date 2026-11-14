@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trocar Senha - FarmaSync</title>
-
+    <script src="preferencias-globais.js" defer></script>
     <!-- Ícones e Fontes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <style>
+ <style>
         /* ==========================================================================
-           RESET & CONFIGURAÇÕES GLOBAIS
-           ========================================================================== */
+            RESET & CONFIGURAÇÕES GLOBAIS
+            ========================================================================== */
         * {
             margin: 0;
             padding: 0;
@@ -20,17 +20,91 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        body {
+        html, body {
             background-color: #f4f6f8;
             color: #1f2d2b;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* ==========================================================================
-           CABEÇALHO
+           TEMA ESCURO (.tema-escuro aplicado pelo script global no body)
            ========================================================================== */
+        body.tema-escuro {
+            background-color: #121212 !important;
+            color: #e2e8f0 !important;
+        }
+
+        body.tema-escuro .cabecalho {
+            background-color: #1e1e1e !important;
+            border-bottom: 1px solid #333333 !important;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        body.tema-escuro .cartao {
+            background-color: #1e1e1e !important;
+            border: 1px solid #333333 !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        body.tema-escuro h1 {
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .subtitulo {
+            color: #94a3b8 !important;
+        }
+
+        body.tema-escuro .campo label {
+            color: #cbd5e1 !important;
+        }
+
+        body.tema-escuro .campo input {
+            background-color: #2a2a2a !important;
+            border: 1px solid #444444 !important;
+            color: #ffffff !important;
+        }
+
+        body.tema-escuro .campo input:focus {
+            background-color: #333333 !important;
+            border-color: #008f81 !important;
+            box-shadow: 0 0 0 3px rgba(0, 140, 129, 0.25) !important;
+        }
+
+        body.tema-escuro .regras {
+            background-color: #2a2a2a !important;
+            border: 1px solid #333333 !important;
+        }
+
+        body.tema-escuro .regras h2 {
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .regras li {
+            color: #cbd5e1 !important;
+        }
+
+        body.tema-escuro .botao-cancelar {
+            background-color: #2a2a2a !important;
+            color: #cbd5e1 !important;
+            border: 1px solid #444444 !important;
+        }
+
+        body.tema-escuro .botao-cancelar:hover {
+            background-color: #333333 !important;
+            color: #ffffff !important;
+        }
+
+        body.tema-escuro #cartao-informativo {
+            background-color: #1e1e1e !important;
+            color: #f8fafc !important;
+        }
+
+        /* ==========================================================================
+            CABEÇALHO (MODO CLARO)
+            ========================================================================== */
         .cabecalho {
             background-color: #ffffff;
             border-bottom: 1px solid #e2e8f0;
@@ -50,8 +124,8 @@
         }
 
         /* ==========================================================================
-           ÁREA PRINCIPAL & CARTÃO
-           ========================================================================== */
+            ÁREA PRINCIPAL & CARTÃO
+            ========================================================================== */
         .principal {
             width: 90%;
             max-width: 650px;
@@ -284,6 +358,18 @@
             }
         }
     </style>
+<script>
+    // Diagnóstico rápido: abre o F12 (Console) e vê qual classe ou atributo o seu script global está a injetar!
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("Classes no HTML:", document.documentElement.className);
+        console.log("Classes no Body:", document.body.className);
+        console.log("Atributos no HTML:", document.documentElement.getAttribute('data-theme'));
+        console.log("Dados salvos no localStorage:", localStorage.getItem('tema') || localStorage.getItem('modo') || localStorage.getItem('preferencia'));
+    });
+</script>
+
+
+
 </head>
 
 <body>

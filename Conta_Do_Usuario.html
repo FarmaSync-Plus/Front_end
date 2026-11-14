@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conta do Usuário - FarmaSync</title>
-    
+    <script src="preferencias-globais.js" defer></script>
     <!-- Ícones e Fontes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
+ <link rel="icon" href="img/logo.png">
     <style>
         /* ==========================================================================
            RESET & CONFIGURAÇÕES GLOBAIS
@@ -23,6 +23,7 @@
         body {
             background-color: #f4f6f8;
             color: #1f2d2b;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* ==========================================================================
@@ -38,6 +39,7 @@
             align-items: center;
             padding: 15px 40px;
             gap: 40px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .logo {
@@ -85,6 +87,7 @@
             flex-wrap: wrap;
             gap: 40px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .Informações,
@@ -102,6 +105,7 @@
             margin-bottom: 25px;
             border-bottom: 3px solid #006C63;
             padding-bottom: 10px;
+            transition: color 0.3s ease;
         }
 
         /* Rótulos e Inputs */
@@ -111,6 +115,7 @@
             font-weight: 600;
             font-size: 14px;
             margin: 15px 0 6px;
+            transition: color 0.3s ease;
         }
 
         input {
@@ -246,6 +251,67 @@
         }
 
         /* ==========================================================================
+           SUPORTE AO TEMA ESCURO (DARK MODE)
+           ========================================================================== */
+        body.tema-escuro {
+            background-color: #0f172a !important;
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro .navbar {
+            background-color: #1e293b !important;
+            border-bottom-color: #334155 !important;
+        }
+
+        body.tema-escuro .dados {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.tema-escuro .Informações h2,
+        body.tema-escuro .dados2 h2 {
+            color: #f8fafc !important;
+            border-bottom-color: #006C63 !important;
+        }
+
+        body.tema-escuro label {
+            color: #94a3b8 !important;
+        }
+
+        body.tema-escuro input {
+            background-color: #0f172a !important;
+            border-color: #334155 !important;
+            color: #f8fafc !important;
+        }
+
+        body.tema-escuro input:focus {
+            border-color: #006C63 !important;
+            background-color: #1e293b !important;
+        }
+
+        body.tema-escuro .botao-excluir {
+            background-color: #1e293b !important;
+            border-color: #ef4444 !important;
+            color: #ef4444 !important;
+        }
+
+        body.tema-escuro .botao-excluir:hover {
+            background-color: #7f1d1d !important;
+            color: #ffffff !important;
+        }
+
+        body.tema-escuro .btn-logout {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+            color: #cbd5e1 !important;
+        }
+
+        body.tema-escuro .btn-logout:hover {
+            background-color: #334155 !important;
+            color: #ffffff !important;
+        }
+
+        /* ==========================================================================
            RESPONSIVIDADE
            ========================================================================== */
         @media (max-width: 700px) {
@@ -330,7 +396,7 @@
      
             <label for="numero">Número:</label>
             <input type="text" id="numero">
-          
+         
             <label for="complemento">Complemento:</label>
             <input type="text" id="complemento">
 
@@ -339,7 +405,7 @@
 
             <label for="cidade">Cidade:</label>
             <input type="text" id="cidade" name="cidade">
-          
+         
             <label for="estado">Estado:</label>
             <input list="lista-Estado" name="estado" id="estado">
             <datalist id="lista-Estado">

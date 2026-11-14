@@ -13,12 +13,14 @@
 body {
     background-color: #f4f6f8;
     color: #1f2d2b;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header {
     padding: 16px 40px;
     background-color: #ffffff;
     border-bottom: 1px solid #E2E8F0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .logo img {
@@ -168,7 +170,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .cartao-produto:hover {
@@ -217,6 +219,7 @@ header {
     border: 1px solid #cbd5e1;
     font-size: 14px;
     background-color: #fff;
+    color: #1f2d2b;
     cursor: pointer;
     outline: none;
 }
@@ -249,6 +252,7 @@ header {
     padding: 24px;
     background-color: #fff;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .bloco-resumo h3 {
@@ -336,6 +340,7 @@ header {
     max-width: 450px;
     width: 100%;
     animation: subir 0.4s ease-out;
+    transition: background-color 0.3s ease;
 }
 
 .icone-wrapper {
@@ -390,6 +395,70 @@ header {
 @keyframes subir {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   SUPORTE AO TEMA ESCURO (ADICIONADO)
+   ========================================================================== */
+body.tema-escuro {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+body.tema-escuro header {
+    background-color: #1e293b !important;
+    border-bottom: 1px solid #334155 !important;
+}
+
+body.tema-escuro .dropdown-menu {
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+}
+
+body.tema-escuro .dropdown-menu li a {
+    color: #f8fafc !important;
+}
+
+body.tema-escuro .dropdown-menu li a:hover {
+    background-color: #334155 !important;
+    color: #ffffff !important;
+}
+
+body.tema-escuro .carrinho-container h2,
+body.tema-escuro .bloco-resumo h3,
+body.tema-escuro .produto-titulo,
+body.tema-escuro .produto-preco,
+body.tema-escuro .linha-resumo.total,
+body.tema-escuro .titulo-carrinho-vazio {
+    color: #f8fafc !important;
+}
+
+body.tema-escuro .cartao-produto,
+body.tema-escuro .bloco-resumo,
+body.tema-escuro .carrinho-vazio-conteudo {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+body.tema-escuro .produto-img {
+    background: #0f172a !important;
+}
+
+body.tema-escuro .select-qtd {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+
+body.tema-escuro .linha-resumo,
+body.tema-escuro .subtitulo-carrinho-vazio {
+    color: #94a3b8 !important;
+}
+
+body.tema-escuro .icone-wrapper {
+    background: #1e293b !important;
+    border: 1px solid #334155;
 }
 
 /* ==========================================================================
